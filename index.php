@@ -62,7 +62,6 @@ session_start();
             <li><a href="#about">Tentang Kami</a></li>
             <li><a href="#gallery">Galeri</a></li>
             <li><a href="#pricing">Paket Harga</a></li>
-            <li><a href="#pendaftaran">Pendaftaran</a></li>
             <li><a href="#contact">Kontak</a></li>
             <li><a href="#contact">Kritik dan Saran</a></li>
             <li><a href="login.php">Login</a></li>
@@ -317,112 +316,7 @@ session_start();
       $id_lanjut = $cari['id_terakhir'] + 1;
 
     ?>
-    <!-- Pendaftaran Section -->
-    <section id="pendaftaran" class="contact section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <span>Pendaftaran</span>
-        <h2>Pendaftaran</h2>
-      </div><!-- End Section Title -->
-
-      <div class="container">
-        
-        <div class="row gy-4 mt-1">
-          
-          <div class="col-lg-12">
-            <form id="appointment-form" role="form" method="post" action="pages/proses_pendaftaran.php" class="php-email-form" data-aos="fade-up" data-aos-delay="400">
-              <input type="hidden" class="form-control" id="nama" name="id_customer" value="<?=$id_lanjut;?>">
-              <div class="row gy-4">
-
-                <div class="col-md-6">
-                  <label for="name">Nama</label>
-                  <input type="text" id="nama" name="nama" class="form-control" placeholder="Nama Anda" required="">
-                </div>
-
-                <div class="col-md-6">
-                   <label for="email">No. Handphone</label>
-                   <input type="number" class="form-control" id="email" name="no_hp" placeholder="0851XXXXXXX" required="">
-                  </div>
-                  
-                  <div class="col-md-6">
-                    <label for="email">Alamat</label>
-                    <textarea class="form-control" id="alamat" name="alamat" rows="6" placeholder="Alamat Anda" required=""></textarea>
-                </div>
-                
-                <div class="col-md-6">
-                   <label for="email">No. Plat</label>
-                  <input type="text" class="form-control" id="email" name="nomor_plat" placeholder="No. Plat Kendaraan Anda" required="">
-                </div>
-                
-                <div class="col-md-6">
-                  <label for="select">Type Mobil</label>
-                  <?php
-                    $result2 = mysql_query("select * from type_mobil");
-                    echo '<select name="type_mobil" class="form-control-rounded form-control" required>';
-                    echo '<option>Pilih Type Mobil</option>';
-                    while ($row2 = mysql_fetch_array($result2)) {
-                        echo '<option value="' . $row2['type_mobil'] . '">' . $row2['type_mobil'] . '</option>';
-                    }
-                    echo '</select>';
-                  ?>
-                </div>
-                
-                <div class="col-md-6">
-                    <label for="email">No. Antrian</label>
-                    <input type="text" class="form-control-rounded form-control" value="<?php echo $next; ?>" required="" readonly name="next">
-                        <input type="hidden" name="no_antrian" class="form-control" value="<?php echo $no_antrian; ?>" required="" readonly>
-                </div>
-                
-                <div class="col-md-6">
-                  <label for="select">Jenis Cucian</label>
-                  <?php
-                      $result = mysql_query("SELECT * FROM jenis_cucian");
-                      $jsArray = "var prdName = new Array();\n";
-                      echo '<select class="form-control" name="id_jenis_cucian" onchange="document.getElementById(\'txt2\').value = prdName[this.value]">';
-                      echo '<option>Pilih Jenis Cucian</option>';
-                      while ($row = mysql_fetch_array($result)) {
-                          echo '<option value="' . $row['id_jenis_cucian'] . '">' . $row['jenis_cucian'] . '</option>';
-                          $jsArray .= "prdName['" . $row['id_jenis_cucian'] . "'] = '" . addslashes($row['biaya']) . "';\n";
-                      }
-                      echo '</select>';
-
-                      ?>
-                </div>
-
-                <div class="col-md-6">
-                    <label for="email">Tanggal Pendaftaran</label>
-                    <input type="date" class="form-control" id="email" name="tgl_pendaftaran" value="<?=$tgl_pendaftaran;?>" readonly>
-                </div>
-
-                <div class="col-md-6">
-                    <label for="email">Jam Pendaftaran</label>
-                    <input type="time" class="form-control" id="email" name="jam_pendaftaran" min="08:00:00" max="18:00:00" required="">
-                </div>
-
-                <input type="hidden" name="total_biaya" id="txt2" class="form-control" readonly="" onkeyup="sum();" />
-                <script type="text/javascript">
-                <?php echo $jsArray; ?>
-                </script>
-
-                <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
-
-                  <button type="submit">Daftar Sekarang</button>
-                </div>
-
-              </div>
-            </form>
-          </div><!-- End Contact Form -->
-
-        </div>
-
-      </div>
-
-    </section><!-- /pendaftaran Section -->
-
+   
     <!-- Contact Section -->
     <section id="contact" class="contact section">
 
