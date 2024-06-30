@@ -43,6 +43,7 @@ date_default_timezone_set('Asia/Jakarta');
         <nav class="navbar navbar-expand-sm navbar-default">
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
+                <?php if($_SESSION['role'] == 'admin'){?>
                 <ul class="nav navbar-nav">
                     <li>
                         <a style="color:#fff" href="./"><i style="color:#f9d018 !important;" class="menu-icon fa fa-home"></i>Beranda </a>
@@ -78,6 +79,17 @@ date_default_timezone_set('Asia/Jakarta');
                     </li>
 
                 </ul>
+                <?php }else{ ?>
+                    <ul class="nav navbar-nav">
+                    <li>
+                        <a style="color:#fff" href="./"><i style="color:#f9d018 !important;" class="menu-icon fa fa-home"></i>Beranda </a>
+                    </li>
+                    <li>
+                        <a style="color:#fff" href="index.php?p=transaksi"> <i style="color:#f9d018 !important;" class="menu-icon ti-receipt"></i>Transaksi </a>
+                    </li>
+
+                </ul>
+                <?php }?>
             </div><!-- /.navbar-collapse -->
         </nav>
     </aside><!-- /#left-panel -->

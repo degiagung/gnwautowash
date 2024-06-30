@@ -14,6 +14,7 @@ require_once("config/koneksi.php");
 		$_SESSION['nama'] = $hasil['nama'];
 		$_SESSION['alamat'] = $hasil['alamat'];
 		$_SESSION['hp'] = $hasil['hp'];
+		$_SESSION['role'] = $hasil['role'];
 	?>
 		<script language="JavaScript">	
 		document.location='admin/index.php?p=home'</script>

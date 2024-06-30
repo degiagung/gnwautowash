@@ -35,7 +35,12 @@
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
 <?php
   include ("../config/koneksi.php");
-  $sqll = "select * from transaksi join pendaftaran using (id_pendaftaran) join customer where pendaftaran.id_customer = customer.id_customer order by id_transaksi desc";
+  $where = "";
+  if($_SESSION['role'] != 'admin'){
+    $id_user = $_SESSION['id_user'] ;
+    $where = " and customer.id_user in (select id_user from user where id_user = $id_user) ";
+  }
+  $sqll = "select * from transaksi join pendaftaran using (id_pendaftaran) join customer where pendaftaran.id_customer = customer.id_customer $where order by id_transaksi desc";
   $resultt = mysql_query($sqll);
     if(mysql_num_rows($resultt) > 0){
 ?>                                            

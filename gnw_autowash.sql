@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 24, 2024 at 12:31 PM
+-- Generation Time: Jun 30, 2024 at 05:30 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -33,27 +33,66 @@ CREATE TABLE `customer` (
   `no_hp` varchar(25) NOT NULL,
   `alamat` varchar(50) NOT NULL,
   `nomor_plat` varchar(10) NOT NULL,
-  `type_mobil` varchar(30) NOT NULL
+  `type_mobil` varchar(30) NOT NULL,
+  `id_user` bigint DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`id_customer`, `nama`, `no_hp`, `alamat`, `nomor_plat`, `type_mobil`) VALUES
-(24, 'Elsa', '081222111222', 'Pucakwangi', 'K 445 QQ', 'SUV'),
-(27, 'Karin', '081999777888', 'Ngagel', 'K 121 UY', 'Jazz'),
-(28, 'Sinta', '089787767787', 'Pati', 'K 111 KL', 'Sedan'),
-(29, 'Yudha', '089111222333', 'Dukuhseti', 'K 123 OP', 'Pickup'),
-(31, 'Usman', '089789878987', 'Tayu', 'K 123 TT', 'MPV'),
-(34, 'Rian', '089789111222', 'Kajen', 'K 876 FA', 'Pickup'),
-(35, 'Yulia', '087777666555', 'Gunugwungkal', 'K 456 YU', 'SUV'),
-(36, 'Toni', '08777766999', 'Dukuhseti', 'K 888 AA', 'Innova'),
-(37, 'Omar', '089111222333', 'Kejen', 'K 251 YY', 'Innova'),
-(38, 'Zahra', '089777666555', 'Solo', 'K 254 AS', 'Jazz'),
-(39, 'Hamdan', '081222000111', 'Winong', 'K 232 QQ', 'MPV'),
-(40, 'Degi', '0856287873787', 'bandung', 'D3GIMA', 'Innova'),
-(41, 'jajang', '08973648477', 'bali', 'D648H', 'Sedan');
+INSERT INTO `customer` (`id_customer`, `nama`, `no_hp`, `alamat`, `nomor_plat`, `type_mobil`, `id_user`) VALUES
+(24, 'Elsa', '081222111222', 'Pucakwangi', 'K 445 QQ', 'SUV', NULL),
+(27, 'Karin', '081999777888', 'Ngagel', 'K 121 UY', 'Jazz', NULL),
+(28, 'Sinta', '089787767787', 'Pati', 'K 111 KL', 'Sedan', NULL),
+(29, 'Yudha', '089111222333', 'Dukuhseti', 'K 123 OP', 'Pickup', NULL),
+(31, 'Usman', '089789878987', 'Tayu', 'K 123 TT', 'MPV', NULL),
+(34, 'Rian', '089789111222', 'Kajen', 'K 876 FA', 'Pickup', NULL),
+(35, 'Yulia', '087777666555', 'Gunugwungkal', 'K 456 YU', 'SUV', NULL),
+(36, 'Toni', '08777766999', 'Dukuhseti', 'K 888 AA', 'Innova', NULL),
+(37, 'Omar', '089111222333', 'Kejen', 'K 251 YY', 'Innova', NULL),
+(38, 'Zahra', '089777666555', 'Solo', 'K 254 AS', 'Jazz', NULL),
+(39, 'Hamdan', '081222000111', 'Winong', 'K 232 QQ', 'MPV', NULL),
+(40, 'Degi', '0856287873787', 'bandung', 'D3GIMA', 'Innova', NULL),
+(41, 'jajang', '08973648477', 'bali', 'D648H', 'Sedan', NULL),
+(42, 'putri', '21323', 'bandung', 'Z1234MA', 'Off Road', 7),
+(43, 'putri', '5123', 'bandung', 'Z1234MA', 'MPV', 7),
+(44, 'putri', '08938944', 'bandung', 'Z1234MA', 'Sedan', 7),
+(45, 'aa', '089', 'fgfdg', 'gdfg', 'Pilih Type Mobil', 7),
+(46, 'xcvxcv', '4353', 'sdfsd', 'cxvcx', 'Pilih Type Mobil', 7),
+(47, 'xcvxcv', '4353', 'sdfsd', 'cxvcx', 'Pilih Type Mobil', 7),
+(48, 'aa', '9898', 'jhkjk', 'dfg', 'Pilih Type Mobil', 7),
+(49, 'aa', '9898', 'jhkjk', 'dfg', 'Pilih Type Mobil', 7);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jam_operasional`
+--
+
+CREATE TABLE `jam_operasional` (
+  `id_jam` bigint NOT NULL,
+  `jam` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `jam_operasional`
+--
+
+INSERT INTO `jam_operasional` (`id_jam`, `jam`) VALUES
+(1, '08:00:00'),
+(2, '09:00:00'),
+(3, '10:00:00'),
+(4, '11:00:00'),
+(5, '12:00:00'),
+(6, '13:00:00'),
+(7, '14:00:00'),
+(8, '15:00:00'),
+(9, '16:00:00'),
+(10, '17:00:00'),
+(11, '18:00:00'),
+(12, '19:00:00'),
+(13, '20:00:00');
 
 -- --------------------------------------------------------
 
@@ -112,7 +151,9 @@ INSERT INTO `pendaftaran` (`id_pendaftaran`, `no_antrian`, `id_customer`, `id_je
 (41, '2022-09-05/13', 38, 5, '2022-09-05', '14:50:00', 45000, 'Batal'),
 (42, '2022-09-05/14', 39, 5, '2022-09-05', '15:00:00', 45000, 'Dalam Pengerjaan'),
 (43, '2024-06-23/1', 40, 2, '2024-06-23', '14:32:00', 35000, 'Pendaftaran'),
-(44, '2024-06-23/2', 41, 5, '2024-06-23', '14:41:00', 45000, 'Lunas');
+(44, '2024-06-23/2', 41, 5, '2024-06-23', '14:41:00', 45000, 'Lunas'),
+(45, '2024-06-30/1', 43, 2, '2024-06-30', '08:00:00', 35000, 'Lunas'),
+(46, '2024-06-30/2', 44, 5, '2024-06-30', '10:00:00', 45000, 'Lunas');
 
 -- --------------------------------------------------------
 
@@ -173,7 +214,8 @@ INSERT INTO `transaksi` (`id_transaksi`, `id_pendaftaran`, `no_nota`, `tanggal`,
 (25, 34, 'C010', '2022-09-05', 100000, 55000, 45000, 'Lunas', 1, 'Agos'),
 (27, 38, 'C011', '2022-09-05', 50000, 5000, 45000, 'Lunas', 1, 'Agos'),
 (28, 40, 'C012', '2024-06-22', 50000, 5000, 45000, 'Lunas', 1, 'john'),
-(29, 44, 'C013', '2024-06-23', 50000, 5000, 45000, 'Lunas', 1, 'aa');
+(29, 44, 'C013', '2024-06-23', 50000, 5000, 45000, 'Lunas', 1, 'aa'),
+(30, 45, 'C014', '2024-06-30', 50000, 15000, 35000, 'Lunas', 7, 'asep');
 
 -- --------------------------------------------------------
 
@@ -208,22 +250,24 @@ INSERT INTO `type_mobil` (`id_type_mobil`, `type_mobil`) VALUES
 --
 
 CREATE TABLE `user` (
-  `id_user` int NOT NULL,
+  `id_user` bigint UNSIGNED NOT NULL,
   `username` varchar(25) NOT NULL,
   `password` varchar(250) NOT NULL,
   `nama` varchar(25) NOT NULL,
-  `alamat` varchar(50) NOT NULL,
+  `alamat` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `hp` varchar(25) NOT NULL,
-  `status` int NOT NULL
+  `status` int NOT NULL,
+  `role` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id_user`, `username`, `password`, `nama`, `alamat`, `hp`, `status`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrator', 'Jl. Bangau Sakti', '081111222333', 1),
-(2, 'degi', '21232f297a57a5a743894a0e4a801fc3', 'degi', 'bandung', '081222112223', 1);
+INSERT INTO `user` (`id_user`, `username`, `password`, `nama`, `alamat`, `hp`, `status`, `role`) VALUES
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrator', 'Jl. Bangau Sakti', '081111222333', 1, ''),
+(2, 'degi', '21232f297a57a5a743894a0e4a801fc3', 'degi', 'bandung', '081222112223', 1, ''),
+(7, 'putri@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 'putri', NULL, '123', 1, 'customer');
 
 --
 -- Indexes for dumped tables
@@ -233,7 +277,15 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `nama`, `alamat`, `hp`, `
 -- Indexes for table `customer`
 --
 ALTER TABLE `customer`
-  ADD PRIMARY KEY (`id_customer`);
+  ADD PRIMARY KEY (`id_customer`),
+  ADD KEY `id_customer` (`id_customer`),
+  ADD KEY `id_user` (`id_user`);
+
+--
+-- Indexes for table `jam_operasional`
+--
+ALTER TABLE `jam_operasional`
+  ADD PRIMARY KEY (`id_jam`);
 
 --
 -- Indexes for table `jenis_cucian`
@@ -269,7 +321,8 @@ ALTER TABLE `type_mobil`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`id_user`);
+  ADD PRIMARY KEY (`id_user`),
+  ADD UNIQUE KEY `id_user` (`id_user`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -279,7 +332,13 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id_customer` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id_customer` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+
+--
+-- AUTO_INCREMENT for table `jam_operasional`
+--
+ALTER TABLE `jam_operasional`
+  MODIFY `id_jam` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `jenis_cucian`
@@ -291,7 +350,7 @@ ALTER TABLE `jenis_cucian`
 -- AUTO_INCREMENT for table `pendaftaran`
 --
 ALTER TABLE `pendaftaran`
-  MODIFY `id_pendaftaran` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `id_pendaftaran` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `saran`
@@ -303,7 +362,7 @@ ALTER TABLE `saran`
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id_transaksi` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `type_mobil`
@@ -315,7 +374,7 @@ ALTER TABLE `type_mobil`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_user` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
