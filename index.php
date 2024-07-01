@@ -98,8 +98,8 @@ session_start();
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <span>About Us<br></span>
-        <h2>About Us<br></h2>
+        <span>Tentang Kami<br></span>
+        <h2>Tentang Kami<br></h2>
         <p>Selamat Datang di GNW AUTO WASH </p>
       </div><!-- End Section Title -->
 
@@ -112,17 +112,23 @@ session_start();
           </div>
 
           <div class="col-lg-6 order-2 order-lg-1 content" data-aos="fade-up" data-aos-delay="200">
-            <h3>tujuan utama Anda untuk layanan cuci mobil terbaik!</h3>
+            <h3>Visi Misi Perusahaan!</h3>
             <p class="fst-italic">
-              Kami menawarkan pencucian mobil yang cepat, efisien, dan menyenangkan untuk anda
+              Perusahaan GNW Autowash memiliki Visi dan Misi yang dapat meningkatkan motivasi karyawan
+              dalam bekerja serta mewujudkan tujuan dari perusahaan
             </p>
             <h3>VISI</h3>
             <p class="fst-italic">
-              Kami menawarkan pencucian mobil yang cepat, efisien, dan menyenangkan untuk anda
+              Menyediakan pilihan utama dan terdepan dalam 
+              Menyediakan pelayanan jasa cuci yang terbauk dan nyaman bagi pelanggan
             </p>
             <h3>MISI</h3>
             <p class="fst-italic">
-              Kami menawarkan pencucian mobil yang cepat, efisien, dan menyenangkan untuk anda
+              <ol>
+                    <li>Menyediakan jasa cuci dengan kualitas terbaik dilingkungan tanpa mengkhawatirkan kebersihan mobil.</li>
+                    <li>Menyediakan fasilitas dan layanan yang memenuhi standar kualitas terbaik.</li>
+                    <li>Menciptakan suasana yang terpercaya dan mendukung bagi pelanggan.</li>
+               </ol> 
             </p>
           </div>
 
@@ -180,7 +186,8 @@ session_start();
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <h2>Gallery</h2>
+        <span>Galeri<br></span>
+        <h2>Galeri<br></h2>
       </div><!-- End Section Title -->
 
       <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -241,9 +248,9 @@ session_start();
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <span>Pricing</span>
-        <h2>Pricing</h2>
-        <p>Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit</p>
+        <span>Paket Harga</span>
+        <h2>Paket Harga</h2>
+        <b style="color:red;"><p>SETIAP 10X PENCUCIAN MENDAPATKAN GRATIS 1X PENCUCIAN</p></b>
       </div><!-- End Section Title -->
 
       <div class="container">
