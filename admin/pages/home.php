@@ -177,7 +177,8 @@
                                 <br><br><br><br><br><b>
                                 <?php 
                                     $iduser = $_SESSION['id_user'];
-                                    $queryy = mysql_query("SELECT count(*) jml FROM pendaftaran WHERE status = 'Lunas' AND id_customer in (select id_customer from customer where id_user = $iduser)");
+                                    $queryy = "SELECT count(*) jml FROM transaksi WHERE status = 'Lunas' AND id_user = $iduser";
+                                    $queryy = mysql_query($queryy);
                                     $hasil = mysql_fetch_array($queryy);
                                     $jml = $hasil['jml'] ;
                                     if($hasil['jml'] >= 11){
