@@ -250,48 +250,77 @@ session_start();
 
         <div class="row g-4 g-lg-0">
 
-          <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
+          <div class="col-lg-3" data-aos="zoom-in" data-aos-delay="100">
             <div class="pricing-item">
-              <h3>Free Plan</h3>
-              <h4><sup>$</sup>0<span> / month</span></h4>
-              <ul>
+              <h3>Reguler Medium</h3>
+              <h4><sup>Rp.</sup>60.000</h4>
+              <!-- <h4><sup>Rp.</sup>60.000<span> / month</span></h4> -->
+
+              <h3>Reguler Large</h3>
+              <h4><sup>Rp.</sup>70.000</h4>
+              <!-- <ul>
                 <li><i class="bi bi-check"></i> <span>Quam adipiscing vitae proin</span></li>
                 <li><i class="bi bi-check"></i> <span>Nec feugiat nisl pretium</span></li>
                 <li><i class="bi bi-check"></i> <span>Nulla at volutpat diam uteera</span></li>
                 <li class="na"><i class="bi bi-x"></i> <span>Pharetra massa massa ultricies</span></li>
                 <li class="na"><i class="bi bi-x"></i> <span>Massa ultricies mi quis hendrerit</span></li>
-              </ul>
-              <div class="text-center"><a href="#" class="buy-btn">Buy Now</a></div>
+              </ul> -->
+              <!-- <div class="text-center"><a href="#" class="buy-btn">Buy Now</a></div> -->
             </div>
           </div><!-- End Pricing Item -->
 
-          <div class="col-lg-4 featured" data-aos="zoom-in" data-aos-delay="200">
+          <div class="col-lg-3" data-aos="zoom-in" data-aos-delay="100">
             <div class="pricing-item">
-              <h3>Business Plan</h3>
-              <h4><sup>$</sup>29<span> / month</span></h4>
-              <ul>
+              <h3>Wash&Sealent Medium</h3>
+              <h4><sup>Rp.</sup>85.000</h4>
+              <!-- <h4><sup>Rp.</sup>60.000<span> / month</span></h4> -->
+
+              <h3>Wash&Sealent Large</h3>
+              <h4><sup>Rp.</sup>95.000</h4>
+              <!-- <ul>
                 <li><i class="bi bi-check"></i> <span>Quam adipiscing vitae proin</span></li>
                 <li><i class="bi bi-check"></i> <span>Nec feugiat nisl pretium</span></li>
                 <li><i class="bi bi-check"></i> <span>Nulla at volutpat diam uteera</span></li>
-                <li><i class="bi bi-check"></i> <span>Pharetra massa massa ultricies</span></li>
-                <li><i class="bi bi-check"></i> <span>Massa ultricies mi quis hendrerit</span></li>
-              </ul>
-              <div class="text-center"><a href="#" class="buy-btn">Buy Now</a></div>
+                <li class="na"><i class="bi bi-x"></i> <span>Pharetra massa massa ultricies</span></li>
+                <li class="na"><i class="bi bi-x"></i> <span>Massa ultricies mi quis hendrerit</span></li>
+              </ul> -->
+              <!-- <div class="text-center"><a href="#" class="buy-btn">Buy Now</a></div> -->
             </div>
           </div><!-- End Pricing Item -->
 
-          <div class="col-lg-4" data-aos="zoom-in" data-aos-delay="100">
+          <div class="col-lg-3 featured" data-aos="zoom-in" data-aos-delay="200">
             <div class="pricing-item">
-              <h3>Developer Plan</h3>
-              <h4><sup>$</sup>49<span> / month</span></h4>
-              <ul>
+              <h3>Wash + Jamur Kaca Medium</h3>
+              <h4><sup>Rp.</sup>100.000</h4>
+              <!-- <h4><sup>Rp.</sup>60.000<span> / month</span></h4> -->
+
+              <h3>Wash + Jamur Kaca Large</h3>
+              <h4><sup>Rp.</sup>200.000</h4>
+              <!-- <ul>
                 <li><i class="bi bi-check"></i> <span>Quam adipiscing vitae proin</span></li>
                 <li><i class="bi bi-check"></i> <span>Nec feugiat nisl pretium</span></li>
                 <li><i class="bi bi-check"></i> <span>Nulla at volutpat diam uteera</span></li>
-                <li><i class="bi bi-check"></i> <span>Pharetra massa massa ultricies</span></li>
-                <li><i class="bi bi-check"></i> <span>Massa ultricies mi quis hendrerit</span></li>
-              </ul>
-              <div class="text-center"><a href="#" class="buy-btn">Buy Now</a></div>
+                <li class="na"><i class="bi bi-x"></i> <span>Pharetra massa massa ultricies</span></li>
+                <li class="na"><i class="bi bi-x"></i> <span>Massa ultricies mi quis hendrerit</span></li>
+              </ul> -->
+              <!-- <div class="text-center"><a href="#" class="buy-btn">Buy Now</a></div> -->
+            </div>
+          </div><!-- End Pricing Item -->
+
+          <div class="col-lg-3" data-aos="zoom-in" data-aos-delay="100">
+            <div class="pricing-item">
+              <h3>Wash & Wax All type</h3>
+              <h4><sup>Rp.</sup>100.000</h4>
+              <!-- <h4><sup>Rp.</sup>60.000<span> / month</span></h4> -->
+
+              <!-- <ul>
+                <li><i class="bi bi-check"></i> <span>Quam adipiscing vitae proin</span></li>
+                <li><i class="bi bi-check"></i> <span>Nec feugiat nisl pretium</span></li>
+                <li><i class="bi bi-check"></i> <span>Nulla at volutpat diam uteera</span></li>
+                <li class="na"><i class="bi bi-x"></i> <span>Pharetra massa massa ultricies</span></li>
+                <li class="na"><i class="bi bi-x"></i> <span>Massa ultricies mi quis hendrerit</span></li>
+              </ul> -->
+              <!-- <div class="text-center"><a href="#" class="buy-btn">Buy Now</a></div> -->
             </div>
           </div><!-- End Pricing Item -->
 
@@ -347,40 +376,53 @@ session_start();
             </div>
           </div><!-- End Info Item -->
 
+          <div class="col-lg-3 col-md-6">
+            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="300">
+              <i class="bi bi-clock"></i>
+              <h3>Jam Operasional</h3>
+              <p>Senin - Minggu <span>08:00 - 20:00</span></p>
+            </div>
+          </div><!-- End Info Item -->
+
 
         </div>
 
         <div class="row gy-4 mt-1">
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
             <iframe src="https://maps.google.com/maps?width=100%25&amp;height=400&amp;hl=en&amp;q=Jl.%20Nanjung%20No.72+(gnw%20auto%20wash)&amp;t=&amp;z=17&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" frameborder="0" style="border:0; width: 100%; height: 400px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div><!-- End Google Maps -->
 
           <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="400">
+            <form action="pages/proses_saran.php" method="post" data-aos="fade-up" data-aos-delay="150">
               <div class="row gy-4">
 
                 <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                  <input type="text" class="form-control" id="nama" name="nama" placeholder="Nama Anda" required="">
                 </div>
 
                 <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                  <input type="email" class="form-control" id="email" name="email" placeholder="Email Anda">
                 </div>
 
                 <div class="col-md-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                  <textarea class="form-control" id="pesan" name="pesan" placeholder="Isi Pesan Anda" required="" ></textarea>
                 </div>
 
-                <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
+                <div class="col-md-6">
+                  <input type="number" class="form-control" id="email" name="kebersihan" placeholder="Nilai Point Kebersihan" maxlength="3" required="">
+                </div>
+
+                <div class="col-md-6">
+                  <input type="number" class="form-control" id="email" name="keramahan" placeholder="Nilai Point Keramahan" maxlength="3" required="">
+                </div>
+
+                <div class="col-md-6">
+                  <input type="number" class="form-control" id="email" name="ketelitian" placeholder="Nilai Point Ketelitian" maxlength="3" required="">
                 </div>
 
                 <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
 
-                  <button type="submit">Send Message</button>
+                  <button type="submit" class="form-control" style="background:#fabd0b;color:#fff;">Send Message</button>
                 </div>
 
               </div>

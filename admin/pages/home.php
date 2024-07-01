@@ -3,6 +3,8 @@
         <div class="content">
             <div class="animated fadeIn">
                 <div class="row">
+
+                    <?php if($_SESSION['role'] == 'customer') {?>
                      <div class="col-md-12">
                         <div class="card" style="border: 8px solid #f9d018;">
                             
@@ -155,6 +157,9 @@
                                     <script type="text/javascript">
                                     <?php echo $jsArray; ?>
                                     </script>
+
+                                    <b style="color:red;">Estimasi Pencucian 45-60 Menit</b><br><br>
+
                                     <button type="submit" class="btn btn-success" style="width:100%;">Simpan</button>
                                 </form>
 
@@ -194,6 +199,29 @@
                             </div>
                         </div>
                     </div>
+                    <?php }else{?>
+                        <div class="col-md-12">
+                            <div class="card" style="border: 8px solid #f9d018;">
+                                
+                                <div class="card-body" align="center">
+                                    <b>Beranda</b>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card" style="border: 8px solid #f9d018;">
+                                <div class="card-header">
+                                    <strong class="card-title"><center>SELAMAT DATANG</center></strong>
+                                </div>
+                                <div class="card-body" align="center">
+                                    <br><br><br><br><br>
+                                    Selamat Datang <b><u><?= $_SESSION['nama'];?></u></b> Di Halaman Admin Panel GNW AUTO WASH
+                                    <br>
+                                    <br><br><br><br>
+                                </div>
+                            </div>
+                        </div>
+                    <?php }?>
                 </div>
             </div><!-- .animated -->
         </div><!-- .content -->

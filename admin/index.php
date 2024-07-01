@@ -43,7 +43,7 @@ date_default_timezone_set('Asia/Jakarta');
         <nav class="navbar navbar-expand-sm navbar-default">
 
             <div id="main-menu" class="main-menu collapse navbar-collapse">
-                <?php if($_SESSION['role'] == 'admin'){?>
+                <?php if($_SESSION['role'] != 'customer'){?>
                 <ul class="nav navbar-nav">
                     <li>
                         <a style="color:#fff" href="./"><i style="color:#f9d018 !important;" class="menu-icon fa fa-home"></i>Beranda </a>
@@ -179,7 +179,7 @@ if (!empty($_GET['p'])) {
 
         <div class="clearfix"></div>
 
-        <footer class="site-footer">
+        <!-- <footer class="site-footer">
             <div class="footer-inner bg-white">
                 <div class="row">
                     <div class="col-sm-6">
@@ -187,7 +187,7 @@ if (!empty($_GET['p'])) {
                     </div>
                 </div>
             </div>
-        </footer>
+        </footer> -->
 
     </div><!-- /#right-panel -->
 
