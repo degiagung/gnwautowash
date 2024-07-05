@@ -5,7 +5,42 @@
                 <div class="row">
 
                     <?php if($_SESSION['role'] == 'customer') {?>
-                     <div class="col-md-12">
+                    <div class="col-md-12">
+                        <div class="card" style="border: 8px solid #f9d018;">
+                             <div class="card-header" >
+                                <strong class="card-title"><center>JADWAL YANG TERSEDIA</center></strong>
+                                <span style="color:red;"><center><?= date('d F Y'); ?></center></span>
+                            </div>
+                            <div class="card-body" align="center">
+                                <table class="table table-striped table-bordered">
+                                    <thead>
+                                        <tr style="background:#f9d018;font-weight:bold;text-align:center;" id="available">
+                                            
+                                                    <?php
+                                                    
+date_default_timezone_set('Asia/Jakarta');
+                                                        $result2 = mysql_query("
+                                                                        select 
+                                                                            TIME_FORMAT(jam,'%H %i') as jam 
+                                                                        from
+                                                                            jam_operasional a
+                                                                            left join (select jam_pendaftaran,COUNT(*) jml from pendaftaran where tgl_pendaftaran = CURRENT_DATE AND status != 'Batal' GROUP BY jam_pendaftaran) b ON b.jam_pendaftaran = a.jam and b.jml <= 1
+                                                                        where 
+                                                                            jam >= now()"
+                                                                    );
+                                                        while ($row2 = mysql_fetch_array($result2)) {
+                                                            echo '<th style="border-color:#000;">'.$row2['jam'].'</th>';
+                                                        }
+
+                                                    ?>
+                                                    
+                                        </tr>
+                                    </thead>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
                         <div class="card" style="border: 8px solid #f9d018;">
                             
                             <div class="card-body" align="center">
@@ -226,3 +261,14 @@
                 </div>
             </div><!-- .animated -->
         </div><!-- .content -->
+
+        <script>
+			let counter = 0 ;
+			setInterval(() => {
+				jml = counter++ 
+				if(jml == 300){
+					counter = 0 ;
+					document.location='index.php?p=home';
+				}
+			}, 1000);
+        </script>

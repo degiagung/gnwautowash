@@ -60,10 +60,10 @@ session_start();
           <ul>
             <li><a href="#hero" class="active">Home</a></li>
             <li><a href="#about">Tentang Kami</a></li>
-            <li><a href="#gallery">Galeri</a></li>
+            <!-- <li><a href="#gallery">Galeri</a></li> -->
             <li><a href="#pricing">Paket Harga</a></li>
             <li><a href="#contact">Kontak</a></li>
-            <li><a href="#contact">Kritik dan Saran</a></li>
+            <!-- <li><a href="#contact">Kritik dan Saran</a></li> -->
             <li><a href="login.php">Login</a></li>
           </ul>
           <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -81,7 +81,7 @@ session_start();
 
       <img src="./images/gnw/10.jpg" alt="" data-aos="fade-in">
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
+      <div class="container" data-aos="fade-up">
         <div class="row justify-content-start">
           <div class="col-lg-8">
             <h2>Selamat Datang di GNW AUTO WASH</h2>
@@ -107,11 +107,11 @@ session_start();
 
         <div class="row gy-4">
 
-          <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-up">
             <img src="./images/gnw/6.jpg" class="img-fluid" alt="">
           </div>
 
-          <div class="col-lg-6 order-2 order-lg-1 content" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-lg-6 order-2 order-lg-1 content" data-aos="fade-up">
             <h3>Visi Misi Perusahaan!</h3>
             <p class="fst-italic">
               Perusahaan GNW Autowash memiliki Visi dan Misi yang dapat meningkatkan motivasi karyawan
@@ -145,31 +145,31 @@ session_start();
 
         <div class="row no-gutters">
 
-          <div class="col-lg-4 col-md-6 card" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-4 col-md-6 card" data-aos="fade-up">
             <span>01</span>
             <h4>KERJA TIM</h4>
             <p>Kami bekerja sama sebagai tim untuk membangun pengalaman dan perusahaan cuci mobil yang lebih baik. Kami bertanggung jawab satu sama lain; kita melakukan apa yang kita katakan akan kita lakukan.</p>
           </div><!-- End Card Item -->
 
-          <div class="col-lg-4 col-md-6 card" data-aos="fade-up" data-aos-delay="200">
+          <div class="col-lg-4 col-md-6 card" data-aos="fade-up">
             <span>02</span>
             <h4>INTEGRITAS</h4>
             <p>Kami BERJALAN dengan integritas dalam segala hal yang kami lakukan dengan melakukan hal yang benar saat tidak ada orang yang melihat.</p>
           </div><!-- End Card Item -->
 
-          <div class="col-lg-4 col-md-6 card" data-aos="fade-up" data-aos-delay="300">
+          <div class="col-lg-4 col-md-6 card" data-aos="fade-up">
             <span>03</span>
             <h4>PEDULI</h4>
             <p>Kami peduli terhadap rekan satu tim kami, pelanggan kami, dan komunitas kami. Kami berempati, sopan, dan peduli dalam semua interaksi kami.</p>
           </div><!-- End Card Item -->
 
-          <div class="col-lg-4 col-md-6 card" data-aos="fade-up" data-aos-delay="400">
+          <div class="col-lg-4 col-md-6 card" data-aos="fade-up">
             <span>04</span>
             <h4>SENYUMAN</h4>
             <p>Kami bekerja keras dan bermain keras. Di GO Car Wash kami menyukai apa yang kami lakukan dan bersenang-senang melakukannya.</p>
           </div><!-- End Card Item -->
 
-          <div class="col-lg-4 col-md-6 card" data-aos="fade-up" data-aos-delay="400">
+          <div class="col-lg-4 col-md-6 card" data-aos="fade-up">
             <span>05</span>
             <h4>CONTNUES IMPROVEMENT</h4>
             <p>Kami adalah pembelajar. Kami berusaha menjadi lebih baik dari hari ke hari. Kami tidak pernah berpuas diri.</p>
@@ -179,70 +179,7 @@ session_start();
       </div>
 
     </section><!-- /Cards Section -->
-
-   
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery section">
-
-      <!-- Section Title -->
-      <div class="container section-title" data-aos="fade-up">
-        <span>Galeri<br></span>
-        <h2>Galeri<br></h2>
-      </div><!-- End Section Title -->
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="swiper init-swiper">
-          <script type="application/json" class="swiper-config">
-            {
-              "loop": true,
-              "speed": 600,
-              "autoplay": {
-                "delay": 5000
-              },
-              "slidesPerView": "auto",
-              "centeredSlides": true,
-              "pagination": {
-                "el": ".swiper-pagination",
-                "type": "bullets",
-                "clickable": true
-              },
-              "breakpoints": {
-                "320": {
-                  "slidesPerView": 1,
-                  "spaceBetween": 0
-                },
-                "768": {
-                  "slidesPerView": 3,
-                  "spaceBetween": 20
-                },
-                "1200": {
-                  "slidesPerView": 5,
-                  "spaceBetween": 20
-                }
-              }
-            }
-          </script>
-          <div class="swiper-wrapper align-items-center">
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="./images/gnw/1.jpg"><img src="./images/gnw/1.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="./images/gnw/2.webp"><img src="./images/gnw/2.webp" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="./images/gnw/3.jpg"><img src="./images/gnw/3.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="./images/gnw/4.jpg"><img src="./images/gnw/4.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="./images/gnw/5.jpg"><img src="./images/gnw/5.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="./images/gnw/6.jpg"><img src="./images/gnw/6.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="./images/gnw/7.jpg"><img src="./images/gnw/7.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="./images/gnw/8.jpg"><img src="./images/gnw/8.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="./images/gnw/9.jpg"><img src="./images/gnw/9.jpg" class="img-fluid" alt=""></a></div>
-            <div class="swiper-slide"><a class="glightbox" data-gallery="images-gallery" href="./images/gnw/10.jpg"><img src="./images/gnw/10.jpg" class="img-fluid" alt=""></a></div>
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-      </div>
-
-    </section><!-- /Gallery Section -->
-<!-- /Portfolio Section -->
-
+    
     <!-- Pricing Section -->
     <section id="pricing" class="pricing section">
 
@@ -257,7 +194,7 @@ session_start();
 
         <div class="row g-4 g-lg-0">
 
-          <div class="col-lg-3" data-aos="zoom-in" data-aos-delay="100">
+          <div class="col-lg-3" data-aos="zoom-in">
             <div class="pricing-item">
               <h3>Reguler Medium</h3>
               <h4><sup>Rp.</sup>60.000</h4>
@@ -276,7 +213,7 @@ session_start();
             </div>
           </div><!-- End Pricing Item -->
 
-          <div class="col-lg-3" data-aos="zoom-in" data-aos-delay="100">
+          <div class="col-lg-3" data-aos="zoom-in">
             <div class="pricing-item">
               <h3>Wash&Sealent Medium</h3>
               <h4><sup>Rp.</sup>85.000</h4>
@@ -295,7 +232,7 @@ session_start();
             </div>
           </div><!-- End Pricing Item -->
 
-          <div class="col-lg-3 featured" data-aos="zoom-in" data-aos-delay="200">
+          <div class="col-lg-3 featured" data-aos="zoom-in">
             <div class="pricing-item">
               <h3>Wash + Jamur Kaca Medium</h3>
               <h4><sup>Rp.</sup>100.000</h4>
@@ -314,7 +251,7 @@ session_start();
             </div>
           </div><!-- End Pricing Item -->
 
-          <div class="col-lg-3" data-aos="zoom-in" data-aos-delay="100">
+          <div class="col-lg-3" data-aos="zoom-in">
             <div class="pricing-item">
               <h3>Wash & Wax All type</h3>
               <h4><sup>Rp.</sup>100.000</h4>
@@ -363,12 +300,44 @@ session_start();
         <p>Untuk mengetahui informasi lebih lanjut, silahkan hubungi kontak berikut.</p>
       </div><!-- End Section Title -->
 
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
+      <div class="container" data-aos="fade-up">
 
         <div class="row gy-4">
 
+          <div class="col-lg-12">
+            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up">
+              <i class="bi bi-clock"></i>
+              <h3>Jadwal Yang tersedia</h3>
+                <span style="color:red;"><center><?= date('d F Y'); ?></center></span><br>
+                <table class="table">
+                      <thead>
+                          <tr>
+                              
+                                      <?php
+                                      
+                                          date_default_timezone_set('Asia/Jakarta');
+                                          $result2 = mysql_query("
+                                                          select 
+                                                              TIME_FORMAT(jam,'%H %i') as jam 
+                                                          from
+                                                              jam_operasional a
+                                                              left join (select jam_pendaftaran,COUNT(*) jml from pendaftaran where tgl_pendaftaran = CURRENT_DATE AND status != 'Batal' GROUP BY jam_pendaftaran) b ON b.jam_pendaftaran = a.jam and b.jml <= 1
+                                                          where 
+                                                              jam >= now()"
+                                                      );
+                                          while ($row2 = mysql_fetch_array($result2)) {
+                                              echo '<th style="background:#f9d018;font-weight:bold;text-align:center;">'.$row2['jam'].'</th>';
+                                          }
+
+                                      ?>
+                                      
+                          </tr>
+                      </thead>
+                </table>
+            </div>
+          </div><!-- End Info Item -->
           <div class="col-lg-6">
-            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="200">
+            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up">
               <i class="bi bi-geo-alt"></i>
               <h3>Alamat</h3>
               <p>Jl. Nanjung No.72, Nanjung, Kec. Margaasih, Kabupaten Bandung, Jawa Barat 40217</p>
@@ -376,7 +345,7 @@ session_start();
           </div><!-- End Info Item -->
 
           <div class="col-lg-3 col-md-6">
-            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="300">
+            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up">
               <i class="bi bi-telephone"></i>
               <h3>Call Us</h3>
               <p>0822-2888-4990</p>
@@ -384,7 +353,7 @@ session_start();
           </div><!-- End Info Item -->
 
           <div class="col-lg-3 col-md-6">
-            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="300">
+            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up">
               <i class="bi bi-clock"></i>
               <h3>Jam Operasional</h3>
               <p>Senin - Minggu <span>08:00 - 20:00</span></p>
@@ -395,12 +364,12 @@ session_start();
         </div>
 
         <div class="row gy-4 mt-1">
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+          <div class="col-lg-6" data-aos="fade-up">
             <iframe src="https://maps.google.com/maps?width=100%25&amp;height=400&amp;hl=en&amp;q=Jl.%20Nanjung%20No.72+(gnw%20auto%20wash)&amp;t=&amp;z=17&amp;ie=UTF8&amp;iwloc=B&amp;output=embed" frameborder="0" style="border:0; width: 100%; height: 400px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
           </div><!-- End Google Maps -->
 
           <div class="col-lg-6">
-            <form action="pages/proses_saran.php" method="post" data-aos="fade-up" data-aos-delay="150">
+            <form action="pages/proses_saran.php" method="post" data-aos="fade-up">
               <div class="row gy-4">
 
                 <div class="col-md-6">
@@ -493,7 +462,16 @@ session_start();
 
   <!-- Main JS File -->
   <script src="./assets3/js/main.js"></script>
-
+<script>
+			let counter = 0 ;
+			setInterval(() => {
+				jml = counter++ 
+				if(jml == 1000){
+					counter = 0 ;
+					document.location='index.php';
+				}
+			}, 1000);
+        </script>
 </body>
 
 </html>
