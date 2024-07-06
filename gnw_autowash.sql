@@ -3,10 +3,10 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jun 30, 2024 at 05:30 PM
+-- Generation Time: Jul 06, 2024 at 11:56 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
- 
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+00:00";
@@ -62,7 +62,9 @@ INSERT INTO `customer` (`id_customer`, `nama`, `no_hp`, `alamat`, `nomor_plat`, 
 (46, 'xcvxcv', '4353', 'sdfsd', 'cxvcx', 'Pilih Type Mobil', 7),
 (47, 'xcvxcv', '4353', 'sdfsd', 'cxvcx', 'Pilih Type Mobil', 7),
 (48, 'aa', '9898', 'jhkjk', 'dfg', 'Pilih Type Mobil', 7),
-(49, 'aa', '9898', 'jhkjk', 'dfg', 'Pilih Type Mobil', 7);
+(49, 'aa', '9898', 'jhkjk', 'dfg', 'Pilih Type Mobil', 7),
+(50, 'degi', '0877364878', 'bandung', 'Z 123 MA', 'Innova', 7),
+(51, 'degi', '0877364878', 'garut', 'Z 123 MA', 'SUV', 7);
 
 -- --------------------------------------------------------
 
@@ -149,11 +151,12 @@ INSERT INTO `pendaftaran` (`id_pendaftaran`, `no_antrian`, `id_customer`, `id_je
 (39, '2022-09-05/11', 36, 5, '2022-09-05', '14:35:00', 0, 'Batal'),
 (40, '2022-09-05/12', 37, 5, '2022-09-05', '14:47:00', 45000, 'Lunas'),
 (41, '2022-09-05/13', 38, 5, '2022-09-05', '14:50:00', 45000, 'Batal'),
-(42, '2022-09-05/14', 39, 5, '2022-09-05', '15:00:00', 45000, 'Dalam Pengerjaan'),
-(43, '2024-06-23/1', 40, 2, '2024-06-23', '14:32:00', 35000, 'Pendaftaran'),
+(42, '2022-09-05/14', 39, 5, '2022-09-05', '15:00:00', 45000, 'Lunas'),
+(43, '2024-06-23/1', 40, 2, '2024-06-23', '14:32:00', 35000, 'Lunas'),
 (44, '2024-06-23/2', 41, 5, '2024-06-23', '14:41:00', 45000, 'Lunas'),
 (45, '2024-06-30/1', 43, 2, '2024-06-30', '08:00:00', 35000, 'Lunas'),
-(46, '2024-06-30/2', 44, 5, '2024-06-30', '10:00:00', 45000, 'Lunas');
+(46, '2024-06-30/2', 44, 5, '2024-06-30', '10:00:00', 45000, 'Lunas'),
+(48, '2024-07-06/1', 51, 5, '2024-07-06', '17:00:00', 45000, 'Lunas');
 
 -- --------------------------------------------------------
 
@@ -177,7 +180,9 @@ CREATE TABLE `saran` (
 
 INSERT INTO `saran` (`id_saran`, `nama`, `email`, `pesan`, `kebersihan`, `keramahan`, `ketelitian`) VALUES
 (1, 'Adit', 'aditwijaya@gmail.com', 'Pelayanannya sangat baik dan memuaskan', 90, 80, 90),
-(2, 'erdiman', 'erdiman@gmail.com', 'sangat puas', 90, 90, 90);
+(2, 'erdiman', 'erdiman@gmail.com', 'sangat puas', 90, 90, 90),
+(3, 'degi', 'degi@gmail.com', 'bagus sekali ya ges ya', 100, 100, 100),
+(4, 'putri', 'put@gmail.com', 'alhamdulillah', 50, 50, 50);
 
 -- --------------------------------------------------------
 
@@ -195,27 +200,34 @@ CREATE TABLE `transaksi` (
   `total` int NOT NULL,
   `status` varchar(20) NOT NULL,
   `id_user` tinyint(1) NOT NULL,
-  `nama_pencuci` varchar(50) NOT NULL
+  `nama_pencuci` varchar(50) NOT NULL,
+  `bukti` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `transaksi`
 --
 
-INSERT INTO `transaksi` (`id_transaksi`, `id_pendaftaran`, `no_nota`, `tanggal`, `bayar`, `kembali`, `total`, `status`, `id_user`, `nama_pencuci`) VALUES
-(17, 22, 'C002', '2022-09-05', 50000, 5000, 45000, 'Lunas', 1, 'Agos'),
-(18, 28, 'C003', '2022-09-05', 100000, 55000, 45000, 'Lunas', 1, 'Agos'),
-(19, 27, 'C004', '2022-09-05', 100000, 55000, 45000, 'Lunas', 1, 'Dedi'),
-(20, 25, 'C005', '2022-09-05', 50000, 5000, 45000, 'Lunas', 1, 'Dedi'),
-(21, 24, 'C006', '2022-09-05', 50000, 15000, 35000, 'Lunas', 1, 'Agos'),
-(22, 31, 'C007', '2022-09-05', 100000, 55000, 45000, 'Lunas', 1, 'Dedi'),
-(23, 32, 'C008', '2022-09-05', 50000, 15000, 35000, 'Lunas', 1, 'Agos'),
-(24, 37, 'C009', '2022-09-05', 50000, 15000, 35000, 'Lunas', 1, 'Dedi'),
-(25, 34, 'C010', '2022-09-05', 100000, 55000, 45000, 'Lunas', 1, 'Agos'),
-(27, 38, 'C011', '2022-09-05', 50000, 5000, 45000, 'Lunas', 1, 'Agos'),
-(28, 40, 'C012', '2024-06-22', 50000, 5000, 45000, 'Lunas', 1, 'john'),
-(29, 44, 'C013', '2024-06-23', 50000, 5000, 45000, 'Lunas', 1, 'aa'),
-(30, 45, 'C014', '2024-06-30', 50000, 15000, 35000, 'Lunas', 7, 'asep');
+INSERT INTO `transaksi` (`id_transaksi`, `id_pendaftaran`, `no_nota`, `tanggal`, `bayar`, `kembali`, `total`, `status`, `id_user`, `nama_pencuci`, `bukti`) VALUES
+(17, 22, 'C002', '2022-09-05', 50000, 5000, 45000, 'Lunas', 1, 'Agos', NULL),
+(18, 28, 'C003', '2022-09-05', 100000, 55000, 45000, 'Lunas', 1, 'Agos', NULL),
+(19, 27, 'C004', '2022-09-05', 100000, 55000, 45000, 'Lunas', 1, 'Dedi', NULL),
+(20, 25, 'C005', '2022-09-05', 50000, 5000, 45000, 'Lunas', 1, 'Dedi', NULL),
+(21, 24, 'C006', '2022-09-05', 50000, 15000, 35000, 'Lunas', 1, 'Agos', NULL),
+(22, 31, 'C007', '2022-09-05', 100000, 55000, 45000, 'Lunas', 1, 'Dedi', NULL),
+(23, 32, 'C008', '2022-09-05', 50000, 15000, 35000, 'Lunas', 1, 'Agos', NULL),
+(24, 37, 'C009', '2022-09-05', 50000, 15000, 35000, 'Lunas', 1, 'Dedi', NULL),
+(25, 34, 'C010', '2022-09-05', 100000, 55000, 45000, 'Lunas', 1, 'Agos', NULL),
+(27, 38, 'C011', '2022-09-05', 50000, 5000, 45000, 'Lunas', 1, 'Agos', NULL),
+(28, 40, 'C012', '2024-06-22', 50000, 5000, 45000, 'Lunas', 1, 'john', NULL),
+(29, 44, 'C013', '2024-06-23', 50000, 5000, 45000, 'Lunas', 1, 'aa', NULL),
+(30, 45, 'C014', '2024-06-30', 50000, 15000, 35000, 'Lunas', 7, 'asep', NULL),
+(31, 48, 'C015', '2024-07-06', 45000, 0, 45000, 'Lunas', 1, 'a', NULL),
+(34, 48, 'C016', '2024-07-06', 45000, 0, 45000, 'Lunas', 1, 'agus', NULL),
+(35, 46, 'C017', '2024-07-06', 45000, 0, 45000, 'Lunas', 1, 'agus', NULL),
+(36, 48, 'C018', '2024-07-06', 45000, 0, 45000, 'Lunas', 1, 'a', NULL),
+(37, 48, 'C019', '2024-07-06', 45000, 0, 45000, 'Lunas', 1, 'agus', NULL),
+(38, 46, 'C020', '2024-07-06', 45000, 0, 45000, 'Lunas', 1, '1', '../bukti/C020_305854618_814484516406993_94701150179247827_n.jpg');
 
 -- --------------------------------------------------------
 
@@ -332,7 +344,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id_customer` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=50;
+  MODIFY `id_customer` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `jam_operasional`
@@ -350,19 +362,19 @@ ALTER TABLE `jenis_cucian`
 -- AUTO_INCREMENT for table `pendaftaran`
 --
 ALTER TABLE `pendaftaran`
-  MODIFY `id_pendaftaran` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
+  MODIFY `id_pendaftaran` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT for table `saran`
 --
 ALTER TABLE `saran`
-  MODIFY `id_saran` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_saran` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_transaksi` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `type_mobil`
