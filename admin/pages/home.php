@@ -75,18 +75,21 @@
                                             <b>
                                             <?php 
                                                 $iduser = $_SESSION['id_user'];
-                                                $queryy = mysql_query("SELECT * FROM pendaftaran WHERE tgl_pendaftaran = current_date and status not in( 'Lunas','Batal') and id_customer in (select id_customer from customer where id_user = $iduser) ");
+                                                $queryy = mysql_query("SELECT * FROM pendaftaran WHERE tgl_pendaftaran = current_date and status not in( 'Batal') and id_customer in (select id_customer from customer where id_user = $iduser) ORDER BY id_pendaftaran desc");
                                                 $hasil  = mysql_fetch_array($queryy);
                                                 $daftar = "x.png";
                                                 $cuci   = "x.png";
                                                 $selesai= "x.png";
-                                                // print_r($hasil);
+                                                // print_r($iduser);die;
                                                 if($hasil){
                                                     if($hasil['status'] == 'Pendaftaran'){
                                                         $daftar = "daftar.png";
-                                                    }elseif($hasil['status'] == 'Dalam Pengerjaan'){
+                                                    }if($hasil['status'] == 'Dalam Pengerjaan'){
+                                                        $daftar = "daftar.png";
                                                         $cuci = 'pencucian.png';
-                                                    }elseif($hasil['status'] == 'Selesai'){
+                                                    }elseif($hasil['status'] == 'Lunas'){
+                                                        $daftar = "daftar.png";
+                                                        $cuci = 'pencucian.png';
                                                         $selesai = 'finish.png';
                                                     }
                                                 }
@@ -94,7 +97,7 @@
                                                 echo '
                                                 
                                                     <th>
-                                                        <img style="max-width:10%;" src="images/'.$daftar.'"><br>
+                                                        <img style="max-width:30%;" src="images/'.$daftar.'"><br>
                                                         DALAM ANTRIAN
                                                     </th>
                                                     <th style="width:10%;">
@@ -106,7 +109,7 @@
                                                         </div>
                                                     </th>
                                                     <th>
-                                                        <img style="max-width:10%;" src="images/'.$cuci.'"><br>
+                                                        <img style="max-width:30%;" src="images/'.$cuci.'"><br>
                                                         PENCUCIAN
                                                     </th>
                                                     <th style="width:10%;">
@@ -118,7 +121,7 @@
                                                         </div>
                                                     </th>
                                                     <th>
-                                                        <img style="max-width:10%;" src="images/'.$selesai.'"><br>
+                                                        <img style="max-width:30%;" src="images/'.$selesai.'"><br>
                                                         SELESAI
                                                     </th>
 
