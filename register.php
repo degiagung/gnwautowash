@@ -26,7 +26,7 @@
 						</div>
 						<div class="form-group" style="background:#bdbdbd;">
 							<span class="form-icon"><i class="fa fa-phone"></i></span>
-							<input type="text" class="form-input" placeholder="No.Handphone (08515654327)" name="handphone" autofocus="">
+							<input type="tel" min=0  onkeypress="return window.isNumberKey(event)" class="form-input" placeholder="No.Handphone (08515654327)" name="handphone" autofocus="">
 						</div>
 						<div class="form-group" style="background:#bdbdbd;">
 							<span class="form-icon"><i class="fa fa-envelope"></i></span>
@@ -65,6 +65,16 @@
 			$(".btn-outline").click(function(){
 				$("#container").removeClass("bungloon-square bungloon-underline").addClass('bungloon-outline');
 			});
+
+			function isNumberKey(evt)
+            {
+                var charCode = (evt.which) ? evt.which : evt.keyCode;
+                if (charCode != 46 && charCode > 31
+                    && (charCode < 48 || charCode > 57))
+                    return false;
+                // checkphone($(evt.target).attr("id"));
+                return true;
+            }
 		</script>
 	</body>
 	</html>
