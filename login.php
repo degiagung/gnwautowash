@@ -1,3 +1,14 @@
+	<?php
+		session_start();
+		if($_SESSION){
+		
+	?>
+		<script language="JavaScript">	
+		document.location='admin/index.php?p=home'</script>
+	<?php
+	}
+	?>
+	
 	<!DOCTYPE html>
 	<html lang="en">
 	<head>
