@@ -66,14 +66,7 @@
                             <div class="card" style="border: 8px solid #f9d018;">
                                 <div class="card-header" >
                                     <strong class="card-title"><center>PROGRES PENCUCIAN</center></strong>
-                                </div>
-                                <div class="card-body" align="center">
-                                <table>
-                                    <thead style="text-align: center;">
-                                        <tr>
-
-                                            <b>
-                                            <?php 
+                                    <?php 
                                                 $iduser = $_SESSION['id_user'];
                                                 $queryy = mysql_query("SELECT * FROM pendaftaran WHERE tgl_pendaftaran = current_date and status not in( 'Batal') and id_customer in (select id_customer from customer where id_user = $iduser) ORDER BY id_pendaftaran desc");
                                                 $hasil  = mysql_fetch_array($queryy);
@@ -82,6 +75,17 @@
                                                 $selesai= "x.png";
                                                 // print_r($iduser);die;
                                                 if($hasil){
+                                    ?>
+                                    <strong class="card-title"><center>NO ANTRIAN <?php echo $hasil['no_antrian']; ?></center></strong>
+                                </div>
+                                <div class="card-body" align="center">
+                                <table>
+                                    <thead style="text-align: center;">
+                                        <tr>
+
+                                            <b>
+                                            <?php
+                                                
                                                     if($hasil['status'] == 'Pendaftaran'){
                                                         $daftar = "daftar.png";
                                                     }if($hasil['status'] == 'Dalam Pengerjaan'){
