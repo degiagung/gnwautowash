@@ -52,10 +52,10 @@ date_default_timezone_set('Asia/Jakarta');
                         <a style="color:#fff" href="index.php?p=pendaftaran"> <i style="color:#f9d018 !important;" class="menu-icon ti-clipboard"></i>Pendaftaran </a>
                     </li>
                     <li>
-                        <a style="color:#fff" href="index.php?p=transaksi"> <i style="color:#f9d018 !important;" class="menu-icon ti-receipt"></i>Transaksi </a>
+                        <a style="color:#fff" href="index.php?p=transaksi"> <i style="color:#f9d018 !important;" class="menu-icon ti-receipt"></i>Riwayat Pencucian </a>
                     </li>
                     <li>
-                        <a style="color:#fff" href="index.php?p=customer"> <i style="color:#f9d018 !important;" class="menu-icon ti-id-badge"></i>Customer </a>
+                        <a style="color:#fff" href="index.php?p=customer"> <i style="color:#f9d018 !important;" class="menu-icon ti-id-badge"></i>Data Pelanggan </a>
                     </li>
                     <li>
                         <a style="color:#fff" href="index.php?p=laporan"> <i style="color:#f9d018 !important;" class="menu-icon ti-printer"></i>Laporan </a>
@@ -67,7 +67,7 @@ date_default_timezone_set('Asia/Jakarta');
                     </li>
 
                     <li>
-                        <a style="color:#fff" href="index.php?p=type_mobil"> <i style="color:#f9d018 !important;" class="menu-icon ti-list"></i>Type Mobil </a>
+                        <a style="color:#fff" href="index.php?p=type_mobil"> <i style="color:#f9d018 !important;" class="menu-icon ti-list"></i>Tipe Mobil </a>
                     </li>
 
                     <li>
@@ -85,7 +85,7 @@ date_default_timezone_set('Asia/Jakarta');
                         <a style="color:#fff" href="./"><i style="color:#f9d018 !important;" class="menu-icon fa fa-home"></i>Beranda </a>
                     </li>
                     <li>
-                        <a style="color:#fff" href="index.php?p=transaksi"> <i style="color:#f9d018 !important;" class="menu-icon ti-receipt"></i>Transaksi </a>
+                        <a style="color:#fff" href="index.php?p=transaksi"> <i style="color:#f9d018 !important;" class="menu-icon ti-receipt"></i>Riwayat Pencucian </a>
                     </li>
 
                 </ul>
@@ -211,6 +211,7 @@ if (!empty($_GET['p'])) {
     <script src="assets/js/lib/data-table/buttons.print.min.js"></script>
     <script src="assets/js/lib/data-table/buttons.colVis.min.js"></script>
     <script src="assets/js/init/datatables-init.js"></script>
+    <script src="assets/js/global.js"></script>
 
 
     <script type="text/javascript">

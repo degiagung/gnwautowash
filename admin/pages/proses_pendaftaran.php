@@ -1,36 +1,45 @@
 <?php 
-require "../config/koneksi.php"; 
+	require "../config/koneksi.php"; 
 
-$next=$_POST['next'];
-$id_customer=$_POST['id_customer'];  
-$nama=$_POST['nama'];
-$no_hp=$_POST['no_hp'];
-$alamat= $_POST['alamat'];
-$nomor_plat=$_POST['nomor_plat'];
-$type_mobil=$_POST['type_mobil'];
-$no_antrian=$_POST['no_antrian'];
-$id_jenis_cucian=$_POST['id_jenis_cucian'];
-$nomor_plat=$_POST['nomor_plat'];
-$total_biaya=$_POST['total_biaya'];
-$tgl_pendaftaran=$_POST['tgl_pendaftaran'];
-$iduser = $_SESSION['id_user'];
-date_default_timezone_set('Asia/Jakarta');
-// $jam_pendaftaran=date("H:i:s");
-$jam_pendaftaran=$_POST['jam_pendaftaran'];
+	$next=$_POST['next'];
+	$id_customer=$_POST['id_customer'];  
+	$nama=$_POST['nama'];
+	$no_hp=$_POST['no_hp'];
+	$alamat= $_POST['alamat'];
+	$nomor_plat=$_POST['nomor_plat'];
+	$type_mobil=$_POST['type_mobil'];
+	$no_antrian=$_POST['no_antrian'];
+	$id_jenis_cucian=$_POST['id_jenis_cucian'];
+	$nomor_plat=$_POST['nomor_plat'];
+	$total_biaya=$_POST['total_biaya'];
+	$tgl_pendaftaran=$_POST['tgl_pendaftaran'];
 
-$query="SELECT count(id_pendaftaran) as jumlah_daftar FROM pendaftaran WHERE jam_pendaftaran = '$jam_pendaftaran' and tgl_pendaftaran = current_date and status not in('Batal','Lunas') ";
-$cek = mysql_query($query." HAVING COUNT(id_pendaftaran) >= 2");
-$cek2= mysql_query($query." and id_customer in (select id_customer from customer where id_user = $iduser)");
-$htg = mysql_fetch_array($cek);
-$htg2= mysql_fetch_array($cek2);
-$jumlahnya = $htg['jumlah_daftar'];
-if($htg2 >= 1){
+	if ($_SESSION['role'] == 'customer') {
+		$iduser = $_SESSION['id_user'];
+	}else{
+		$iduser = $_POST['id_user'];
+		if ($iduser == 't') {
+			$iduser = '';
+		}
+	}
+	date_default_timezone_set('Asia/Jakarta');
+	// $jam_pendaftaran=date("H:i:s");
+	$jam_pendaftaran=$_POST['jam_pendaftaran'];
+
+	$query="SELECT count(id_pendaftaran) as jumlah_daftar FROM pendaftaran WHERE jam_pendaftaran = '$jam_pendaftaran' and tgl_pendaftaran = current_date and status not in('Batal','Lunas') ";
+	$cek = mysql_query($query." HAVING COUNT(id_pendaftaran) >= 2");
+	$cek2= mysql_query($query." and id_customer in (select id_customer from customer where id_user = $iduser)");
+	$htg = mysql_fetch_array($cek);
+	$htg2= mysql_fetch_array($cek2);
+	$jumlahnya = $htg['jumlah_daftar'];
+	if($htg2['jumlah_daftar'] >= 1 && $_SESSION['role'] == 'customer')
+	{
 ?>
-<script language="JavaScript">
-alert('Maaf, Anda sudah Melakukan Antrian');
-document.location='index.php?p=home'</script>
+		<script language="JavaScript">
+		alert('Maaf, Anda sudah Melakukan Antrian');
+		document.location='index.php?p=home'</script>
 <?php 	
-}
+	}
 if($jumlahnya!=0){
 ?>
 <script language="JavaScript">

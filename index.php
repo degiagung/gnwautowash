@@ -62,7 +62,7 @@ session_start();
             <li><a href="#about">Tentang Kami</a></li>
             <!-- <li><a href="#gallery">Galeri</a></li> -->
             <li><a href="#pricing">Paket Harga</a></li>
-            <li><a href="#contact">Kontak</a></li>
+            <li><a href="#contact">Informasi Car Wash</a></li>
             <!-- <li><a href="#contact">Kritik dan Saran</a></li> -->
             <li><a href="login.php">Login</a></li>
           </ul>
@@ -295,8 +295,8 @@ session_start();
 
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
-        <span>Kontak</span>
-        <h2>Kontak</h2>
+        <span>Informasi</span>
+        <h2>Informasi</h2>
         <p>Untuk mengetahui informasi lebih lanjut, silahkan hubungi kontak berikut.</p>
       </div><!-- End Section Title -->
 
@@ -308,7 +308,23 @@ session_start();
             <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up">
               <i class="bi bi-clock"></i>
               <h3>Jadwal Yang tersedia</h3>
-                <span style="color:red;"><center><?= date('d F Y'); ?></center></span><br>
+                <span ><center>
+                  <?php  
+                    if(date('m') =='01'){$bulan = 'Januari';};
+                    if(date('m') =='02'){$bulan = 'Februari';};
+                    if(date('m') =='03'){$bulan = 'Maret';};
+                    if(date('m') =='04'){$bulan = 'April';};
+                    if(date('m') =='05'){$bulan = 'Mei';};
+                    if(date('m') =='06'){$bulan = 'Juni';};
+                    if(date('m') =='07'){$bulan = 'Juli';};
+                    if(date('m') =='08'){$bulan = 'Agustus';};
+                    if(date('m') =='09'){$bulan = 'September';};
+                    if(date('m') =='10'){$bulan = 'Oktober';};
+                    if(date('m') =='11'){$bulan = 'November';};
+                    if(date('m') =='12'){$bulan = 'Desember';};
+                    echo date('d').' '.$bulan.' '.date('Y');
+                  ?></center>
+                </span><br>
                 <table class="table">
                       <thead>
                           <tr>
@@ -318,15 +334,22 @@ session_start();
                                           date_default_timezone_set('Asia/Jakarta');
                                           $result2 = mysql_query("
                                                           select 
-                                                              TIME_FORMAT(jam,'%H %i') as jam 
+                                                              TIME_FORMAT(jam,'%H:%i') as jam 
                                                           from
                                                               jam_operasional a
                                                               left join (select jam_pendaftaran,COUNT(*) jml from pendaftaran where tgl_pendaftaran = CURRENT_DATE AND status != 'Batal' GROUP BY jam_pendaftaran) b ON b.jam_pendaftaran = a.jam and b.jml <= 1
                                                           where 
                                                               jam >= now()"
                                                       );
-                                          while ($row2 = mysql_fetch_array($result2)) {
-                                              echo '<th style="background:#f9d018;font-weight:bold;text-align:center;">'.$row2['jam'].'</th>';
+
+                                          if(mysql_fetch_array($result2)){
+                                            while ($row2 = mysql_fetch_array($result2)) {
+
+                                                  echo '<th style="background:#f9d018;font-weight:bold;text-align:center;border:3px solid #fff;">'.$row2['jam'].'</th>';
+                                            }
+
+                                          }else{
+                                                  echo '<th style="background:#f9d018;font-weight:bold;text-align:center;">Jadwal tidak tersedia</th>';
                                           }
 
                                       ?>
@@ -385,15 +408,15 @@ session_start();
                 </div>
 
                 <div class="col-md-6">
-                  <input type="number" class="form-control" id="email" name="kebersihan" placeholder="Nilai Point Kebersihan" maxlength="3" required="">
+                  <input type="number" class="form-control" id="email" name="kebersihan" placeholder="Nilai Point Kebersihan" min="0" max="100" required="">
                 </div>
 
                 <div class="col-md-6">
-                  <input type="number" class="form-control" id="email" name="keramahan" placeholder="Nilai Point Keramahan" maxlength="3" required="">
+                  <input type="number" class="form-control" id="email" name="keramahan" placeholder="Nilai Point Keramahan" min="0" max="100" required="">
                 </div>
 
                 <div class="col-md-6">
-                  <input type="number" class="form-control" id="email" name="ketelitian" placeholder="Nilai Point Ketelitian" maxlength="3" required="">
+                  <input type="number" class="form-control" id="email" name="ketelitian" placeholder="Nilai Point Ketelitian" min="0" max="100" required="">
                 </div>
 
                 <div class="col-md-12 text-center">
@@ -459,9 +482,10 @@ session_start();
   <script src="./assets3/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="./assets3/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
   <script src="./assets3/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-
+  
   <!-- Main JS File -->
   <script src="./assets3/js/main.js"></script>
+  
 <script>
 			let counter = 0 ;
 			setInterval(() => {

@@ -72,6 +72,9 @@
                                                         if($data['status']=='Lunas'){
                                                     ?>
                                                     Lunas
+                                                <?php }elseif($data['status']=='Batal'){
+                                                    ?>
+                                                    Batal   
                                                 <?php } else { ?>
                                                     <select name="status" onchange="this.form.submit();" class="form-control">
                                                       <option value="Pendaftaran" <?php if($data['status'] == 'Pendaftaran') { echo 'selected'; } ?>>Pendaftaran</option> 
@@ -83,14 +86,11 @@
                                             </td>
                                             <td align="center">
                                                 <?php
-                                                        if($data['status']!='Lunas'){
+                                                        if($data['status']!= 'Batal' && $data['status']!='Lunas'){
                                                     ?>
                                                 <a href="index.php?p=tambah_pembayaran&id_pendaftaran=<?php echo $data['id_pendaftaran']; ?>" class="btn btn-success mb-3"> <i class="fa fa-fw fa-dollar" style="color: white"></i> <font color="white">Bayar</font>
                                                 </a>
-                                                <?php }else{ ?>
-
-                                                    LUNAS
-                                                <?php } ?>
+                                                <?php }else{ echo $data['status']; }?>
                                             </td>
                                         </tr>
 <?php

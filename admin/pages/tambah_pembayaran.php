@@ -145,6 +145,13 @@ $id_user = $_SESSION['id_user'];
                                             <input type="text" name="nama_pencuci" class="form-control" required="">
                                         </div>
                                     </div>
+
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Bukti</label></div>
+                                        <div class="col-12 col-md-9">
+                                            <input type="file" name="bukti" id="bukti" class=" form-control-label" required="">
+                                        </div>
+                                    </div>
                                     
                                     <button type="submit" class="btn btn-success">Simpan</button>
                                 </form>
