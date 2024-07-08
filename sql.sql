@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 06, 2024 at 11:56 AM
+-- Generation Time: Jul 08, 2024 at 05:51 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -138,7 +138,7 @@ CREATE TABLE `pendaftaran` (
 --
 
 INSERT INTO `pendaftaran` (`id_pendaftaran`, `no_antrian`, `id_customer`, `id_jenis_cucian`, `tgl_pendaftaran`, `jam_pendaftaran`, `total_biaya`, `status`) VALUES
-(22, '2022-09-05/1', 21, 5, '2022-09-05', '13:16:00', 45000, 'Lunas'),
+(22, '2022-09-05/1', 21, 5, '2022-09-07', '13:16:00', 45000, 'Lunas'),
 (24, '2022-09-05/3', 23, 2, '2022-09-05', '13:21:00', 35000, 'Lunas'),
 (25, '2022-09-05/4', 24, 5, '2022-09-05', '13:24:00', 45000, 'Lunas'),
 (27, '2022-09-05/6', 26, 5, '2022-09-05', '13:26:00', 45000, 'Lunas'),
@@ -156,7 +156,7 @@ INSERT INTO `pendaftaran` (`id_pendaftaran`, `no_antrian`, `id_customer`, `id_je
 (44, '2024-06-23/2', 41, 5, '2024-06-23', '14:41:00', 45000, 'Lunas'),
 (45, '2024-06-30/1', 43, 2, '2024-06-30', '08:00:00', 35000, 'Lunas'),
 (46, '2024-06-30/2', 44, 5, '2024-06-30', '10:00:00', 45000, 'Lunas'),
-(48, '2024-07-06/1', 51, 5, '2024-07-06', '17:00:00', 45000, 'Lunas');
+(48, '2024-07-06/1', 51, 5, '2024-07-08', '17:00:00', 45000, 'Pendaftaran');
 
 -- --------------------------------------------------------
 
@@ -183,6 +183,19 @@ INSERT INTO `saran` (`id_saran`, `nama`, `email`, `pesan`, `kebersihan`, `kerama
 (2, 'erdiman', 'erdiman@gmail.com', 'sangat puas', 90, 90, 90),
 (3, 'degi', 'degi@gmail.com', 'bagus sekali ya ges ya', 100, 100, 100),
 (4, 'putri', 'put@gmail.com', 'alhamdulillah', 50, 50, 50);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `status_operasional`
+--
+
+CREATE TABLE `status_operasional` (
+  `id` int NOT NULL,
+  `status` varchar(20) NOT NULL,
+  `start` date DEFAULT NULL,
+  `end` date DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
 
@@ -318,6 +331,12 @@ ALTER TABLE `saran`
   ADD PRIMARY KEY (`id_saran`);
 
 --
+-- Indexes for table `status_operasional`
+--
+ALTER TABLE `status_operasional`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `transaksi`
 --
 ALTER TABLE `transaksi`
@@ -369,6 +388,12 @@ ALTER TABLE `pendaftaran`
 --
 ALTER TABLE `saran`
   MODIFY `id_saran` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `status_operasional`
+--
+ALTER TABLE `status_operasional`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `transaksi`
