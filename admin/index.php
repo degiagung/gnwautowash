@@ -87,6 +87,9 @@ date_default_timezone_set('Asia/Jakarta');
                     <li>
                         <a style="color:#fff" href="index.php?p=transaksi"> <i style="color:#f9d018 !important;" class="menu-icon ti-receipt"></i>Riwayat Pencucian </a>
                     </li>
+                    <li>
+                        <a style="color:#fff" href="index.php?p=antrian"> <i style="color:#f9d018 !important;" class="menu-icon ti-receipt"></i>Pendaftaran </a>
+                    </li>
 
                 </ul>
                 <?php }?>
