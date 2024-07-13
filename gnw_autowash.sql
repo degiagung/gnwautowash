@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 08, 2024 at 05:51 PM
+-- Generation Time: Jul 13, 2024 at 09:13 AM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -31,8 +31,8 @@ CREATE TABLE `customer` (
   `id_customer` int NOT NULL,
   `nama` varchar(30) NOT NULL,
   `no_hp` varchar(25) NOT NULL,
-  `alamat` varchar(50) NOT NULL,
-  `nomor_plat` varchar(10) NOT NULL,
+  `alamat` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
+  `nomor_plat` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `type_mobil` varchar(30) NOT NULL,
   `id_user` bigint DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -64,7 +64,11 @@ INSERT INTO `customer` (`id_customer`, `nama`, `no_hp`, `alamat`, `nomor_plat`, 
 (48, 'aa', '9898', 'jhkjk', 'dfg', 'Pilih Type Mobil', 7),
 (49, 'aa', '9898', 'jhkjk', 'dfg', 'Pilih Type Mobil', 7),
 (50, 'degi', '0877364878', 'bandung', 'Z 123 MA', 'Innova', 7),
-(51, 'degi', '0877364878', 'garut', 'Z 123 MA', 'SUV', 7);
+(51, 'degi', '0877364878', 'garut', 'Z 123 MA', 'SUV', 7),
+(52, '', '', '', 'D123HJ', 'Avanza', 7),
+(53, '', '', '', 'D123HJ', 'Jazz', 7),
+(54, '', '', '', 'D123HJ3', 'Sedan', 7),
+(55, '', '', '', 'D123HJ3', 'MPV', 7);
 
 -- --------------------------------------------------------
 
@@ -156,7 +160,34 @@ INSERT INTO `pendaftaran` (`id_pendaftaran`, `no_antrian`, `id_customer`, `id_je
 (44, '2024-06-23/2', 41, 5, '2024-06-23', '14:41:00', 45000, 'Lunas'),
 (45, '2024-06-30/1', 43, 2, '2024-06-30', '08:00:00', 35000, 'Lunas'),
 (46, '2024-06-30/2', 44, 5, '2024-06-30', '10:00:00', 45000, 'Lunas'),
-(48, '2024-07-06/1', 51, 5, '2024-07-08', '17:00:00', 45000, 'Pendaftaran');
+(48, '2024-07-06/1', 51, 5, '2024-07-08', '17:00:00', 45000, 'Lunas'),
+(49, '2024-07-10/1', 52, 5, '2024-07-10', '15:00:00', 45000, 'Lunas'),
+(50, '2024-07-10/2', 53, 2, '2024-07-10', '15:00:00', 35000, 'Pendaftaran'),
+(51, '2024-07-10/3', 54, 2, '2024-07-10', '16:00:00', 35000, 'Pendaftaran'),
+(52, '2024-07-10/4', 55, 5, '2024-07-10', '18:00:00', 45000, 'Lunas');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `promo`
+--
+
+CREATE TABLE `promo` (
+  `id_promo` bigint NOT NULL,
+  `judul` text,
+  `promo` text,
+  `start` date DEFAULT NULL,
+  `end` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `promo`
+--
+
+INSERT INTO `promo` (`id_promo`, `judul`, `promo`, `start`, `end`) VALUES
+(1, 'promo spesial wash', ' promo pencucian 10x gratis 1x ', '2024-07-13', '2024-07-31'),
+(2, 'promo promoan', 'Gratis minuman sepuasnya ', '2024-07-12', '2024-07-13'),
+(3, 'promo testing', 'promo umroh', '2024-07-20', '2024-07-31');
 
 -- --------------------------------------------------------
 
@@ -240,7 +271,11 @@ INSERT INTO `transaksi` (`id_transaksi`, `id_pendaftaran`, `no_nota`, `tanggal`,
 (35, 46, 'C017', '2024-07-06', 45000, 0, 45000, 'Lunas', 1, 'agus', NULL),
 (36, 48, 'C018', '2024-07-06', 45000, 0, 45000, 'Lunas', 1, 'a', NULL),
 (37, 48, 'C019', '2024-07-06', 45000, 0, 45000, 'Lunas', 1, 'agus', NULL),
-(38, 46, 'C020', '2024-07-06', 45000, 0, 45000, 'Lunas', 1, '1', '../bukti/C020_305854618_814484516406993_94701150179247827_n.jpg');
+(38, 46, 'C020', '2024-07-06', 45000, 0, 45000, 'Lunas', 1, '1', '../bukti/C020_305854618_814484516406993_94701150179247827_n.jpg'),
+(39, 52, 'C021', '2024-07-13', 500000, 455000, 45000, 'Lunas', 1, 'dedi', '../bukti/C021_306886756_651142899598751_2740471317585836194_n.jpg'),
+(40, 48, 'C022', '2024-07-13', 500000, 455000, 45000, 'Lunas', 1, 'dedi', '../bukti/C022_2.webp'),
+(41, 48, 'C023', '2024-07-13', 500000, 455000, 45000, 'Lunas', 1, 'dedi', '../bukti/C023_313194582_202773882172086_1569670259883093644_n.jpg'),
+(42, 49, 'C024', '2024-07-13', 500000, 455000, 45000, 'Lunas', 1, 'qqq', '../bukti/C024_loginbg (2).jpg');
 
 -- --------------------------------------------------------
 
@@ -325,6 +360,12 @@ ALTER TABLE `pendaftaran`
   ADD PRIMARY KEY (`id_pendaftaran`);
 
 --
+-- Indexes for table `promo`
+--
+ALTER TABLE `promo`
+  ADD PRIMARY KEY (`id_promo`);
+
+--
 -- Indexes for table `saran`
 --
 ALTER TABLE `saran`
@@ -363,7 +404,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id_customer` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `id_customer` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT for table `jam_operasional`
@@ -381,7 +422,13 @@ ALTER TABLE `jenis_cucian`
 -- AUTO_INCREMENT for table `pendaftaran`
 --
 ALTER TABLE `pendaftaran`
-  MODIFY `id_pendaftaran` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
+  MODIFY `id_pendaftaran` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+
+--
+-- AUTO_INCREMENT for table `promo`
+--
+ALTER TABLE `promo`
+  MODIFY `id_promo` bigint NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `saran`
@@ -399,7 +446,7 @@ ALTER TABLE `status_operasional`
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id_transaksi` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `type_mobil`
