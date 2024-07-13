@@ -48,28 +48,36 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-5">
-                            <div class="card" style="border: 8px solid #f9d018;">
-                                <div class="card-header" style="background:#fff;border:none;">
+                        <?php
+                            include ("../config/koneksi.php");
+                            $sqll = "SELECT * FROM promo where (now() BETWEEN start and end + INTERVAL 1 DAY)";
+                            $resultt = mysql_query($sqll);
+                            while($data = mysql_fetch_array($resultt)){
+                                echo '
                                     
-                                    <h4><strong class="card-title">Informasi Promo</strong><a style="color:blue;font-size:13px;" href="index.php?p=antrian"> <b><u>Daftar Antrian </b></u></a></h4>
-                                    <span style="font-size:13px">Spesial Bulan Juli - Agustus</span>
+                                    <div class="col-md-6">
+                                        <div class="card" style="border: 8px solid #f9d018;">
+                                            <div class="card-header" style="background:#fff;border:none;">
+                                                
+                                                <h4><strong class="card-title">'.$data['judul'].'</strong><a style="color:blue;font-size:13px;" href="index.php?p=antrian"> <b><u>Daftar Antrian </b></u></a></h4>
+                                                <span style="font-size:13px">Mulai Tanggal '.$data['start'].' SD '.$data['end'].'</span>
 
 
-                                </div>
-                                <div class="card-body">
-                                    <strong style="font-size:13px;">
-                                        <b>
-                                            <ul style="padding-left: 16px;">
-                                                <li>PROMO PENCUCIAN 10X GRATIS 1X</li>
-                                                <li>GRATIS MINUMAN HALAL</li>
-                                                <li>KUPON UNDIAN UMROH</li>
-                                            </ul>
-                                        </b>
-                                    </strong>
-                                </div>
-                            </div>
-                        </div>
+                                            </div>
+                                            <div class="card-body">
+                                                <strong style="font-size:13px;">
+                                                    <b>
+                                                        <ul style="padding-left: 16px;">
+                                                            <li>'.$data['promo'].'</li>
+                                                        </ul>
+                                                    </b>
+                                                </strong>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ';
+                            }
+                        ?>
                     <?php }else{?>
                         <div class="col-md-12">
                             <div class="card" style="border: 8px solid #f9d018;">

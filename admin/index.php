@@ -83,6 +83,10 @@ date_default_timezone_set('Asia/Jakarta');
                         <a style="color:#fff" href="index.php?p=saran"> <i style="color:#f9d018 !important;" class="menu-icon ti-list"></i>Kritik dan Saran </a>
                     </li>
 
+                    <li>
+                        <a style="color:#fff" href="index.php?p=promo"> <i style="color:#f9d018 !important;" class="menu-icon ti-list"></i>Promo </a>
+                    </li>
+
                 </ul>
                 <?php }else{ ?>
                     <ul class="nav navbar-nav">
