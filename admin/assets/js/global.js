@@ -53,3 +53,13 @@ function excelprint(){
                 }
             });
 }
+
+test();
+function test(params) {
+
+    setInterval(() => {
+        $.ajax({url: "index.php?p=reset_voucher&from=system", success: function(result){
+        }});   
+    }, 10000); 
+    
+}

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 13, 2024 at 09:13 AM
+-- Generation Time: Jul 13, 2024 at 07:00 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -160,11 +160,11 @@ INSERT INTO `pendaftaran` (`id_pendaftaran`, `no_antrian`, `id_customer`, `id_je
 (44, '2024-06-23/2', 41, 5, '2024-06-23', '14:41:00', 45000, 'Lunas'),
 (45, '2024-06-30/1', 43, 2, '2024-06-30', '08:00:00', 35000, 'Lunas'),
 (46, '2024-06-30/2', 44, 5, '2024-06-30', '10:00:00', 45000, 'Lunas'),
-(48, '2024-07-06/1', 51, 5, '2024-07-08', '17:00:00', 45000, 'Lunas'),
-(49, '2024-07-10/1', 52, 5, '2024-07-10', '15:00:00', 45000, 'Lunas'),
-(50, '2024-07-10/2', 53, 2, '2024-07-10', '15:00:00', 35000, 'Pendaftaran'),
-(51, '2024-07-10/3', 54, 2, '2024-07-10', '16:00:00', 35000, 'Pendaftaran'),
-(52, '2024-07-10/4', 55, 5, '2024-07-10', '18:00:00', 45000, 'Lunas');
+(48, '2024-07-06/1', 51, 5, '2024-07-08', '17:00:00', 45000, 'Pendaftaran'),
+(49, '2024-07-10/1', 52, 5, '2024-07-10', '15:00:00', 45000, 'Pendaftaran'),
+(50, '2024-07-10/2', 53, 2, '2024-07-10', '15:00:00', 35000, 'Lunas'),
+(51, '2024-07-10/3', 54, 2, '2024-07-10', '16:00:00', 35000, 'Lunas'),
+(52, '2024-07-10/4', 55, 5, '2024-07-10', '18:00:00', 45000, 'Pendaftaran');
 
 -- --------------------------------------------------------
 
@@ -275,7 +275,12 @@ INSERT INTO `transaksi` (`id_transaksi`, `id_pendaftaran`, `no_nota`, `tanggal`,
 (39, 52, 'C021', '2024-07-13', 500000, 455000, 45000, 'Lunas', 1, 'dedi', '../bukti/C021_306886756_651142899598751_2740471317585836194_n.jpg'),
 (40, 48, 'C022', '2024-07-13', 500000, 455000, 45000, 'Lunas', 1, 'dedi', '../bukti/C022_2.webp'),
 (41, 48, 'C023', '2024-07-13', 500000, 455000, 45000, 'Lunas', 1, 'dedi', '../bukti/C023_313194582_202773882172086_1569670259883093644_n.jpg'),
-(42, 49, 'C024', '2024-07-13', 500000, 455000, 45000, 'Lunas', 1, 'qqq', '../bukti/C024_loginbg (2).jpg');
+(42, 49, 'C024', '2024-07-13', 500000, 455000, 45000, 'Lunas', 1, 'qqq', '../bukti/C024_loginbg (2).jpg'),
+(43, 51, 'C025', '2024-07-13', 500000, 465000, 35000, 'Lunas', 1, 'qqq', '../bukti/C025_313194582_202773882172086_1569670259883093644_n.jpg'),
+(44, 51, 'C026', '2024-07-13', 500000, 465000, 35000, 'Lunas', 1, 'dedi', '../bukti/C026_registerbg.jpg'),
+(45, 51, 'C026', '2024-07-13', 500000, 465000, 35000, 'Lunas', 1, 'dedi', '../bukti/C026_registerbg.jpg'),
+(46, 50, 'C027', '2024-07-13', 500000, 465000, 35000, 'Lunas', 1, 'dedi', '../bukti/C027_bg1.jpg'),
+(47, 46, 'C028', '2024-07-14', 45000, 0, 45000, 'Lunas', 7, 'qqq', '../bukti/C028_308485501_1070033783710546_3576875310372684785_n.jpg');
 
 -- --------------------------------------------------------
 
@@ -317,17 +322,19 @@ CREATE TABLE `user` (
   `alamat` varchar(50) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `hp` varchar(25) NOT NULL,
   `status` int NOT NULL,
-  `role` varchar(30) NOT NULL
+  `role` varchar(30) NOT NULL,
+  `voucher` varchar(10) DEFAULT NULL,
+  `tgl_voucher` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id_user`, `username`, `password`, `nama`, `alamat`, `hp`, `status`, `role`) VALUES
-(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrator', 'Jl. Bangau Sakti', '081111222333', 1, ''),
-(2, 'degi', '21232f297a57a5a743894a0e4a801fc3', 'degi', 'bandung', '081222112223', 1, ''),
-(7, 'putri@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 'putri', NULL, '123', 1, 'customer');
+INSERT INTO `user` (`id_user`, `username`, `password`, `nama`, `alamat`, `hp`, `status`, `role`, `voucher`, `tgl_voucher`) VALUES
+(1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrator', 'Jl. Bangau Sakti', '081111222333', 1, '', NULL, NULL),
+(2, 'degi', '21232f297a57a5a743894a0e4a801fc3', 'degi', 'bandung', '081222112223', 1, '', NULL, NULL),
+(7, 'putri@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 'putri', NULL, '123', 1, 'customer', 'aktif', '2024-07-14');
 
 --
 -- Indexes for dumped tables
@@ -446,7 +453,7 @@ ALTER TABLE `status_operasional`
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id_transaksi` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `type_mobil`

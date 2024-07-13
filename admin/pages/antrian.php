@@ -35,36 +35,10 @@
                                     </span><br>
                                 </div>
                                 <div class="card-body" align="center">
-                                    <table class="table table-striped table-bordered">
-                                        <thead>
-                                            <tr style="background:#f9d018;font-weight:bold;text-align:center;" id="available">
-                                                
-                                                        <?php
-                                                        
-                                                            date_default_timezone_set('Asia/Jakarta');
-                                                            $result2 = mysql_query("
-                                                                            select 
-                                                                                TIME_FORMAT(jam,'%H:%i') as jam 
-                                                                            from
-                                                                                jam_operasional a
-                                                                                left join (select jam_pendaftaran,COUNT(*) jml from pendaftaran where tgl_pendaftaran = CURRENT_DATE AND status != 'Batal' GROUP BY jam_pendaftaran) b ON b.jam_pendaftaran = a.jam and b.jml <= 3
-                                                                            where 
-                                                                                jam >= now()"
-                                                                        );
-                                                            if(mysql_num_rows($result2) >= 1){
-                                                                while ($row2 = mysql_fetch_array($result2)) {
-
-                                                                    echo '<th style="background:#f9d018;font-weight:bold;text-align:center;border:3px solid #fff;">'.$row2['jam'].'</th>';
-                                                                }
-
-                                                            }else{
-                                                                    echo '<th style="background:#f9d018;font-weight:bold;text-align:center;">Jadwal tidak tersedia</th>';
-                                                            }
-
-                                                        ?>
-                                                        
-                                            </tr>
-                                        </thead>
+                                    <table class="table table-striped table-bordered" id="tablejadwal">
+                                        <!-- <thead> -->
+                                            
+                                        <!-- </thead> -->
                                     </table>
                                 </div>
                             </div>
@@ -176,27 +150,39 @@
                                         <div class="row form-group">
                                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">Jam Pencucian</label></div>
                                             <div class="col-12 col-md-9">
-                                                <?php
-                                                    $where = '';
-                                                    if ($_SESSION['role'] == 'customer') {
-                                                        $where = 'and b.jml <= 3';
+                                                <select name="jam_pendaftaran" id="jamselect" class="form-control-rounded form-control" required = "" >
+                                                    <!-- <option value="">Pilih Jam Cuci</option> -->
+                                                </select>
+                                                <script>
+                                                    cekjam();
+                                                    function cekjam(){
+                                                         $('#jamselect').empty();
+                                                        $('#jamselect').append("<option value=''>Pilih Jam Cuci</option>");
+                                                        <?php
+                                                            $where = '';
+                                                            if ($_SESSION['role'] == 'customer') {
+                                                                $where = 'and b.jml <= 3';
+                                                            }
+                                                            $result2 = mysql_query("
+                                                                            select 
+                                                                                TIME_FORMAT(jam,'%H:%i') as jam 
+                                                                            from
+                                                                                jam_operasional a
+                                                                                left join (select jam_pendaftaran,COUNT(*) jml from pendaftaran where tgl_pendaftaran = CURRENT_DATE AND status != 'Batal' GROUP BY jam_pendaftaran) b ON b.jam_pendaftaran = a.jam $where
+                                                                            where 
+                                                                                jam >= now()
+                                                                        ");
+                                                            while ($row2 = mysql_fetch_array($result2)) {
+                                                                ?>
+                                                                    $('#jamselect').append("<option value='<?=$row2['jam']?>'><?=$row2['jam']?></option>");
+                                                                <?php
+                                                            }
+                                                        ?>
                                                     }
-                                                    $result2 = mysql_query("
-                                                                    select 
-                                                                        TIME_FORMAT(jam,'%H:%i') as jam 
-                                                                    from
-                                                                        jam_operasional a
-                                                                        left join (select jam_pendaftaran,COUNT(*) jml from pendaftaran where tgl_pendaftaran = CURRENT_DATE AND status != 'Batal' GROUP BY jam_pendaftaran) b ON b.jam_pendaftaran = a.jam $where
-                                                                    where 
-                                                                        jam >= now()
-                                                                ");
-                                                    echo '<select name="jam_pendaftaran" class="form-control-rounded form-control" required = "" >';
-                                                    echo '<option value="">Pilih Jam Cuci</option>';
-                                                    while ($row2 = mysql_fetch_array($result2)) {
-                                                        echo '<option value="' . $row2['jam'] . '">' . $row2['jam'] . '</option>';
-                                                    }
-                                                    echo '</select>';
-                                                ?>
+                                                    setInterval(() => {
+                                                       cekjam();
+                                                    }, 100000);
+                                                </script>
                                             </div>
                                         </div>
 
@@ -423,27 +409,39 @@
                                         <div class="row form-group">
                                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">Jam Pencucian</label></div>
                                             <div class="col-12 col-md-9">
-                                                <?php
-                                                    $where = '';
-                                                    if ($_SESSION['role'] == 'customer') {
-                                                        $where = 'and b.jml <= 3';
+                                                <select name="jam_pendaftaran" id="jamselect" class="form-control-rounded form-control" required = "" >
+                                                    <!-- <option value="">Pilih Jam Cuci</option> -->
+                                                </select>
+                                                <script>
+                                                    cekjam();
+                                                    function cekjam(){
+                                                         $('#jamselect').empty();
+                                                        $('#jamselect').append("<option value=''>Pilih Jam Cuci</option>");
+                                                        <?php
+                                                            $where = '';
+                                                            if ($_SESSION['role'] == 'customer') {
+                                                                $where = 'and b.jml <= 3';
+                                                            }
+                                                            $result2 = mysql_query("
+                                                                            select 
+                                                                                TIME_FORMAT(jam,'%H:%i') as jam 
+                                                                            from
+                                                                                jam_operasional a
+                                                                                left join (select jam_pendaftaran,COUNT(*) jml from pendaftaran where tgl_pendaftaran = CURRENT_DATE AND status != 'Batal' GROUP BY jam_pendaftaran) b ON b.jam_pendaftaran = a.jam $where
+                                                                            where 
+                                                                                jam >= now()
+                                                                        ");
+                                                            while ($row2 = mysql_fetch_array($result2)) {
+                                                                ?>
+                                                                    $('#jamselect').append("<option value='<?=$row2['jam']?>'><?=$row2['jam']?></option>");
+                                                                <?php
+                                                            }
+                                                        ?>
                                                     }
-                                                    $result2 = mysql_query("
-                                                                    select 
-                                                                        TIME_FORMAT(jam,'%H:%i') as jam 
-                                                                    from
-                                                                        jam_operasional a
-                                                                        left join (select jam_pendaftaran,COUNT(*) jml from pendaftaran where tgl_pendaftaran = CURRENT_DATE AND status != 'Batal' GROUP BY jam_pendaftaran) b ON b.jam_pendaftaran = a.jam $where
-                                                                    where 
-                                                                        jam >= now()
-                                                                ");
-                                                    echo '<select name="jam_pendaftaran" class="form-control-rounded form-control" required = "" >';
-                                                    echo '<option value="">Pilih Jam Cuci</option>';
-                                                    while ($row2 = mysql_fetch_array($result2)) {
-                                                        echo '<option value="' . $row2['jam'] . '">' . $row2['jam'] . '</option>';
-                                                    }
-                                                    echo '</select>';
-                                                ?>
+                                                    setInterval(() => {
+                                                       cekjam();
+                                                    }, 100000);
+                                                </script>
                                             </div>
                                         </div>
 
@@ -467,15 +465,50 @@
         </div><!-- .content -->
 
         <script>
-			let counter = 0 ;
-			setInterval(() => {
-				jml = counter++ 
-				if(jml == 300){
-					counter = 0 ;
-					document.location='index.php?p=home';
-				}
-			}, 1000);
+			
+            
+            setInterval(() => {
+                cekjadwal()
+            }, 10000);
+            cekjadwal();
+            function cekjadwal(){
+                
+                $("#tablejadwal").empty();
+                var th = "";
+                <?php
+                                                        
+                    date_default_timezone_set('Asia/Jakarta');
+                    $result2 = mysql_query("
+                                    select 
+                                        TIME_FORMAT(jam,'%H:%i') as jam 
+                                    from
+                                        jam_operasional a
+                                        left join (select jam_pendaftaran,COUNT(*) jml from pendaftaran where tgl_pendaftaran = CURRENT_DATE AND status != 'Batal' GROUP BY jam_pendaftaran) b ON b.jam_pendaftaran = a.jam and b.jml <= 3
+                                    where 
+                                        jam >= now()"
+                                );
+                    if(mysql_num_rows($result2) >= 1){
+                        while ($row2 = mysql_fetch_array($result2)) {
 
+                            ?>
+                                th += '<th style="background:#f9d018;font-weight:bold;text-align:center;border:3px solid #fff;"><?=$row2['jam']?></th>'
+                            <?php
+                        }
+
+                    }else{
+                        
+                        ?>
+                            th += '<th style="background:#f9d018;font-weight:bold;text-align:center;">Jadwal tidak tersedia</th>' 
+                        <?php
+                    }
+
+                ?>
+            $("#tablejadwal").append(
+                `<tr style="background:#f9d018;font-weight:bold;text-align:center;" id="available">
+                    `+th+`
+                </tr>`
+            );
+            }    
             function isNumberKey(evt)
             {
                 var charCode = (evt.which) ? evt.which : evt.keyCode;

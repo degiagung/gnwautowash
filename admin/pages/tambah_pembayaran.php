@@ -4,13 +4,13 @@
   <?php
 $id_pendaftaran = $_GET['id_pendaftaran']; //get the no which will updated
 
-$queryy = mysql_query("SELECT pendaftaran.*,customer.*,jenis_cucian.*,user.username as email FROM pendaftaran join customer using(id_customer) join jenis_cucian using (id_jenis_cucian) join user using(id_user) WHERE id_pendaftaran = '$id_pendaftaran'"); //get the data that will be updated
+$queryy = mysql_query("SELECT pendaftaran.*,customer.*,jenis_cucian.*,user.username as email,user.voucher FROM pendaftaran join customer using(id_customer) join jenis_cucian using (id_jenis_cucian) join user using(id_user) WHERE id_pendaftaran = '$id_pendaftaran'"); //get the data that will be updated
 $dt=mysql_fetch_array($queryy);
 
-$id_user   = $_SESSION['id_user']; 
-// print_r($dt);die;
+$id_user   = $dt['id_user']; 
 $pelanggan = $dt['nama']; 
 $email     = $dt['email']; 
+$voucher   = $dt['voucher']; 
 ?>
 
 <div class="breadcrumbs">
@@ -54,6 +54,7 @@ $email     = $dt['email'];
     <input type="hidden" id="text-input" name="status" class="form-control" value="Lunas">
     <input type="hidden" id="text-input" name="pelanggan" class="form-control" value="<?= $pelanggan;?>">
     <input type="hidden" id="text-input" name="email" class="form-control" value="<?= $email;?>">
+    <input type="hidden" id="text-input" name="voucher" class="form-control" value="<?= $voucher;?>">
 
                                     <div class="row form-group">
                                         <div class="col col-md-3"><label for="text-input" class=" form-control-label">No. Antrian</label></div>
@@ -132,17 +133,34 @@ $email     = $dt['email'];
 
                                     <div class="row form-group">
                                         <div class="col col-md-3"><label for="text-input" class=" form-control-label">Uang Yang Dibayarkan</label></div>
-                                        <div class="col-12 col-md-9">
-                                            <input type="text" id="txt1"  onkeyup="sum();" name="bayar" class="form-control" required="">
-                                        </div>
-                                    </div>
+                                        <?php
+                                            if($voucher == 'aktif'){
+                                        ?>
+                                                <div class="col-12 col-md-6">
+                                                    <input type="text" id="txt1" class="form-control" disabled value="LUNAS DENGAN VOUCHER" >
+                                                </div>
+                                                <div class="col-12 col-md-2">
+                                                    <a class="btn btn-danger" href="index.php?p=reset_voucher&from=admin&id_user=<?= $id_user?>&id_pendaftaran=<?= $id_pendaftaran?>" onClick="return confirm('Apakah Anda Yakin Reset Voucher ?')">Reset Voucher</a>
+                                                </div>
+                                            </div>
+                                        <?php  
+                                            }else{
+                                        ?>
+                                                <div class="col-12 col-md-9">
+                                                    <input type="text" id="txt1"  onkeyup="sum();" name="bayar" class="form-control" required="">
+                                                </div>
 
-                                    <div class="row form-group">
-                                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Kembalian</label></div>
-                                        <div class="col-12 col-md-9">
-                                            <input type="text" name="kembali" class="form-control" required="" readonly="" id="txt3"  onkeyup="sum();">
-                                        </div>
-                                    </div>
+                                            </div>
+                                                <div class="row form-group">
+                                                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">Kembalian</label></div>
+                                                    <div class="col-12 col-md-9">
+                                                        <input type="text" name="kembali" class="form-control" required="" readonly="" id="txt3"  onkeyup="sum();">
+                                                    </div>
+                                                </div>
+                                        <?php    
+                                            }
+                                        ?>
+
 
                                     <div class="row form-group">
                                         <div class="col col-md-3"><label for="text-input" class=" form-control-label">Penanggung Jawab Cuci</label></div>

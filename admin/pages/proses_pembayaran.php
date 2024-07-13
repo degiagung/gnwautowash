@@ -10,6 +10,17 @@ $total=$_POST['total'];
 $bayar=$_POST['bayar'];
 $kembali=$_POST['kembali'];
 $nama_pencuci=$_POST['nama_pencuci'];
+$voucher=$_POST['voucher'];
+
+	if($voucher == 'aktif'){
+		$bayar = $total ;
+		$kembali = 0 ;
+	}
+	$jml = $hasil['jml'] ;
+	if($hasil['jml'] >= 11){
+		$jml = 1 ;
+	}
+
 if($kembali < 0) {
 	?>
 	<script language="JavaScript">
@@ -98,8 +109,25 @@ $hasil2=mysql_query($sql2);
 //see the result
 if ($hasil2) {
 	
+	$cekvoucher = "SELECT a.*,b.tanggal FROM user a join transaksi b on a.id_user = b.id_user WHERE b.status = 'Lunas' AND a.id_user = $id_user";
+	$hasilvoucher = mysql_query($cekvoucher);
+	if($hasilvoucher->num_rows >= 11){
+		
+		$getup11 	  = $cekvoucher." AND b.tanggal >= COALESCE(a.tgl_voucher,0) limit 11" ;
+		$getup11 	  = mysql_query($getup11);
+		if($getup11->num_rows >= 11){
+			$dataup11	  = mysql_fetch_array($getup11);
+			$tanggal	  = $dataup11['tanggal'] ;
+			mysql_query("UPDATE user SET voucher = 'aktif',tgl_voucher = '$tanggal' WHERE id_user = '$id_user'");
+		}
+	}elseif($hasilvoucher->num_rows == 10){
+		mysql_query("UPDATE user SET voucher = 'aktif',tgl_voucher = now() WHERE id_user = '$id_user'");
+	}
+
+	
 	include("sendmail.php");
 ?>
+
 <script language="JavaScript">
 alert('Data Pembayaran Berhasil Ditambahkan');
 document.location='index.php?p=pendaftaran'</script>
