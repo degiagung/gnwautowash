@@ -18,7 +18,10 @@
         dom: 'lBfrtip',
         lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]],
         buttons: [
-            'copy', 'csv', 'excel', 'pdf', 'print'
+            // 'copy', 'csv', 'excel', 'pdf', 'print'
+			// { text: 'PDF', extend: 'pdfHtml5',  className: 'btndownload',  title:'Laporan', exportOptions: {columns:[':not(.notdown)']}},
+            { text: 'EXCEL', extend: 'excel',  className: 'btndownload',  title:'Laporan', exportOptions: {columns:[':not(.notdown)']}},
+        
         ]
     });
 	

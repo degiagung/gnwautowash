@@ -4,10 +4,13 @@
   <?php
 $id_pendaftaran = $_GET['id_pendaftaran']; //get the no which will updated
 
-$queryy = mysql_query("SELECT * FROM pendaftaran join customer using(id_customer) join jenis_cucian using (id_jenis_cucian) WHERE id_pendaftaran = '$id_pendaftaran'"); //get the data that will be updated
+$queryy = mysql_query("SELECT pendaftaran.*,customer.*,jenis_cucian.*,user.username as email FROM pendaftaran join customer using(id_customer) join jenis_cucian using (id_jenis_cucian) join user using(id_user) WHERE id_pendaftaran = '$id_pendaftaran'"); //get the data that will be updated
 $dt=mysql_fetch_array($queryy);
 
-$id_user = $_SESSION['id_user']; 
+$id_user   = $_SESSION['id_user']; 
+// print_r($dt);die;
+$pelanggan = $dt['nama']; 
+$email     = $dt['email']; 
 ?>
 
 <div class="breadcrumbs">
@@ -49,6 +52,8 @@ $id_user = $_SESSION['id_user'];
     <input type="hidden" id="text-input" name="id_pendaftaran" class="form-control" value="<?= $dt['id_pendaftaran'];?>">
     <input type="hidden" id="text-input" name="id_user" class="form-control" value="<?= $id_user;?>">
     <input type="hidden" id="text-input" name="status" class="form-control" value="Lunas">
+    <input type="hidden" id="text-input" name="pelanggan" class="form-control" value="<?= $pelanggan;?>">
+    <input type="hidden" id="text-input" name="email" class="form-control" value="<?= $email;?>">
 
                                     <div class="row form-group">
                                         <div class="col col-md-3"><label for="text-input" class=" form-control-label">No. Antrian</label></div>

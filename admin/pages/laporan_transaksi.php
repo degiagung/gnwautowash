@@ -1,4 +1,5 @@
 <?php
+print_r('df');
 ob_start();
 session_start();
 error_reporting(0);
@@ -160,7 +161,7 @@ $mpdf=new mPDF('utf-8', "F4-L", 9 ,'Arial', 16, 16, 56, 16, 16, 4);
 $mpdf->SetTitle("Laporan Rekap Rekam Medis");$mpdf->SetDisplayMode('fullpage');
 $mpdf->setHTMLHeader($header);
 $mpdf->setHTMLFooter($footer);
-$stylesheet = file_get_contents('../../assets/mpdf/mpdf.css');
+$stylesheet = file_get_contents('../../assets/mpdf/mpdf.php');
 $mpdf->WriteHTML($stylesheet,1);
 $mpdf->WriteHTML($out);
 $mpdf->Output("Laporan Transaksi Tanggal $tgl_awal sampai $tgl_akhir.pdf", 'I');

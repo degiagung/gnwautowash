@@ -171,7 +171,7 @@ session_start();
 
           <div class="col-lg-4 col-md-6 card" data-aos="fade-up">
             <span>05</span>
-            <h4>CONTNUES IMPROVEMENT</h4>
+            <h4>CONTINUES IMPROVEMENT</h4>
             <p>Kami adalah pembelajar. Kami berusaha menjadi lebih baik dari hari ke hari. Kami tidak pernah berpuas diri.</p>
           </div><!-- End Card Item -->
         </div>
@@ -337,12 +337,12 @@ session_start();
                                                               TIME_FORMAT(jam,'%H:%i') as jam 
                                                           from
                                                               jam_operasional a
-                                                              left join (select jam_pendaftaran,COUNT(*) jml from pendaftaran where tgl_pendaftaran = CURRENT_DATE AND status != 'Batal' GROUP BY jam_pendaftaran) b ON b.jam_pendaftaran = a.jam and b.jml <= 1
+                                                              left join (select jam_pendaftaran,COUNT(*) jml from pendaftaran where tgl_pendaftaran = CURRENT_DATE AND status != 'Batal' GROUP BY jam_pendaftaran) b ON b.jam_pendaftaran = a.jam and b.jml <= 3
                                                           where 
                                                               jam >= now()"
                                                       );
 
-                                          if(mysql_fetch_array($result2)){
+                                          if(mysql_num_rows($result2) >= 1){
                                             while ($row2 = mysql_fetch_array($result2)) {
 
                                                   echo '<th style="background:#f9d018;font-weight:bold;text-align:center;border:3px solid #fff;">'.$row2['jam'].'</th>';

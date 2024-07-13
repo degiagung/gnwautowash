@@ -47,11 +47,11 @@
                                                                                 TIME_FORMAT(jam,'%H:%i') as jam 
                                                                             from
                                                                                 jam_operasional a
-                                                                                left join (select jam_pendaftaran,COUNT(*) jml from pendaftaran where tgl_pendaftaran = CURRENT_DATE AND status != 'Batal' GROUP BY jam_pendaftaran) b ON b.jam_pendaftaran = a.jam and b.jml <= 1
+                                                                                left join (select jam_pendaftaran,COUNT(*) jml from pendaftaran where tgl_pendaftaran = CURRENT_DATE AND status != 'Batal' GROUP BY jam_pendaftaran) b ON b.jam_pendaftaran = a.jam and b.jml <= 3
                                                                             where 
                                                                                 jam >= now()"
                                                                         );
-                                                            if(mysql_fetch_array($result2)){
+                                                            if(mysql_num_rows($result2) >= 1){
                                                                 while ($row2 = mysql_fetch_array($result2)) {
 
                                                                     echo '<th style="background:#f9d018;font-weight:bold;text-align:center;border:3px solid #fff;">'.$row2['jam'].'</th>';
@@ -94,26 +94,26 @@
                                     <form action="index.php?p=proses_pendaftaran" method="post" enctype="multipart/form-data" class="form-horizontal">
                                         <input type="hidden" class="form-control" id="nama" name="id_customer" value="<?=$id_lanjut;?>">
                                         
-                                        <div class="row form-group">
+                                        <!-- <div class="row form-group">
                                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">Nama</label></div>
                                             <div class="col-12 col-md-9">
                                                 <input type="text" id="nama" name="nama" class="form-control" required="">
                                             </div>
-                                        </div>
+                                        </div> -->
 
-                                        <div class="row form-group">
+                                        <!-- <div class="row form-group">
                                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">No Handphone</label></div>
                                             <div class="col-12 col-md-9">
                                                 <input type="tel" min=0  onkeypress="return window.isNumberKey(event)" id="email" name="no_hp" class="form-control" required="">
                                             </div>
-                                        </div>
+                                        </div> -->
 
-                                        <div class="row form-group">
+                                        <!-- <div class="row form-group">
                                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">Alamat</label></div>
                                             <div class="col-12 col-md-9">
                                                 <textarea type="text" id="alamat" name="alamat" rows="6" class="form-control" required=""></textarea>
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                         <div class="row form-group">
                                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">No Plat</label></div>
@@ -123,7 +123,7 @@
                                         </div>
 
                                         <div class="row form-group">
-                                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Type Mobil</label></div>
+                                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Jenis Kendaraan</label></div>
                                             <div class="col-12 col-md-9">
                                                 <?php
                 
@@ -179,7 +179,7 @@
                                                 <?php
                                                     $where = '';
                                                     if ($_SESSION['role'] == 'customer') {
-                                                        $where = 'and b.jml <= 2';
+                                                        $where = 'and b.jml <= 3';
                                                     }
                                                     $result2 = mysql_query("
                                                                     select 
@@ -342,36 +342,28 @@
                                             </div>
                                         </div>
 
-                                        <div class="row form-group">
+                                        <!-- <div class="row form-group">
                                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">Nama</label></div>
                                             <div class="col-12 col-md-9">
                                                 <input type="text" id="nama" name="nama" class="form-control" required="">
                                             </div>
-                                        </div>
+                                        </div> -->
 
-                                        <div class="row form-group">
+                                        <!-- <div class="row form-group">
                                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">No Handphone</label></div>
                                             <div class="col-12 col-md-9">
                                                 <input type="tel" min=0  onkeypress="return window.isNumberKey(event)" id="email" name="no_hp" class="form-control" required="">
                                             </div>
-                                        </div>
+                                        </div> -->
 
-                                        <div class="row form-group">
+                                        <!-- <div class="row form-group">
                                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">Alamat</label></div>
                                             <div class="col-12 col-md-9">
                                                 <textarea type="text" id="alamat" name="alamat" rows="6" class="form-control" required=""></textarea>
                                             </div>
-                                        </div>
-
+                                        </div> -->
                                         <div class="row form-group">
-                                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">No Plat</label></div>
-                                            <div class="col-12 col-md-9">
-                                                <input type="text" id="email" name="nomor_plat" class="form-control" required="">
-                                            </div>
-                                        </div>
-
-                                        <div class="row form-group">
-                                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Type Mobil</label></div>
+                                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Jenis Kendaraan</label></div>
                                             <div class="col-12 col-md-9">
                                                 <?php
                 
@@ -387,14 +379,21 @@
                                                 ?>
                                             </div>
                                         </div>
-                                        
+
                                         <div class="row form-group">
+                                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">No Plat</label></div>
+                                            <div class="col-12 col-md-9">
+                                                <input type="text" id="email" name="nomor_plat" class="form-control" required="">
+                                            </div>
+                                        </div>
+                                        
+                                        <!-- <div class="row form-group">
                                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">No Antrian</label></div>
                                             <div class="col-12 col-md-9">
                                                 <input type="text" class="form-control-rounded form-control" value="<?php echo $next; ?>" required="" readonly name="next">
                                                 <input type="hidden" name="no_antrian" class="form-control" value="<?php echo $no_antrian; ?>" required="" readonly>
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                         <div class="row form-group">
                                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">Jenis Cucian</label></div>
@@ -427,7 +426,7 @@
                                                 <?php
                                                     $where = '';
                                                     if ($_SESSION['role'] == 'customer') {
-                                                        $where = 'and b.jml <= 2';
+                                                        $where = 'and b.jml <= 3';
                                                     }
                                                     $result2 = mysql_query("
                                                                     select 

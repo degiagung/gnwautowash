@@ -37,6 +37,11 @@ date_default_timezone_set('Asia/Jakarta');
 
 </head>
 <body>
+    <script
+    src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script
+    src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+
     <!-- Left Panel -->
 
     <aside id="left-panel" class="left-panel">
@@ -67,7 +72,7 @@ date_default_timezone_set('Asia/Jakarta');
                     </li>
 
                     <li>
-                        <a style="color:#fff" href="index.php?p=type_mobil"> <i style="color:#f9d018 !important;" class="menu-icon ti-list"></i>Tipe Mobil </a>
+                        <a style="color:#fff" href="index.php?p=type_mobil"> <i style="color:#f9d018 !important;" class="menu-icon ti-list"></i>Jenis Kendaraan </a>
                     </li>
 
                     <li>
@@ -215,13 +220,17 @@ if (!empty($_GET['p'])) {
     <script src="assets/js/lib/data-table/buttons.colVis.min.js"></script>
     <script src="assets/js/init/datatables-init.js"></script>
     <script src="assets/js/global.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/linways/table-to-excel@v1.0.4/dist/tableToExcel.js"></script>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
 
-    <script type="text/javascript">
+    <!-- <script type="text/javascript">
         $(document).ready(function() {
           $('#bootstrap-data-table-export').DataTable();
       } );
-  </script>
+  </script> -->
 
 
 </body>

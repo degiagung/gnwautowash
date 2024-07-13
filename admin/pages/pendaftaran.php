@@ -32,6 +32,8 @@
                                 <strong class="card-title">Data Pendaftaran</strong>
                             </div>
                             <div class="card-body">
+                                <a href="index.php?p=antrian" class="btn btn-success mb-3"><i class="fa fa-plus" style="color: white"></i> <font size="3" color="white"><u>Tambah Data</u></font></a></div><br>
+
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
 <?php
   include ("../config/koneksi.php");

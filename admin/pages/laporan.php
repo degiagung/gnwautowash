@@ -1,6 +1,19 @@
 <?php 
 error_reporting(0);
 ?>
+
+<style>
+    .dataTables_length{
+        position: absolute;
+        top: 20%;
+    }
+    
+    .btn-group{
+        position: absolute;
+        top: 20%;
+        left :17%;
+    }
+</style>
 <div class="breadcrumbs">
             <div class="breadcrumbs-inner">
                 <div class="row m-0">
@@ -58,17 +71,21 @@ error_reporting(0);
 $tgl_awal = $_POST['tgl_awal'];
   $tgl_akhir = $_POST['tgl_akhir'];
 ?>
-<a href="pages/laporan_transaksi.php?tgl_awal=<?= $tgl_awal;?>&tgl_akhir=<?= $tgl_akhir;?>" target="blank"><button type="submit" class="btn btn-success"><i class="fa fa-print"> &nbsp; Cetak Laporan PDF</i></button></a>
+
+<a target="blank"><button onClick="exportCSVExcel('laporan','Laporan_<?= $tgl_awal;?>_<?= $tgl_akhir;?>')" type="submit" class="btn btn-success"><i class="fa fa-print"> &nbsp; Cetak Laporan PDF</i></button></a>
+<!-- <a href="pages/laporan_transaksi.php?tgl_awal=<?= $tgl_awal;?>&tgl_akhir=<?= $tgl_akhir;?>" target="blank"><button type="submit" class="btn btn-success"><i class="fa fa-print"> &nbsp; Cetak Laporan PDF</i></button></a> -->
 <br>
 <br>
 <p align="center">Data Tanggal <?= $tgl_awal;?> Sampai <?= $tgl_akhir;?></p>
-                                <table id="bootstrap-data-table" class="table table-striped table-bordered">
-<?php
-  include ("../config/koneksi.php");
-  
-  $sqll = "select * from transaksi join pendaftaran using (id_pendaftaran) join jenis_cucian using(id_jenis_cucian) join customer where pendaftaran.id_customer=customer.id_customer and tanggal between '$tgl_awal' and '$tgl_akhir' order by id_transaksi desc";
-  $resultt = mysql_query($sqll);
-    if(mysql_num_rows($resultt) > 0){
+<br>
+<br>
+                                <table id="laporan" class="table table-striped table-bordered">
+                                    <?php
+                                    include ("../config/koneksi.php");
+                                    
+                                    $sqll = "select * from transaksi join pendaftaran using (id_pendaftaran) join jenis_cucian using(id_jenis_cucian) join customer where pendaftaran.id_customer=customer.id_customer and tanggal between '$tgl_awal' and '$tgl_akhir' order by id_transaksi desc";
+                                    $resultt = mysql_query($sqll);
+                                        if(mysql_num_rows($resultt) > 0){
 ?>                                            
                                     <thead>
                                         <tr>
@@ -80,14 +97,14 @@ $tgl_awal = $_POST['tgl_awal'];
                                             <th>Jenis Cucian</th>
                                             <th>Total Biaya</th>
                                             <th width="30%">Status</th>
-                                            <th>Aksi</th>
+                                            <th class="no-export">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-<?php
-  $nomor=1;
-  while($data = mysql_fetch_array($resultt)){
-?>                                          
+                                        <?php
+                                        $nomor=1;
+                                        while($data = mysql_fetch_array($resultt)){
+                                        ?>                                          
                                         <tr>
                                             <td><?= $nomor++;?></td>
                                             <td><?= $data['no_antrian'];?></td>
@@ -96,7 +113,7 @@ $tgl_awal = $_POST['tgl_awal'];
                                             <td><?= $data['nomor_plat'];?></td>
                                             <td><?= $data['jenis_cucian'];?></td>
                                             <td><?= $data['total_biaya'];?></td>
-                                            <td>
+                                            <td class="no-export">
                                                 <form action="index.php?p=ganti_status" method="POST">
                                                     <input type="hidden" name="id_pendaftaran" value="<?php echo $data['id_pendaftaran'];?>">
                                                      <?php
@@ -112,7 +129,7 @@ $tgl_awal = $_POST['tgl_awal'];
                                                 <?php } ?>
                                                 </form>
                                             </td>
-                                            <td align="center">
+                                            <td align="center" class="notdown">
                                                 <?php
                                                         if($data['status']!='Lunas'){
                                                     ?>
@@ -124,17 +141,17 @@ $tgl_awal = $_POST['tgl_awal'];
                                                 <?php } ?>
                                             </td>
                                         </tr>
-<?php
-  }
-?>
-              </tbody>
-            </table>
-<?php
-  }else{
-    echo 'Data not found!';
-    echo mysql_error();
-  }
-?>            
+                                        <?php
+                                        }
+                                        ?>
+                                                    </tbody>
+                                                    </table>
+                                        <?php
+                                        }else{
+                                            echo 'Data not found!';
+                                            echo mysql_error();
+                                        }
+                                        ?>            
                             </div>
                         </div>
                     </div>
@@ -143,3 +160,15 @@ $tgl_awal = $_POST['tgl_awal'];
                 </div>
             </div><!-- .animated -->
         </div><!-- .content -->
+
+        <script>
+            function exportCSVExcel(id,name) {
+                $('#'+id).table2excel({
+                exclude: ".no-export",
+                filename: name+".xls",
+                fileext: ".xls",
+                exclude_links: true,
+                exclude_inputs: true
+            });
+            }
+        </script>

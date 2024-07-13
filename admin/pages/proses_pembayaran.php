@@ -97,6 +97,8 @@ $hasil2=mysql_query($sql2);
 
 //see the result
 if ($hasil2) {
+	
+	include("sendmail.php");
 ?>
 <script language="JavaScript">
 alert('Data Pembayaran Berhasil Ditambahkan');
