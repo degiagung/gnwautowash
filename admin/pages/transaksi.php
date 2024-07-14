@@ -35,24 +35,35 @@
                                 <div class="card-body" align="center">
                                     <br><br><b>
                                     <?php 
-                                        $iduser = $_SESSION['id_user'];
-                                        $queryy = "SELECT count(*) jml FROM transaksi WHERE status = 'Lunas' AND id_user = $iduser";
-                                        $queryy = mysql_query($queryy);
-                                        $hasil = mysql_fetch_array($queryy);
-                                        $jml = $hasil['jml'] ;
-                                        if($hasil['jml'] >= 11){
-                                            $jml = 1 ;
-                                        }
+                                        $id_user = $_SESSION['id_user'];
+                                        $cekvoucher = "SELECT a.*,b.tanggal FROM user a join transaksi b on a.id_user = b.id_user WHERE b.status = 'Lunas' AND a.id_user = $id_user";
+                                        $hasilvoucher = mysql_query($cekvoucher);
+                                        if ($hasilvoucher->num_rows >= 1) {
+                                            $data = mysql_fetch_array($hasilvoucher);
+                                            if($data['voucher'] == 'aktif'){
+                                                echo strtoupper($_SESSION['nama'].' SELAMAT ANDA MENDAPATKAN PROMO GRATIS 1X CUCI');
+                                            }else{
 
-                                        if($hasil['jml'] == 10){
-                                            echo strtoupper($_SESSION['nama'].' SELAMAT ANDA MENDAPATKAN PROMO GRATIS 1X CUCI');
-                                        }elseif($hasil['jml'] >= 1){
-                                            $jml = 10 - $jml ;
-                                            echo strtoupper($_SESSION['nama'].' '.$jml.'X PENCUCIAN LAGI UNTUK MENDAPATKAN 1X CUCI GRATIS');
+                                                if($hasilvoucher->num_rows <= 9){
+                                                    $jml = 10-$hasilvoucher->num_rows ;
+                                                    echo strtoupper($_SESSION['nama'].' '.$jml.'X PENCUCIAN LAGI UNTUK MENDAPATKAN 1X CUCI GRATIS');
+                                                }else{
+
+                                                    $getup11 	  = $cekvoucher." AND b.tanggal >= COALESCE(a.tgl_voucher,0) limit 12" ;
+                                                    $getup11 	  = mysql_query($getup11);
+                                                    $jml          = $getup11->num_rows - 3;
+                                                    if ( $getup11->num_rows == 10) {
+                                                        echo "SEGERA CUCI MOBIL ANDA UNTUK MENDAPATKAN PROMO CUCI 10X GRATIS 1X PENCUCIAN";
+                                                    }else{
+                                                        echo strtoupper($_SESSION['nama'].' '.$jml.'X PENCUCIAN LAGI UNTUK MENDAPATKAN 1X CUCI GRATIS');
+                                                    }
+                                                }
+                                            }
                                         }else{
                                             echo "SEGERA CUCI MOBIL ANDA UNTUK MENDAPATKAN PROMO CUCI 10X GRATIS 1X PENCUCIAN";
                                         }
 
+                                        
                                     ?> </b>
                                     <br>
                                     <br><br>
@@ -104,7 +115,7 @@
                                             <td><?= $data['total'];?></td>
                                             <td><?= $data['status'];?></td>
                                             <td><?= $data['nama_pencuci'];?></td>
-                                            <td style="width:15%;text-align:center;"><a href="<?=  $data['bukti'];?>"><img src="<?= $data['bukti'];?>" style="max-width:15%;" class="img-fluid" alt=""></a></td>
+                                            <td style="width:15%;text-align:center;"><a href="<?=  $data['bukti'];?>" target="blank"><img src="<?= $data['bukti'];?>" style="max-width:15%;" class="img-fluid" alt=""></a></td>
                                         </tr>
 <?php
   }

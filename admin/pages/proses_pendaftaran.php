@@ -3,7 +3,7 @@
 
 	$next=$_POST['next'];
 	$id_customer=$_POST['id_customer'];  
-	$nama=$_POST['nama'];
+	$nama=$_SESSION['nama'];
 	$no_hp=$_POST['no_hp'];
 	$alamat= $_POST['alamat'];
 	$nomor_plat=$_POST['nomor_plat'];
