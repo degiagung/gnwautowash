@@ -109,6 +109,9 @@ $hasil2=mysql_query($sql2);
 //see the result
 if ($hasil2) {
 	
+	if($voucher == 'aktif'){
+		mysql_query("update user set voucher = null , tgl_voucher = null where id_user =".$id_user);
+	}
 	$cekvoucher = "SELECT a.*,b.tanggal FROM user a join transaksi b on a.id_user = b.id_user WHERE b.status = 'Lunas' AND a.id_user = $id_user";
 	$hasilvoucher = mysql_query($cekvoucher);
 	if($hasilvoucher->num_rows >= 11){
