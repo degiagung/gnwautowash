@@ -67,7 +67,7 @@
                                                 <a href="index.php?p=edit_promo&id_promo=<?php echo $data['id_promo']; ?>" class="btn btn-warning mb-3"> <i class="fa fa-fw fa-pencil" style="color: white"></i> <font color="white">Edit</font></a>
                                             </td>
                                             <td align="center">
-                                                <a href="index.php?p=hapus_promo&id_promo=<?php echo $data['id_promo']; ?>" onClick="return confirm('Apakah Anda Yakin Hapus Data?')" class="btn btn-danger mb-3"> <i class="fa fa-fw fa-trash" style="color: white"></i> <font color="white">Hapus</font></a>
+                                                <a href="index.php?c=controller&p=hapus_promo&id_promo=<?php echo $data['id_promo']; ?>" onClick="return confirm('Apakah Anda Yakin Hapus Data?')" class="btn btn-danger mb-3"> <i class="fa fa-fw fa-trash" style="color: white"></i> <font color="white">Hapus</font></a>
                                             </td>
                                         </tr>
 <?php

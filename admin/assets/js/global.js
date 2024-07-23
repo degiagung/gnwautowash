@@ -58,7 +58,7 @@ test();
 function test(params) {
 
     setInterval(() => {
-        $.ajax({url: "index.php?p=reset_voucher&from=system", success: function(result){
+        $.ajax({url: "index.php?c=controller&p=reset_voucher&from=system", success: function(result){
         }});   
     }, 10000); 
     

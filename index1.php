@@ -204,7 +204,7 @@ $id_lanjut = $cari['id_terakhir'] + 1;
 
                     <div class="col-md-12 col-sm-12">
                          <!-- CONTACT FORM HERE -->
-                         <form id="appointment-form" role="form" method="post" action="pages/proses_pendaftaran.php">
+                         <form id="appointment-form" role="form" method="post" action="controller/proses_pendaftaran.php">
                               <input type="hidden" class="form-control" id="nama" name="id_customer" value="<?=$id_lanjut;?>">
                               <!-- SECTION TITLE -->
                               <div class="section-title wow fadeInUp" data-wow-delay="0.4s">

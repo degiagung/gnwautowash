@@ -4,9 +4,10 @@
   <?php
 $id_pendaftaran = $_GET['id_pendaftaran']; //get the no which will updated
 
-$queryy = mysql_query("SELECT pendaftaran.*,customer.*,jenis_cucian.*,user.username as email,user.voucher FROM pendaftaran join customer using(id_customer) join jenis_cucian using (id_jenis_cucian) join user using(id_user) WHERE id_pendaftaran = '$id_pendaftaran'"); //get the data that will be updated
+$queryy = mysql_query("SELECT pendaftaran.*,customer.*,jenis_cucian.*,user.username as email,user.voucher FROM pendaftaran join customer using(id_customer) join jenis_cucian using (id_jenis_cucian) left join user using(id_user) WHERE id_pendaftaran = '$id_pendaftaran'"); //get the data that will be updated
 $dt=mysql_fetch_array($queryy);
 
+// print_r($dt);die;
 $id_user   = $dt['id_user']; 
 $pelanggan = $dt['nama']; 
 $email     = $dt['email']; 
@@ -48,7 +49,7 @@ $voucher   = $dt['voucher'];
                             </div>
                             <div class="card-body">
          
-<form action="index.php?p=proses_pembayaran" method="post" enctype="multipart/form-data" class="form-horizontal">
+<form action="index.php?c=controller&p=proses_pembayaran" method="post" enctype="multipart/form-data" class="form-horizontal">
     <input type="hidden" id="text-input" name="id_pendaftaran" class="form-control" value="<?= $dt['id_pendaftaran'];?>">
     <input type="hidden" id="text-input" name="id_user" class="form-control" value="<?= $id_user;?>">
     <input type="hidden" id="text-input" name="status" class="form-control" value="Lunas">
@@ -73,7 +74,7 @@ $voucher   = $dt['voucher'];
                                     <div class="row form-group">
                                         <div class="col col-md-3"><label for="text-input" class=" form-control-label">No. Plat</label></div>
                                         <div class="col-12 col-md-9">
-                                            <input type="text" id="text-input" name="nomor_plat" placeholder="Text" class="form-control" value="<?= $dt['nomor_plat'];?>" readonly>
+                                            <input type="text" id="text-input" name="nomor_plat" placeholder="Text" class="form-control" value="<?= $dt['nomor_plat'];?>" >
                                         </div>
                                     </div>
 
@@ -140,7 +141,7 @@ $voucher   = $dt['voucher'];
                                                     <input type="text" id="txt1" class="form-control" disabled value="LUNAS DENGAN VOUCHER" >
                                                 </div>
                                                 <div class="col-12 col-md-2">
-                                                    <a class="btn btn-danger" href="index.php?p=reset_voucher&from=admin&id_user=<?= $id_user?>&id_pendaftaran=<?= $id_pendaftaran?>" onClick="return confirm('Apakah Anda Yakin Reset Voucher ?')">Reset Voucher</a>
+                                                    <a class="btn btn-danger" href="index.php?c=controller&p=reset_voucher&from=admin&id_user=<?= $id_user?>&id_pendaftaran=<?= $id_pendaftaran?>" onClick="return confirm('Apakah Anda Yakin Reset Voucher ?')">Reset Voucher</a>
                                                 </div>
                                             </div>
                                         <?php  
@@ -189,13 +190,13 @@ $voucher   = $dt['voucher'];
             </div><!-- .animated -->
         </div><!-- .content -->
 
-        <script>
-function sum() {
-      var txtFirstNumberValue = document.getElementById('txt1').value;
-      var txtSecondNumberValue = document.getElementById('txt2').value;
-      var result = parseInt(txtFirstNumberValue) - parseInt(txtSecondNumberValue);
-      if (!isNaN(result)) {
-         document.getElementById('txt3').value = result;
-      }
-}
+<script>
+    function sum() {
+        var txtFirstNumberValue = document.getElementById('txt1').value;
+        var txtSecondNumberValue = document.getElementById('txt2').value;
+        var result = parseInt(txtFirstNumberValue) - parseInt(txtSecondNumberValue);
+        if (!isNaN(result)) {
+            document.getElementById('txt3').value = result;
+        }
+    }
 </script>

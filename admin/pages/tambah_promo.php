@@ -33,7 +33,7 @@
                             </div>
                             <div class="card-body">
          
-<form action="index.php?p=proses_tambah_promo" method="post" enctype="multipart/form-data" class="form-horizontal">
+<form action="index.php?c=controller&p=proses_tambah_promo" method="post" enctype="multipart/form-data" class="form-horizontal">
 
                                     <div class="row form-group">
                                         <div class="col col-md-3"><label for="text-input" class=" form-control-label">Judul</label></div>

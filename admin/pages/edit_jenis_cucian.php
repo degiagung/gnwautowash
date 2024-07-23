@@ -43,7 +43,7 @@ $dt=mysql_fetch_array($queryy);
                             </div>
                             <div class="card-body">
          
-<form action="index.php?p=proses_edit_jenis_cucian" method="post" enctype="multipart/form-data" class="form-horizontal">
+<form action="index.php?c=controller&p=proses_edit_jenis_cucian" method="post" enctype="multipart/form-data" class="form-horizontal">
      <input type="hidden" id="text-input" name="id_jenis_cucian" value="<?=$dt['id_jenis_cucian'];?>" class="form-control" required="">
 
                                     <div class="row form-group">

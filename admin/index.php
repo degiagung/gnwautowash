@@ -63,7 +63,10 @@ date_default_timezone_set('Asia/Jakarta');
                         <a style="color:#fff" href="index.php?p=customer"> <i style="color:#f9d018 !important;" class="menu-icon ti-id-badge"></i>Data Pelanggan </a>
                     </li>
                     <li>
-                        <a style="color:#fff" href="index.php?p=laporan"> <i style="color:#f9d018 !important;" class="menu-icon ti-printer"></i>Laporan </a>
+                        <a style="color:#fff" href="index.php?p=laporan"> <i style="color:#f9d018 !important;" class="menu-icon ti-printer"></i>Rekap Data </a>
+                    </li>
+                    <li>
+                        <a style="color:#fff" href="index.php?p=laporantransaksi"> <i style="color:#f9d018 !important;" class="menu-icon ti-printer"></i>Laporan </a>
                     </li>
 
                     <li style="color:#fff" class="menu-title">Extra</li><!-- /.menu-title -->
@@ -157,20 +160,25 @@ date_default_timezone_set('Asia/Jakarta');
       <?php
 $pages_dir = 'pages';
 if (!empty($_GET['p'])) {
-    $pages = scandir($pages_dir, 0);
-    unset($pages[0], $pages[1]);
+    
+    if (!empty($_GET['c'])) {
+        $pages_dir = 'controller';
+    }
 
-    $p = $_GET['p'];
-    if (in_array($p . '.php', $pages)) {
-        include $pages_dir . '/' . $p . '.php';
-    } else {
-        ?>
+        $pages = scandir($pages_dir, 0);
+        unset($pages[0], $pages[1]);
+    
+        $p = $_GET['p'];
+        if (in_array($p . '.php', $pages)) {
+            include $pages_dir . '/' . $p . '.php';
+        } else {
+            ?>
+            <script language="JavaScript">
+            document.location='index.php?p=error-404'
+            </script>
+            <?php
+        }
 
-    <script language="JavaScript">
-    document.location='index.php?p=error-404'
-    </script>
-    <?php
-}
 } else {
     include $pages_dir . '/home.php';
 }
@@ -229,6 +237,8 @@ if (!empty($_GET['p'])) {
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
+    <script src="//unpkg.com/xlsx/dist/xlsx.full.min.js" type="text/javascript"></script>
+
 
     <!-- <script type="text/javascript">
         $(document).ready(function() {

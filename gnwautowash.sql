@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 13, 2024 at 07:00 PM
+-- Generation Time: Jul 23, 2024 at 03:27 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -29,11 +29,11 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `customer` (
   `id_customer` int NOT NULL,
-  `nama` varchar(30) NOT NULL,
-  `no_hp` varchar(25) NOT NULL,
-  `alamat` text CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `nomor_plat` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
-  `type_mobil` varchar(30) NOT NULL,
+  `nama` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `no_hp` varchar(25) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `alamat` text CHARACTER SET latin1 COLLATE latin1_swedish_ci,
+  `nomor_plat` varchar(20) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
+  `type_mobil` varchar(30) CHARACTER SET latin1 COLLATE latin1_swedish_ci DEFAULT NULL,
   `id_user` bigint DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -42,33 +42,9 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`id_customer`, `nama`, `no_hp`, `alamat`, `nomor_plat`, `type_mobil`, `id_user`) VALUES
-(24, 'Elsa', '081222111222', 'Pucakwangi', 'K 445 QQ', 'SUV', NULL),
-(27, 'Karin', '081999777888', 'Ngagel', 'K 121 UY', 'Jazz', NULL),
-(28, 'Sinta', '089787767787', 'Pati', 'K 111 KL', 'Sedan', NULL),
-(29, 'Yudha', '089111222333', 'Dukuhseti', 'K 123 OP', 'Pickup', NULL),
-(31, 'Usman', '089789878987', 'Tayu', 'K 123 TT', 'MPV', NULL),
-(34, 'Rian', '089789111222', 'Kajen', 'K 876 FA', 'Pickup', NULL),
-(35, 'Yulia', '087777666555', 'Gunugwungkal', 'K 456 YU', 'SUV', NULL),
-(36, 'Toni', '08777766999', 'Dukuhseti', 'K 888 AA', 'Innova', NULL),
-(37, 'Omar', '089111222333', 'Kejen', 'K 251 YY', 'Innova', NULL),
-(38, 'Zahra', '089777666555', 'Solo', 'K 254 AS', 'Jazz', NULL),
-(39, 'Hamdan', '081222000111', 'Winong', 'K 232 QQ', 'MPV', NULL),
-(40, 'Degi', '0856287873787', 'bandung', 'D3GIMA', 'Innova', NULL),
-(41, 'jajang', '08973648477', 'bali', 'D648H', 'Sedan', NULL),
-(42, 'putri', '21323', 'bandung', 'Z1234MA', 'Off Road', 7),
-(43, 'putri', '5123', 'bandung', 'Z1234MA', 'MPV', 7),
-(44, 'putri', '08938944', 'bandung', 'Z1234MA', 'Sedan', 7),
-(45, 'aa', '089', 'fgfdg', 'gdfg', 'Pilih Type Mobil', 7),
-(46, 'xcvxcv', '4353', 'sdfsd', 'cxvcx', 'Pilih Type Mobil', 7),
-(47, 'xcvxcv', '4353', 'sdfsd', 'cxvcx', 'Pilih Type Mobil', 7),
-(48, 'aa', '9898', 'jhkjk', 'dfg', 'Pilih Type Mobil', 7),
-(49, 'aa', '9898', 'jhkjk', 'dfg', 'Pilih Type Mobil', 7),
-(50, 'degi', '0877364878', 'bandung', 'Z 123 MA', 'Innova', 7),
-(51, 'degi', '0877364878', 'garut', 'Z 123 MA', 'SUV', 7),
-(52, '', '', '', 'D123HJ', 'Avanza', 7),
-(53, '', '', '', 'D123HJ', 'Jazz', 7),
-(54, '', '', '', 'D123HJ3', 'Sedan', 7),
-(55, '', '', '', 'D123HJ3', 'MPV', 7);
+(1, 'Administrator', NULL, NULL, 'M123G', 'Innova', 7),
+(2, 'Administrator', NULL, NULL, 'D123GM', 'Jazz', 99999999999),
+(3, 'Administrator', NULL, NULL, 'D123G', 'MPV', 99999999999);
 
 -- --------------------------------------------------------
 
@@ -142,29 +118,9 @@ CREATE TABLE `pendaftaran` (
 --
 
 INSERT INTO `pendaftaran` (`id_pendaftaran`, `no_antrian`, `id_customer`, `id_jenis_cucian`, `tgl_pendaftaran`, `jam_pendaftaran`, `total_biaya`, `status`) VALUES
-(22, '2022-09-05/1', 21, 5, '2022-09-07', '13:16:00', 45000, 'Lunas'),
-(24, '2022-09-05/3', 23, 2, '2022-09-05', '13:21:00', 35000, 'Lunas'),
-(25, '2022-09-05/4', 24, 5, '2022-09-05', '13:24:00', 45000, 'Lunas'),
-(27, '2022-09-05/6', 26, 5, '2022-09-05', '13:26:00', 45000, 'Lunas'),
-(28, '2022-09-05/7', 27, 5, '2022-09-05', '13:50:00', 45000, 'Lunas'),
-(31, '2022-09-05/6', 28, 5, '2022-09-05', '13:40:00', 45000, 'Lunas'),
-(32, '2022-09-05/7', 29, 2, '2022-09-05', '13:43:00', 35000, 'Lunas'),
-(34, '2022-09-05/9', 31, 5, '2022-09-05', '13:55:00', 45000, 'Lunas'),
-(37, '2022-09-05/12', 34, 2, '2022-09-05', '14:10:00', 35000, 'Lunas'),
-(38, '2022-09-05/10', 35, 5, '2022-09-05', '14:30:00', 45000, 'Lunas'),
-(39, '2022-09-05/11', 36, 5, '2022-09-05', '14:35:00', 0, 'Batal'),
-(40, '2022-09-05/12', 37, 5, '2022-09-05', '14:47:00', 45000, 'Lunas'),
-(41, '2022-09-05/13', 38, 5, '2022-09-05', '14:50:00', 45000, 'Batal'),
-(42, '2022-09-05/14', 39, 5, '2022-09-05', '15:00:00', 45000, 'Lunas'),
-(43, '2024-06-23/1', 40, 2, '2024-06-23', '14:32:00', 35000, 'Lunas'),
-(44, '2024-06-23/2', 41, 5, '2024-06-23', '14:41:00', 45000, 'Lunas'),
-(45, '2024-06-30/1', 43, 2, '2024-06-30', '08:00:00', 35000, 'Lunas'),
-(46, '2024-06-30/2', 44, 5, '2024-06-30', '10:00:00', 45000, 'Lunas'),
-(48, '2024-07-06/1', 51, 5, '2024-07-08', '17:00:00', 45000, 'Pendaftaran'),
-(49, '2024-07-10/1', 52, 5, '2024-07-10', '15:00:00', 45000, 'Pendaftaran'),
-(50, '2024-07-10/2', 53, 2, '2024-07-10', '15:00:00', 35000, 'Lunas'),
-(51, '2024-07-10/3', 54, 2, '2024-07-10', '16:00:00', 35000, 'Lunas'),
-(52, '2024-07-10/4', 55, 5, '2024-07-10', '18:00:00', 45000, 'Pendaftaran');
+(57, '2024-07-18/1', 1, 2, '2024-07-23', '09:00:00', 35000, 'Pendaftaran'),
+(58, '2024-07-18/2', 2, 2, '2024-07-18', '11:00:00', 35000, 'Lunas'),
+(59, '2024-07-18/3', 3, 2, '2024-07-18', '08:00:00', 35000, 'Lunas');
 
 -- --------------------------------------------------------
 
@@ -186,7 +142,6 @@ CREATE TABLE `promo` (
 
 INSERT INTO `promo` (`id_promo`, `judul`, `promo`, `start`, `end`) VALUES
 (1, 'promo spesial wash', ' promo pencucian 10x gratis 1x ', '2024-07-13', '2024-07-31'),
-(2, 'promo promoan', 'Gratis minuman sepuasnya ', '2024-07-12', '2024-07-13'),
 (3, 'promo testing', 'promo umroh', '2024-07-20', '2024-07-31');
 
 -- --------------------------------------------------------
@@ -243,7 +198,7 @@ CREATE TABLE `transaksi` (
   `kembali` int NOT NULL,
   `total` int NOT NULL,
   `status` varchar(20) NOT NULL,
-  `id_user` tinyint(1) NOT NULL,
+  `id_user` bigint NOT NULL,
   `nama_pencuci` varchar(50) NOT NULL,
   `bukti` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -253,34 +208,8 @@ CREATE TABLE `transaksi` (
 --
 
 INSERT INTO `transaksi` (`id_transaksi`, `id_pendaftaran`, `no_nota`, `tanggal`, `bayar`, `kembali`, `total`, `status`, `id_user`, `nama_pencuci`, `bukti`) VALUES
-(17, 22, 'C002', '2022-09-05', 50000, 5000, 45000, 'Lunas', 1, 'Agos', NULL),
-(18, 28, 'C003', '2022-09-05', 100000, 55000, 45000, 'Lunas', 1, 'Agos', NULL),
-(19, 27, 'C004', '2022-09-05', 100000, 55000, 45000, 'Lunas', 1, 'Dedi', NULL),
-(20, 25, 'C005', '2022-09-05', 50000, 5000, 45000, 'Lunas', 1, 'Dedi', NULL),
-(21, 24, 'C006', '2022-09-05', 50000, 15000, 35000, 'Lunas', 1, 'Agos', NULL),
-(22, 31, 'C007', '2022-09-05', 100000, 55000, 45000, 'Lunas', 1, 'Dedi', NULL),
-(23, 32, 'C008', '2022-09-05', 50000, 15000, 35000, 'Lunas', 1, 'Agos', NULL),
-(24, 37, 'C009', '2022-09-05', 50000, 15000, 35000, 'Lunas', 1, 'Dedi', NULL),
-(25, 34, 'C010', '2022-09-05', 100000, 55000, 45000, 'Lunas', 1, 'Agos', NULL),
-(27, 38, 'C011', '2022-09-05', 50000, 5000, 45000, 'Lunas', 1, 'Agos', NULL),
-(28, 40, 'C012', '2024-06-22', 50000, 5000, 45000, 'Lunas', 1, 'john', NULL),
-(29, 44, 'C013', '2024-06-23', 50000, 5000, 45000, 'Lunas', 1, 'aa', NULL),
-(30, 45, 'C014', '2024-06-30', 50000, 15000, 35000, 'Lunas', 7, 'asep', NULL),
-(31, 48, 'C015', '2024-07-06', 45000, 0, 45000, 'Lunas', 1, 'a', NULL),
-(34, 48, 'C016', '2024-07-06', 45000, 0, 45000, 'Lunas', 1, 'agus', NULL),
-(35, 46, 'C017', '2024-07-06', 45000, 0, 45000, 'Lunas', 1, 'agus', NULL),
-(36, 48, 'C018', '2024-07-06', 45000, 0, 45000, 'Lunas', 1, 'a', NULL),
-(37, 48, 'C019', '2024-07-06', 45000, 0, 45000, 'Lunas', 1, 'agus', NULL),
-(38, 46, 'C020', '2024-07-06', 45000, 0, 45000, 'Lunas', 1, '1', '../bukti/C020_305854618_814484516406993_94701150179247827_n.jpg'),
-(39, 52, 'C021', '2024-07-13', 500000, 455000, 45000, 'Lunas', 1, 'dedi', '../bukti/C021_306886756_651142899598751_2740471317585836194_n.jpg'),
-(40, 48, 'C022', '2024-07-13', 500000, 455000, 45000, 'Lunas', 1, 'dedi', '../bukti/C022_2.webp'),
-(41, 48, 'C023', '2024-07-13', 500000, 455000, 45000, 'Lunas', 1, 'dedi', '../bukti/C023_313194582_202773882172086_1569670259883093644_n.jpg'),
-(42, 49, 'C024', '2024-07-13', 500000, 455000, 45000, 'Lunas', 1, 'qqq', '../bukti/C024_loginbg (2).jpg'),
-(43, 51, 'C025', '2024-07-13', 500000, 465000, 35000, 'Lunas', 1, 'qqq', '../bukti/C025_313194582_202773882172086_1569670259883093644_n.jpg'),
-(44, 51, 'C026', '2024-07-13', 500000, 465000, 35000, 'Lunas', 1, 'dedi', '../bukti/C026_registerbg.jpg'),
-(45, 51, 'C026', '2024-07-13', 500000, 465000, 35000, 'Lunas', 1, 'dedi', '../bukti/C026_registerbg.jpg'),
-(46, 50, 'C027', '2024-07-13', 500000, 465000, 35000, 'Lunas', 1, 'dedi', '../bukti/C027_bg1.jpg'),
-(47, 46, 'C028', '2024-07-14', 45000, 0, 45000, 'Lunas', 7, 'qqq', '../bukti/C028_308485501_1070033783710546_3576875310372684785_n.jpg');
+(58, 59, 'C001', '2024-07-23', 500000, 465000, 35000, 'Lunas', 99999999999, 'dedi', '../bukti/C001_aR7wAJY.jpg'),
+(59, 58, 'C002', '2024-07-23', 500000, 465000, 35000, 'Lunas', 99999999999, 'dedi', '../bukti/C002_aR7wAJY.jpg');
 
 -- --------------------------------------------------------
 
@@ -334,7 +263,8 @@ CREATE TABLE `user` (
 INSERT INTO `user` (`id_user`, `username`, `password`, `nama`, `alamat`, `hp`, `status`, `role`, `voucher`, `tgl_voucher`) VALUES
 (1, 'admin', '21232f297a57a5a743894a0e4a801fc3', 'Administrator', 'Jl. Bangau Sakti', '081111222333', 1, '', NULL, NULL),
 (2, 'degi', '21232f297a57a5a743894a0e4a801fc3', 'degi', 'bandung', '081222112223', 1, '', NULL, NULL),
-(7, 'putri@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 'putri', NULL, '123', 1, 'customer', 'aktif', '2024-07-14');
+(7, 'putri@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 'putri', NULL, '123', 1, 'customer', NULL, NULL),
+(8, 'myaplication881@gmail.com', '21232f297a57a5a743894a0e4a801fc3', 'degi', NULL, '81313213', 1, 'customer', NULL, NULL);
 
 --
 -- Indexes for dumped tables
@@ -411,7 +341,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id_customer` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
+  MODIFY `id_customer` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- AUTO_INCREMENT for table `jam_operasional`
@@ -429,7 +359,7 @@ ALTER TABLE `jenis_cucian`
 -- AUTO_INCREMENT for table `pendaftaran`
 --
 ALTER TABLE `pendaftaran`
-  MODIFY `id_pendaftaran` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
+  MODIFY `id_pendaftaran` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `promo`
@@ -453,7 +383,7 @@ ALTER TABLE `status_operasional`
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id_transaksi` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=60;
 
 --
 -- AUTO_INCREMENT for table `type_mobil`
@@ -465,7 +395,7 @@ ALTER TABLE `type_mobil`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_user` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

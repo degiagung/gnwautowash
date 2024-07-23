@@ -65,7 +65,7 @@
                                         $id_lanjut = $cari['id_terakhir'] + 1;
 
                                         ?>
-                                    <form action="index.php?p=proses_pendaftaran" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                    <form action="index.php?c=controller&p=proses_pendaftaran" method="post" enctype="multipart/form-data" class="form-horizontal">
                                         <input type="hidden" class="form-control" id="nama" name="id_customer" value="<?=$id_lanjut;?>">
                                         
                                         <!-- <div class="row form-group">
@@ -225,15 +225,22 @@
                                         
                                             <?php
                                                 echo '<strong class="card-title"><center>NO ANTRIAN'.$hasil['no_antrian'].'</center></strong>';
+                                                $batal = 'Selesai';
                                                 if($hasil['status'] == 'Pendaftaran'){
                                                     $daftar = 'daftar.png';
-                                                }if($hasil['status'] == 'Dalam Pengerjaan'){
+                                                }elseif($hasil['status'] == 'Dalam Pengerjaan'){
                                                     $daftar = 'daftar.png';
                                                     $cuci = 'pencucian.png';
+                                                }elseif($hasil['status'] == 'Batal'){
+                                                    $daftar = "daftar.png";
+                                                    $cuci = 'pencucian.png';
+                                                    $batal= 'Batal';
+                                                
                                                 }elseif($hasil['status'] == 'Lunas'){
                                                     $daftar = "daftar.png";
                                                     $cuci = 'pencucian.png';
                                                     $selesai = 'finish.png';
+                                                    $batal = 'Selesai';
                                                 }
                                                 
                                                 echo '<tr>
@@ -270,7 +277,7 @@
                                                         <th></th>
                                                         <th>Pencucian</th>
                                                         <th></th>
-                                                        <th>Selesai</th>
+                                                        <th>'.$batal.'</th>
                                                     </tr>
                                                 ';
 
@@ -306,7 +313,7 @@
                                         $id_lanjut = $cari['id_terakhir'] + 1;
 
                                         ?>
-                                    <form action="index.php?p=proses_pendaftaran" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                    <form action="index.php?c=controller&p=proses_pendaftaran" method="post" enctype="multipart/form-data" class="form-horizontal">
                                         <input type="hidden" class="form-control" id="nama" name="id_customer" value="<?=$id_lanjut;?>">
                                         
                                         <div class="row form-group">
@@ -363,6 +370,14 @@
 
 
                                                 ?>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="row form-group">
+                                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">No Antrian</label></div>
+                                            <div class="col-12 col-md-9">
+                                                <input type="text" class="form-control-rounded form-control" value="<?php echo $next; ?>" required="" readonly name="next">
+                                                <input type="hidden" name="no_antrian" class="form-control" value="<?php echo $no_antrian; ?>" required="" readonly>
                                             </div>
                                         </div>
 
@@ -429,7 +444,7 @@
                                                                                 jam_operasional a
                                                                                 left join (select jam_pendaftaran,COUNT(*) jml from pendaftaran where tgl_pendaftaran = CURRENT_DATE AND status != 'Batal' GROUP BY jam_pendaftaran) b ON b.jam_pendaftaran = a.jam $where
                                                                             where 
-                                                                                jam >= now()
+                                                                                jam <= now()
                                                                         ");
                                                             while ($row2 = mysql_fetch_array($result2)) {
                                                                 ?>

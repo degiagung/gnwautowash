@@ -60,7 +60,7 @@ session_start();
           <ul>
             <li><a href="#hero" class="active">Home</a></li>
             <li><a href="#about">Tentang Kami</a></li>
-            <!-- <li><a href="#gallery">Galeri</a></li> -->
+            <li><a href="#tracking">Tracking</a></li>
             <li><a href="#pricing">Paket Harga</a></li>
             <li><a href="#contact">Informasi Car Wash</a></li>
             <!-- <li><a href="#contact">Kritik dan Saran</a></li> -->
@@ -179,6 +179,94 @@ session_start();
       </div>
 
     </section><!-- /Cards Section -->
+    
+    <section id="tracking" class="contact section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <span>Tracking</span>
+        <h2>Tracking</h2>
+        <center>
+          <div class="row">
+            <div class="col-md-6 offset-md-3">
+              <input type="text" class="form-control" id="plat_nomor" name="plat_nomor" placeholder="Plat Nomor Anda (D123MA)" required="" style="text-align:center;border:#ddd 3px solid;">
+            </div>
+            <div class="col-md-2">
+              <button type="submit" class="form-control" style="background:#fabd0b;color:#fff;" onclick="tracking()">Cari</button>
+            </div>
+          </div>
+        </center>
+      </div><!-- End Section Title -->
+
+      <div class="container" data-aos="fade-up">
+
+        <div class="row gy-4">
+
+          <div class="col-lg-12">
+            <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up">
+              
+                <div class="col-md-12" id="divprogress" style="display:none;">
+                    <div class="card" style="border: 8px solid #f9d018;">
+                        <div class="card-header" >
+                            <strong class="card-title"><center>PROGRES PENCUCIAN</center></strong>
+                        </div>
+                        <div class="card-body" align="center">
+                        <h2 id="tidaktersedia"><b>Data tidak ditemukan</b></h2>
+                        <table class="table">
+                            <thead style="text-align: center;">
+                                <tr>
+                                  <b>
+                                  <th id="daftarpng">
+                                      <img style="max-width:10%;" src="../admin/images/x.png"><br>
+                                  </th>
+                                  <th style="width:10%;">
+                                      <div class="row" style="margin-bottom:0%;">
+
+                                          <img style="max-width:30%;margin-left:10%;" src="../admin/images/arrow.png"><br>
+                                          <img style="max-width:30%;" src="../admin/images/arrow.png"><br>
+                                          <img style="max-width:30%;" src="../admin/images/arrow.png"><br>
+                                      </div>
+                                  </th>
+                                  <th id="cucipng">
+                                      <img style="max-width:10%;" src="../admin/images/x.png"><br>
+                                  </th>
+                                  <th style="width:10%;">
+                                      <div class="row" style="margin-bottom:0%;">
+
+                                          <img style="max-width:30%;margin-left:10%;" src="../admin/images/arrow.png"><br>
+                                          <img style="max-width:30%;" src="../admin/images/arrow.png"><br>
+                                          <img style="max-width:30%;" src="../admin/images/arrow.png"><br>
+                                      </div>
+                                  </th>
+                                  <th id="selesaipng">
+                                      <img style="max-width:10%;" src="../admin/images/x.png"><br>
+                                  </th>
+                                  </b>
+                              </tr>
+                              <tr>
+                                  <th>Dalam Antrian</th>
+                                  <th></th>
+                                  <th>Pencucian</th>
+                                  <th></th>
+                                  <th id="statusinfo"></th>
+                              </tr>
+                                    
+                            </thead>
+                        </table>
+                            
+                        </div>
+                    </div>
+                </div>
+                <span ><center>
+            </div>
+          </div><!-- End Info Item -->
+          
+
+        </div>
+
+      </div>
+
+    </section>
     
     <!-- Pricing Section -->
     <section id="pricing" class="pricing section">
@@ -482,6 +570,7 @@ session_start();
   <script src="./assets3/vendor/glightbox/js/glightbox.min.js"></script>
   <script src="./assets3/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
   <script src="./assets3/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
   
   <!-- Main JS File -->
   <script src="./assets3/js/main.js"></script>
@@ -495,7 +584,53 @@ session_start();
 					document.location='index.php';
 				}
 			}, 1000);
-        </script>
+
+      function tracking() {
+        let plat = $("#plat_nomor").val();
+        // $("#daftarpng").empty();
+        // $("#cucipng").empty();
+        // $("#selesaipng").empty();
+        $("#daftarpng").html('<img style="max-width:30%;" src="../admin/images/x.png"><br>');
+        $("#cucipng").html('<img style="max-width:30%;" src="../admin/images/x.png"><br>');
+        $("#selesaipng").html('<img style="max-width:30%;" src="../admin/images/x.png"><br>');
+        $("#statusinfo").html('Selesai');
+        $.ajax({
+          url: "/admin/controller/jsondatacontroller.php",
+          type:'post',
+          data:{
+            'plat'  : plat,
+            'class' : 'tracking'
+          },
+          dataType: "JSON",
+          success: function (data, status)
+          {
+            $("#divprogress").show();
+            $("#tidaktersedia").show();
+            if (data) {
+                $("#tidaktersedia").hide();
+                if(data['status'] == 'Pendaftaran'){
+                  $("#daftarpng").html('<img style="max-width:30%;" src="../admin/images/daftar.png"><br>');
+                }else if(data['status'] == 'Dalam Pengerjaan'){
+                  $("#daftarpng").html('<img style="max-width:30%;" src="../admin/images/daftar.png"><br>');
+                  $("#cucipng").html('<img style="max-width:30%;" src="../admin/images/pencucian.png"><br>');
+                }else if(data['status'] == 'Batal'){
+                  $("#daftarpng").html('<img style="max-width:30%;" src="../admin/images/daftar.png"><br>');
+                  $("#cucipng").html('<img style="max-width:30%;" src="../admin/images/pencucian.png"><br>');
+                  $("#selesaipng").html('<img style="max-width:30%;" src="../admin/images/canceled.png"><br>');
+                  $("#statusinfo").html('Dibatalkan');
+                }else if(data['status'] == 'Lunas'){
+                  $("#daftarpng").html('<img style="max-width:30%;" src="../admin/images/daftar.png"><br>');
+                  $("#cucipng").html('<img style="max-width:30%;" src="../admin/images/pencucian.png"><br>');
+                  $("#selesaipng").html('<img style="max-width:30%;" src="../admin/images/finish.png"><br>');
+                  $("#statusinfo").html('Selesai');
+                }
+              
+            }
+          },
+          });
+
+      }
+</script>
 </body>
 
 </html>

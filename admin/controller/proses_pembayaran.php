@@ -10,16 +10,14 @@ $total=$_POST['total'];
 $bayar=$_POST['bayar'];
 $kembali=$_POST['kembali'];
 $nama_pencuci=$_POST['nama_pencuci'];
+$nomor_plat=$_POST['nomor_plat'];
 $voucher=$_POST['voucher'];
 
 	if($voucher == 'aktif'){
 		$bayar = $total ;
 		$kembali = 0 ;
 	}
-	$jml = $hasil['jml'] ;
-	if($hasil['jml'] >= 11){
-		$jml = 1 ;
-	}
+	
 
 if($kembali < 0) {
 	?>
@@ -103,11 +101,11 @@ if (move_uploaded_file($_FILES["bukti"]["tmp_name"], $target_file)) {
 $hasil=mysql_query($sql);
 
 $sql2 = "UPDATE pendaftaran SET status = 'Lunas' WHERE id_pendaftaran = '$id_pendaftaran'";
-
 $hasil2=mysql_query($sql2);
 
 //see the result
 if ($hasil2) {
+	mysql_query("UPDATE customer SET nomor_plat = '$nomor_plat' WHERE id_customer in( select id_customer from pendaftaran  where id_pendaftaran = '$id_pendaftaran')");
 	
 	if($voucher == 'aktif'){
 		mysql_query("update user set voucher = null , tgl_voucher = null where id_user =".$id_user);

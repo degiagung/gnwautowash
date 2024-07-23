@@ -1,7 +1,7 @@
 <?php
 include "../config/koneksi.php";
-$id_user = $_GET['id_promo'];
-$hasil=mysql_query("delete from promo where id_promo='$id_promo'");
+$id_promo = $_GET['id_promo'];
+$hasil=mysql_query("delete from promo where id_promo= $id_promo");
 
 if ($hasil) {
 ?>

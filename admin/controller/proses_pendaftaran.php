@@ -1,11 +1,13 @@
 <?php 
 	require "../config/koneksi.php"; 
+	include "model/customer.php"; 
 
+	// print_r($_POST);die;
 	$next=$_POST['next'];
 	$id_customer=$_POST['id_customer'];  
 	$nama=$_SESSION['nama'];
-	$no_hp=$_POST['no_hp'];
-	$alamat= $_POST['alamat'];
+	// $no_hp=$_POST['no_hp'];
+	// $alamat= $_POST['alamat'];
 	$nomor_plat=$_POST['nomor_plat'];
 	$type_mobil=$_POST['type_mobil'];
 	$no_antrian=$_POST['no_antrian'];
@@ -16,10 +18,14 @@
 
 	if ($_SESSION['role'] == 'customer') {
 		$iduser = $_SESSION['id_user'];
+		$queryy = "insert into $tbl(id_customer, nama, nomor_plat, type_mobil, id_user) values('$id_customer','$nama', '$nomor_plat', '$type_mobil',$iduser)" ;
+
 	}else{
 		$iduser = $_POST['id_user'];
 		if ($iduser == 't') {
-			$iduser = '';
+			$iduser = '99999999999';
+			$queryy = "insert into $tbl(id_customer, nama, nomor_plat, type_mobil) values('$id_customer','$nama', '$nomor_plat', '$type_mobil')" ;
+
 		}
 	}
 	date_default_timezone_set('Asia/Jakarta');
@@ -28,7 +34,7 @@
 
 	$query="SELECT count(id_pendaftaran) as jumlah_daftar FROM pendaftaran WHERE tgl_pendaftaran = current_date and status not in('Batal','Lunas') ";
 	$cek = mysql_query($query." and jam_pendaftaran = '$jam_pendaftaran' HAVING COUNT(id_pendaftaran) >= 4");
-	$cek2= mysql_query($query." and id_customer in (select id_customer from customer where id_user = $iduser)");
+	$cek2= mysql_query($query." and id_customer in (select id_customer from $tbl where id_user = $iduser)");
 	$htg = mysql_fetch_array($cek);
 	$htg2= mysql_fetch_array($cek2);
 	$jumlahnya = $htg['jumlah_daftar'];
@@ -58,7 +64,7 @@ document.location='index.php?p=antrian'</script>
 <?php 
 } elseif ($next<='30') {
 
-$queryy = "insert into customer(id_customer, nama, no_hp, alamat, nomor_plat, type_mobil, id_user) values('$id_customer','$nama', '$no_hp', '$alamat', '$nomor_plat', '$type_mobil','$iduser')" ;
+$queryy = "insert into $tbl(id_customer, nama, nomor_plat, type_mobil, id_user) values('$id_customer','$nama', '$nomor_plat', '$type_mobil','$iduser')" ;
 $hasill = mysql_query($queryy);
 
 $query = "insert into pendaftaran(id_pendaftaran, no_antrian, id_customer, id_jenis_cucian, tgl_pendaftaran, jam_pendaftaran, total_biaya, status) values(NULL,'$no_antrian', '$id_customer', '$id_jenis_cucian', '$tgl_pendaftaran', '$jam_pendaftaran', '$total_biaya', 'Pendaftaran')" ;
