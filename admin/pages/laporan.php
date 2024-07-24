@@ -20,7 +20,7 @@ error_reporting(0);
                     <div class="col-sm-4">
                         <div class="page-header float-left">
                             <div class="page-title">
-                                <h1>Rekap Data</h1>
+                                <h1>Laporan</h1>
                             </div>
                         </div>
                     </div>
@@ -28,8 +28,8 @@ error_reporting(0);
                         <div class="page-header float-right">
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
-                                    <li><a href="#">Rekap Data</a></li>
-                                    <li class="active"><a href="#">Rekap Data</a></li>
+                                    <li><a href="#">Laporan</a></li>
+                                    <li class="active"><a href="#">Laporan</a></li>
                                 </ol>
                             </div>
                         </div>
@@ -45,7 +45,7 @@ error_reporting(0);
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Rekap Data</strong>
+                                <strong class="card-title">Laporan</strong>
                             </div>
                             <div class="card-body">
                                 <form action="" method="POST">
@@ -53,13 +53,32 @@ error_reporting(0);
                                         <table width="100%">
                                             <tr>
                                                 <td>
-                                                    <input type="date" name="tgl_awal" class="form-control">
+                                                    <label for="text-input" class=" form-control-label">Tgl Awal</label>
+                                                    <input type="date" name="tgl_awal" class="form-control" value="<?= date('Y-m-d')?>">
                                                 </td>
                                                 <td>
-                                                    <input type="date" name="tgl_akhir" class="form-control">
+                                                    <label for="text-input" class=" form-control-label">Tgl Akhir</label>
+                                                    <input type="date" name="tgl_akhir" class="form-control" value="<?= date('Y-m-d')?>">
+                                                </td>
+
+                                                <td>
+                                                    <label for="text-input" class=" form-control-label">Jenis Cucian</label>
+                                                    <?php
+                                                    $result = mysql_query("SELECT * FROM jenis_cucian");
+                                                    $jsArray = "var prdName = new Array();\n";
+                                                    echo '<select class="form-control" name="id_jenis_cucian" onchange="document.getElementById(\'txt2\').value = prdName[this.value]">';
+                                                    echo '<option value="all">All</option>';
+                                                    while ($row = mysql_fetch_array($result)) {
+                                                        echo '<option value="' . $row['jenis_cucian'] . '">' . $row['jenis_cucian'] . '</option>';
+                                                        $jsArray .= "prdName['" . $row['jenis_cucian'] . "'] = '" . addslashes($row['biaya']) . "';\n";
+                                                    }
+                                                    echo '</select>';
+
+                                                    ?>
                                                 </td>
 
                                                 <td width="15%">
+                                                    <br>
                                                     <button type="submit" class="btn btn-warning">Lihat Data</button>
                                                 </td>
                                             </tr>
@@ -71,12 +90,28 @@ error_reporting(0);
                                 
                                 $tgl_awal = $_POST['tgl_awal'];
                                 $tgl_akhir = $_POST['tgl_akhir'];
+                                $jenis_cuci = $_POST['id_jenis_cucian'];
+                                $jenis = ' ';
+                                if($jenis_cuci != 'all'){
+                                    $jenis      = " and jenis_cucian = '$jenis_cuci' ";
+                                    $juduljenis = $jenis_cuci ;
+                                }else{
+                                    $juduljenis = " Semua Jenis" ;
+                                }
+
+
+                                if($tgl_awal == ''){
+                                    $tgl_awal = date('Y-m-d');
+                                }
+                                if($tgl_akhir == ''){
+                                    $tgl_akhir = date('Y-m-d');
+                                }
 
                                 $awal = date("d-m-Y", strtotime($tgl_awal));
                                 $akhir = date("d-m-Y", strtotime($tgl_akhir));
                                 ?>
 
-                                <a target="blank"><button onClick="exportCSVExcel('laporan','rekap_<?= $awal;?>_<?= $akhir;?>')" type="submit" class="btn btn-success"><i class="fa fa-print"> &nbsp; Cetak Rekap Data</i></button></a>
+                                <a target="blank"><button onClick="exportCSVExcel('laporan','laporan_<?= $juduljenis ?>_<?= $awal;?>_<?= $akhir;?>')" type="submit" class="btn btn-success"><i class="fa fa-print"> &nbsp; Cetak Laporan</i></button></a>
                                 <!-- <a href="pages/laporan_transaksi.php?tgl_awal=<?= $tgl_awal;?>&tgl_akhir=<?= $tgl_akhir;?>" target="blank"><button type="submit" class="btn btn-success"><i class="fa fa-print"> &nbsp; Cetak Laporan PDF</i></button></a> -->
                             </div>
                         </div>
@@ -95,7 +130,8 @@ error_reporting(0);
 
                                     
                                         <p align="center"><b>
-                                            Rekap Data Pencucian <br>
+                                            Laporan Pencucian <br>
+                                             <?= $juduljenis ?><br>
                                             GNW AUTO WASH <br>
                                             Tanggal <?= $awal;?> Sampai <?= $akhir;?></b>
                                         </p><br>
@@ -104,7 +140,7 @@ error_reporting(0);
                                     <?php
                                     include ("../config/koneksi.php");
                                     
-                                    $sqll = "select * from transaksi join pendaftaran using (id_pendaftaran) join jenis_cucian using(id_jenis_cucian) join customer where pendaftaran.id_customer=customer.id_customer and tanggal between '$tgl_awal' and '$tgl_akhir' order by id_transaksi desc";
+                                    $sqll = "select * from transaksi join pendaftaran using (id_pendaftaran) join jenis_cucian using(id_jenis_cucian) join customer where pendaftaran.id_customer=customer.id_customer and tanggal between '$tgl_awal' and '$tgl_akhir' $jenis order by id_transaksi desc";
                                     $resultt = mysql_query($sqll);
                                         if(mysql_num_rows($resultt) > 0){
 ?>                                            
@@ -116,7 +152,8 @@ error_reporting(0);
                                             <th></th>
                                             <th>
                                                 <p align="center"><b>
-                                                Rekap Data Pencucian <br>
+                                                Laporan Pencucian <br>
+                                                <?= $juduljenis ?><br>
                                                 GNW AUTO WASH <br>
                                                 Tanggal <?= $awal;?> Sampai <?= $akhir;?></b>
                                             </p>
@@ -130,14 +167,15 @@ error_reporting(0);
                                             <th>No. Plat</th>
                                             <th>Jenis Cucian</th>
                                             <th>Total Biaya</th>
-                                            <th width="30%">Status</th>
-                                            <th class="no-export">Aksi</th>
+                                            <!-- <th width="30%">Status</th> -->
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <?php
                                         $nomor=1;
+                                        $gtotal=0;
                                         while($data = mysql_fetch_array($resultt)){
+                                            $gtotal += $data['total_biaya'];
                                         ?>                                          
                                         <tr>
                                             <td><?= $nomor++;?></td>
@@ -147,39 +185,21 @@ error_reporting(0);
                                             <td><?= $data['nomor_plat'];?></td>
                                             <td><?= $data['jenis_cucian'];?></td>
                                             <td><?= $data['total_biaya'];?></td>
-                                            <td class="no-export">
-                                                <form action="index.php?p=ganti_status" method="POST">
-                                                    <input type="hidden" name="id_pendaftaran" value="<?php echo $data['id_pendaftaran'];?>">
-                                                     <?php
-                                                        if($data['status']=='Lunas'){
-                                                    ?>
-                                                    Lunas
-                                                <?php } else { ?>
-                                                    <select name="status" onchange="this.form.submit();" class="form-control">
-                                                      <option value="Pendaftaran" <?php if($data['status'] == 'Pendaftaran') { echo 'selected'; } ?>>Pendaftaran</option> 
-                                                      <option value="Dalam Pengerjaan" <?php if($data['status'] == 'Dalam Pengerjaan') { echo 'selected'; } ?>>Dalam Pengerjaan</option>
-                                                      <option value="Batal" <?php if($data['status'] == 'Batal') { echo 'selected'; } ?>>Batal</option>
-                                                    </select>
-                                                <?php } ?>
-                                                </form>
-                                            </td>
-                                            <td align="center" class="notdown">
-                                                <?php
-                                                        if($data['status']!='Lunas'){
-                                                    ?>
-                                                <a href="index.php?p=tambah_pembayaran&id_pendaftaran=<?php echo $data['id_pendaftaran']; ?>" class="btn btn-success mb-3"> <i class="fa fa-fw fa-dollar" style="color: white"></i> <font color="white">Bayar</font>
-                                                </a>
-                                                <?php }else{ ?>
-
-                                                    LUNAS
-                                                <?php } ?>
-                                            </td>
                                         </tr>
                                         <?php
                                         }
                                         ?>
-                                                    </tbody>
-                                                    </table>
+                                    </tbody>
+                                    <tfoot>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th></th>
+                                        <th>Total</th>
+                                        <th><?=$gtotal?></th>
+                                    </tfoot>
+                                </table>
                                         <?php
                                         }else{
                                             echo 'Data not found!';

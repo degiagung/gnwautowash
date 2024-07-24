@@ -63,11 +63,11 @@ date_default_timezone_set('Asia/Jakarta');
                         <a style="color:#fff" href="index.php?p=customer"> <i style="color:#f9d018 !important;" class="menu-icon ti-id-badge"></i>Data Pelanggan </a>
                     </li>
                     <li>
-                        <a style="color:#fff" href="index.php?p=laporan"> <i style="color:#f9d018 !important;" class="menu-icon ti-printer"></i>Rekap Data </a>
+                        <a style="color:#fff" href="index.php?p=laporan"> <i style="color:#f9d018 !important;" class="menu-icon ti-printer"></i>Laporan </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a style="color:#fff" href="index.php?p=laporantransaksi"> <i style="color:#f9d018 !important;" class="menu-icon ti-printer"></i>Laporan </a>
-                    </li>
+                    </li> -->
 
                     <li style="color:#fff" class="menu-title">Extra</li><!-- /.menu-title -->
                     <li>

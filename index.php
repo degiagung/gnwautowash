@@ -618,7 +618,7 @@ session_start();
                   $("#cucipng").html('<img style="max-width:30%;" src="../admin/images/pencucian.png"><br>');
                   $("#selesaipng").html('<img style="max-width:30%;" src="../admin/images/canceled.png"><br>');
                   $("#statusinfo").html('Dibatalkan');
-                }else if(data['status'] == 'Lunas'){
+                }else if(data['status'] == 'Selesai' || data['status'] == 'Lunas'){
                   $("#daftarpng").html('<img style="max-width:30%;" src="../admin/images/daftar.png"><br>');
                   $("#cucipng").html('<img style="max-width:30%;" src="../admin/images/pencucian.png"><br>');
                   $("#selesaipng").html('<img style="max-width:30%;" src="../admin/images/finish.png"><br>');

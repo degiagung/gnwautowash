@@ -81,6 +81,7 @@
                                                     <select name="status" onchange="this.form.submit();" class="form-control">
                                                       <option value="Pendaftaran" <?php if($data['status'] == 'Pendaftaran') { echo 'selected'; } ?>>Pendaftaran</option> 
                                                       <option value="Dalam Pengerjaan" <?php if($data['status'] == 'Dalam Pengerjaan') { echo 'selected'; } ?>>Dalam Pengerjaan</option>
+                                                      <option value="Selesai" <?php if($data['status'] == 'Selesai') { echo 'selected'; } ?>>Selesai</option>
                                                       <option value="Batal" <?php if($data['status'] == 'Batal') { echo 'selected'; } ?>>Batal</option>
                                                     </select>
                                                 <?php } ?>

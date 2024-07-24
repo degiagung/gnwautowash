@@ -236,7 +236,7 @@
                                                     $cuci = 'pencucian.png';
                                                     $batal= 'Batal';
                                                 
-                                                }elseif($hasil['status'] == 'Lunas'){
+                                                }elseif($hasil['status'] == 'Selesai' || $hasil['status'] == 'Lunas'){
                                                     $daftar = "daftar.png";
                                                     $cuci = 'pencucian.png';
                                                     $selesai = 'finish.png';
