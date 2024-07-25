@@ -204,12 +204,15 @@
                         
                         <?php 
                                     $iduser = $_SESSION['id_user'];
-                                    $queryy = mysql_query("SELECT * FROM pendaftaran WHERE tgl_pendaftaran = current_date and status not in( 'Batal') and id_customer in (select id_customer from customer where id_user = $iduser) ORDER BY id_pendaftaran desc");
+                                    
+                                    $query = "SELECT * FROM pendaftaran JOIN customer using(id_customer) WHERE tgl_pendaftaran = current_date and status not in( 'Batal') and id_user = $iduser ";
+                                    $querygb= "ORDER BY id_pendaftaran desc";
+                                    $queryy = mysql_query($query.$querygb);
                                     $hasil  = mysql_fetch_array($queryy);
                                     $daftar = "x.png";
                                     $cuci   = "x.png";
                                     $selesai= "x.png";
-                                    // print_r($iduser);die;
+                                    // print_r($_POST);die;    
                                     
                         
                         if($hasil){         
@@ -220,66 +223,92 @@
                                     <strong class="card-title"><center>PROGRES PENCUCIAN</center></strong>
                                 </div>
                                 <div class="card-body" align="center">
+                                    <form action="index.php?p=antrian" method="post" enctype="multipart/form-data" class="form-horizontal">
+
+                                        <div class="row form-group">
+                                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Plat Nomor</label></div>
+                                            <div class="col-12 col-md-6">
+                                                <input type="text" class="form-control-rounded form-control" placeholder="D123MA" name="nomor_plat">
+                                            </div>
+                                            <div class="col-12 col-md-3">                                        
+                                                <button type="submit" class="btn btn-success" style="width:100%;">Cari</button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    <hr><br>
                                 <table class="table">
                                     <thead style="text-align: center;">
                                         
                                             <?php
-                                                echo '<strong class="card-title"><center>NO ANTRIAN'.$hasil['no_antrian'].'</center></strong>';
-                                                $batal = 'Selesai';
-                                                if($hasil['status'] == 'Pendaftaran'){
-                                                    $daftar = 'daftar.png';
-                                                }elseif($hasil['status'] == 'Dalam Pengerjaan'){
-                                                    $daftar = 'daftar.png';
-                                                    $cuci = 'pencucian.png';
-                                                }elseif($hasil['status'] == 'Batal'){
-                                                    $daftar = "daftar.png";
-                                                    $cuci = 'pencucian.png';
-                                                    $batal= 'Batal';
-                                                
-                                                }elseif($hasil['status'] == 'Selesai' || $hasil['status'] == 'Lunas'){
-                                                    $daftar = "daftar.png";
-                                                    $cuci = 'pencucian.png';
-                                                    $selesai = 'finish.png';
-                                                    $batal = 'Selesai';
+
+                                                $where = "";
+                                                if(isset($_POST['nomor_plat'])){
+                                                    $plat = str_replace(' ','',$_POST['nomor_plat']) ; ;
+                                                    $where = $query." AND REPLACE(lower(nomor_plat),' ','') = lower('$plat') ".$querygb;
+                                                    $queryy = mysql_query($where);
+                                                    $hasil  = mysql_fetch_array($queryy);
                                                 }
-                                                
-                                                echo '<tr>
-                                                        <b>
-                                                        <th>
-                                                            <img style="max-width:30%;" src="images/'.$daftar.'"><br>
-                                                        </th>
-                                                        <th style="width:10%;">
-                                                            <div class="row" style="margin-bottom:0%;">
+                                                if($hasil){
+                                                    echo '<strong class="card-title"><center>PLAT '.$hasil['nomor_plat'].' NO ANTRIAN '.$hasil['no_antrian'].'</center></strong>';
+                                                    $batal = 'Selesai';
+                                                    if($hasil['status'] == 'Pendaftaran'){
+                                                        $daftar = 'daftar.png';
+                                                    }elseif($hasil['status'] == 'Dalam Pengerjaan'){
+                                                        $daftar = 'daftar.png';
+                                                        $cuci = 'pencucian.png';
+                                                    }elseif($hasil['status'] == 'Batal'){
+                                                        $daftar = "daftar.png";
+                                                        $cuci = 'pencucian.png';
+                                                        $batal= 'Batal';
+                                                    
+                                                    }elseif($hasil['status'] == 'Selesai' || $hasil['status'] == 'Lunas'){
+                                                        $daftar = "daftar.png";
+                                                        $cuci = 'pencucian.png';
+                                                        $selesai = 'finish.png';
+                                                        $batal = 'Selesai';
+                                                    }
+                                                    
+                                                    echo '<tr>
+                                                            <b>
+                                                            <th>
+                                                                <img style="max-width:30%;" src="images/'.$daftar.'"><br>
+                                                            </th>
+                                                            <th style="width:10%;">
+                                                                <div class="row" style="margin-bottom:0%;">
 
-                                                                <img style="max-width:15%;margin-left:10%;" src="images/arrow.png"><br>
-                                                                <img style="max-width:15%;" src="images/arrow.png"><br>
-                                                                <img style="max-width:15%;" src="images/arrow.png"><br>
-                                                            </div>
-                                                        </th>
-                                                        <th>
-                                                            <img style="max-width:30%;" src="images/'.$cuci.'"><br>
-                                                        </th>
-                                                        <th style="width:10%;">
-                                                            <div class="row" style="margin-bottom:0%;">
+                                                                    <img style="max-width:15%;margin-left:10%;" src="images/arrow.png"><br>
+                                                                    <img style="max-width:15%;" src="images/arrow.png"><br>
+                                                                    <img style="max-width:15%;" src="images/arrow.png"><br>
+                                                                </div>
+                                                            </th>
+                                                            <th>
+                                                                <img style="max-width:30%;" src="images/'.$cuci.'"><br>
+                                                            </th>
+                                                            <th style="width:10%;">
+                                                                <div class="row" style="margin-bottom:0%;">
 
-                                                                <img style="max-width:15%;margin-left:10%;" src="images/arrow.png"><br>
-                                                                <img style="max-width:15%;" src="images/arrow.png"><br>
-                                                                <img style="max-width:15%;" src="images/arrow.png"><br>
-                                                            </div>
-                                                        </th>
-                                                        <th>
-                                                            <img style="max-width:30%;" src="images/'.$selesai.'"><br>
-                                                        </th>
-                                                        </b>
-                                                    </tr>
-                                                    <tr>
-                                                        <th>Dalam Antrian</th>
-                                                        <th></th>
-                                                        <th>Pencucian</th>
-                                                        <th></th>
-                                                        <th>'.$batal.'</th>
-                                                    </tr>
-                                                ';
+                                                                    <img style="max-width:15%;margin-left:10%;" src="images/arrow.png"><br>
+                                                                    <img style="max-width:15%;" src="images/arrow.png"><br>
+                                                                    <img style="max-width:15%;" src="images/arrow.png"><br>
+                                                                </div>
+                                                            </th>
+                                                            <th>
+                                                                <img style="max-width:30%;" src="images/'.$selesai.'"><br>
+                                                            </th>
+                                                            </b>
+                                                        </tr>
+                                                        <tr>
+                                                            <th>Dalam Antrian</th>
+                                                            <th></th>
+                                                            <th>Pencucian</th>
+                                                            <th></th>
+                                                            <th>'.$batal.'</th>
+                                                        </tr>
+                                                    ';
+                                                }else{
+                                                    echo '<strong class="card-title"><center>PLAT '.$_POST['nomor_plat'].' TIDAK DITEMUKAN</center></strong>';
+
+                                                }
 
                                             ?> 
                                     </thead>
@@ -444,7 +473,7 @@
                                                                                 jam_operasional a
                                                                                 left join (select jam_pendaftaran,COUNT(*) jml from pendaftaran where tgl_pendaftaran = CURRENT_DATE AND status != 'Batal' GROUP BY jam_pendaftaran) b ON b.jam_pendaftaran = a.jam $where
                                                                             where 
-                                                                                jam <= now()
+                                                                                jam >= now()
                                                                         ");
                                                             while ($row2 = mysql_fetch_array($result2)) {
                                                                 ?>

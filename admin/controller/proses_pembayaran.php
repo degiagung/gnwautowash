@@ -107,7 +107,7 @@ $hasil2=mysql_query($sql2);
 if ($hasil2) {
 	mysql_query("UPDATE customer SET nomor_plat = '$nomor_plat' WHERE id_customer in( select id_customer from pendaftaran  where id_pendaftaran = '$id_pendaftaran')");
 	
-	if($voucher == 'aktif'){
+	if($voucher == 'aktif' && $total <= 60000){
 		mysql_query("update user set voucher = null , tgl_voucher = null where id_user =".$id_user);
 	}
 	$cekvoucher = "SELECT a.*,b.tanggal FROM user a join transaksi b on a.id_user = b.id_user WHERE b.status = 'Lunas' AND a.id_user = $id_user";

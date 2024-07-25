@@ -54,9 +54,9 @@ $dt=mysql_fetch_array($queryy);
                                     </div>
 
                                     <div class="row form-group">
-                                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Biayan</label></div>
+                                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Biaya</label></div>
                                         <div class="col-12 col-md-9">
-                                            <input type="number" id="text-input" name="biaya" class="form-control" value="<?=$dt['biaya'];?>" required="">
+                                            <input type="number" id="text-input" min="0" name="biaya" class="form-control" value="<?=$dt['biaya'];?>" required="">
                                         </div>
                                     </div>
                                 

@@ -135,7 +135,7 @@ $voucher   = $dt['voucher'];
                                     <div class="row form-group">
                                         <div class="col col-md-3"><label for="text-input" class=" form-control-label">Uang Yang Dibayarkan</label></div>
                                         <?php
-                                            if($voucher == 'aktif'){
+                                            if($voucher == 'aktif' && $dt['total_biaya'] <= 60000){
                                         ?>
                                                 <div class="col-12 col-md-6">
                                                     <input type="text" id="txt1" class="form-control" disabled value="LUNAS DENGAN VOUCHER" >

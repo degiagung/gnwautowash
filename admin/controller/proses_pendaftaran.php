@@ -38,7 +38,7 @@
 	$htg = mysql_fetch_array($cek);
 	$htg2= mysql_fetch_array($cek2);
 	$jumlahnya = $htg['jumlah_daftar'];
-	if($htg2['jumlah_daftar'] >= 1 && $_SESSION['role'] == 'customer')
+	if($htg2['jumlah_daftar'] >= 5 && $_SESSION['role'] == 'customer')
 	{
 ?>
 		<script language="JavaScript">
