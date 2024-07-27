@@ -4,8 +4,7 @@
 
 	// print_r($_POST);die;
 	$next=$_POST['next'];
-	$id_customer=$_POST['id_customer'];  
-	$nama=$_SESSION['nama'];
+	$id_customer=$_POST['id_customer']; 
 	// $no_hp=$_POST['no_hp'];
 	// $alamat= $_POST['alamat'];
 	$nomor_plat=$_POST['nomor_plat'];
@@ -22,7 +21,10 @@
 
 	}else{
 		$iduser = $_POST['id_user'];
-		if ($iduser == 't') {
+		$nama   = mysql_fetch_array(mysql_query("select nama from user where id_user  = $iduser"));
+		$nama   = $nama['nama'] ;
+		if ($iduser == 't') { 
+			$nama= 'Pendaftaran Offline '-$nomor_plat;
 			$iduser = '99999999999';
 			$queryy = "insert into $tbl(id_customer, nama, nomor_plat, type_mobil) values('$id_customer','$nama', '$nomor_plat', '$type_mobil')" ;
 
