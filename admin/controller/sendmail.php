@@ -14,7 +14,7 @@ $mail = new PHPMailer(true);
 try {
 
     $email      = $_POST['email'];
-    $email      = 'degijustin4@gmail.com';
+    // $email      = 'degijustin4@gmail.com';
     $nama       = $_POST['nama'];
     $tanggal    = $_POST['tanggal'];
     $jenis      = $_POST['jenis_cucian'];
@@ -24,13 +24,13 @@ try {
     $mail->isSMTP();                                            //Send using SMTP
     $mail->Host       = 'smtp.gmail.com';                     //Set the SMTP server to send through
     $mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-    $mail->Username   = 'degiagung@gmail.com';                     //SMTP username
-    $mail->Password   = 'favu vncs uird etbp';                               //SMTP password
+    $mail->Username   = 'myaplication881@gmail.com';                     //SMTP username
+    $mail->Password   = 'sqjn wzkj vqod ngth';                               //SMTP password
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
     $mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
 
     //Recipients
-    $mail->setFrom('degiagung@gmail.com', 'Mailer');
+    $mail->setFrom('myaplication881@gmail.com', 'GNW AUTOWASH');
     $mail->addAddress($email, $nama);     //Add a recipient
     // $mail->addAddress('ellen@example.com');               //Name is optional
     // $mail->addReplyTo('info@example.com', 'Information');
@@ -82,6 +82,7 @@ try {
     // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();
+    
     // echo 'Message has been sent';
 } catch (Exception $e) {
     // echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
