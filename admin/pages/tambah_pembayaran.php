@@ -55,7 +55,7 @@ $voucher   = $dt['voucher'];
     <input type="hidden" id="text-input" name="status" class="form-control" value="Lunas">
     <input type="hidden" id="text-input" name="pelanggan" class="form-control" value="<?= $pelanggan;?>">
     <input type="hidden" id="text-input" name="email" class="form-control" value="<?= $email;?>">
-    <input type="hidden" id="text-input" name="voucher" class="form-control" value="<?= $voucher;?>">
+    <input type="hidden" id="voucher" name="voucher" class="form-control" value="<?= $voucher;?>">
 
                                     <div class="row form-group">
                                         <div class="col col-md-3"><label for="text-input" class=" form-control-label">No. Antrian</label></div>
@@ -128,40 +128,36 @@ $voucher   = $dt['voucher'];
                                     <div class="row form-group">
                                         <div class="col col-md-3"><label for="text-input" class=" form-control-label">Total Biaya</label></div>
                                         <div class="col-12 col-md-9">
-                                            <input type="text" name="total" id="txt2"  onkeyup="sum();" class="form-control" value="<?= $dt['total_biaya'];?>" readonly>
+                                            <input type="text" name="total" id="txt2"  onkeyup="sum();" class="form-control" value="<?= $dt['total_biaya'];?>">
                                         </div>
                                     </div>
 
-                                    <div class="row form-group">
-                                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Uang Yang Dibayarkan</label></div>
-                                        <?php
-                                            if($voucher == 'aktif' && $dt['total_biaya'] <= 60000){
-                                        ?>
-                                                <div class="col-12 col-md-6">
-                                                    <input type="text" id="txt1" class="form-control" disabled value="LUNAS DENGAN VOUCHER" >
-                                                </div>
-                                                <div class="col-12 col-md-2">
-                                                    <a class="btn btn-danger" href="index.php?c=controller&p=reset_voucher&from=admin&id_user=<?= $id_user?>&id_pendaftaran=<?= $id_pendaftaran?>" onClick="return confirm('Apakah Anda Yakin Reset Voucher ?')">Reset Voucher</a>
-                                                </div>
+                                    <div id="voucheraktif" style="display:none">
+                                        <div class="row form-group">
+                                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Uang Yang Dibayarkan</label></div>
+                                            <div class="col-12 col-md-6">
+                                                <input type="text" id="txt1" class="form-control" disabled value="LUNAS DENGAN VOUCHER" >
                                             </div>
-                                        <?php  
-                                            }else{
-                                        ?>
-                                                <div class="col-12 col-md-9">
-                                                    <input type="text" id="txt1"  onkeyup="sum();" name="bayar" class="form-control" required="">
-                                                </div>
-
+                                            <div class="col-12 col-md-2">
+                                                <a class="btn btn-danger" href="index.php?c=controller&p=reset_voucher&from=admin&id_user=<?= $id_user?>&id_pendaftaran=<?= $id_pendaftaran?>" onClick="return confirm('Apakah Anda Yakin Reset Voucher ?')">Reset Voucher</a>
                                             </div>
-                                                <div class="row form-group">
-                                                    <div class="col col-md-3"><label for="text-input" class=" form-control-label">Kembalian</label></div>
-                                                    <div class="col-12 col-md-9">
-                                                        <input type="text" name="kembali" class="form-control" required="" readonly="" id="txt3"  onkeyup="sum();">
-                                                    </div>
-                                                </div>
-                                        <?php    
-                                            }
-                                        ?>
+                                        </div>
+                                    </div>
 
+                                    <div id="vouchergaaktif">
+                                        <div class="row form-group">
+                                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Uang Yang Dibayarkan</label></div>
+                                            <div class="col-12 col-md-9">
+                                                <input type="text" id="txt1"  onkeyup="sum();" name="bayar" class="form-control" required="">
+                                            </div>
+                                        </div>
+                                        <div class="row form-group">
+                                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Kembalian</label></div>
+                                            <div class="col-12 col-md-9">
+                                                <input type="text" name="kembali" class="form-control" required="" readonly="" id="txt3"  onkeyup="sum();">
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <div class="row form-group">
                                         <div class="col col-md-3"><label for="text-input" class=" form-control-label">Penanggung Jawab Cuci</label></div>
@@ -192,11 +188,15 @@ $voucher   = $dt['voucher'];
 
 <script>
     function sum() {
-        var txtFirstNumberValue = document.getElementById('txt1').value;
+        var txtFirstNumberValue  = document.getElementById('txt1').value;
         var txtSecondNumberValue = document.getElementById('txt2').value;
+        var voucher              = document.getElementById('voucher').value;
         var result = parseInt(txtFirstNumberValue) - parseInt(txtSecondNumberValue);
         if (!isNaN(result)) {
             document.getElementById('txt3').value = result;
         }
+        myvoucher();
+        
     }
+    
 </script>

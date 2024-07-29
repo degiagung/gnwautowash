@@ -1,4 +1,4 @@
-<?php
+c<?php
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
@@ -14,11 +14,22 @@ $mail = new PHPMailer(true);
 try {
 
     $email      = $_POST['email'];
-    // $email      = 'degijustin4@gmail.com';
     $nama       = $_POST['nama'];
     $tanggal    = $_POST['tanggal'];
+    $antrian    = $_POST['no_antrian'];
     $jenis      = $_POST['jenis_cucian'];
     $total      = $_POST['total'];
+    $bayar      = $_POST['bayar'];
+    $kembali    = $_POST['kembali'];
+    
+    $email      = 'degijustin4@gmail.com';
+    // $nama       = 'dd';
+    // $tanggal    = 'dd';
+    // $antrian    = 'dd';
+    // $jenis      = 'dd';
+    // $total      = 70000;
+    // $bayar      = 100000;
+    // $kembali    = $total-$bayar;
     //Server settings
     // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
     $mail->isSMTP();                                            //Send using SMTP
@@ -44,41 +55,62 @@ try {
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'BUKTI PEMBAYARAN GNW AUTO WASH';
-    $mail->Body     = '<center>GNW AUTO WASH<br><br>';
+    $mail->Body     = '<div style="font-family: cursive;">';
+    $mail->Body     .= '<center><h2 ><b>GNW AUTO WASH</h2><br>';
+    $mail->Body     .= 'Jl. Nanjung No.72, Nanjung, <br>
+                        Kec. Margaasih, Kabupaten Bandung <br>
+                        Jawa Barat 40217';
     $mail->Body    .= '
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Tanggal Pencucian</th>
-                                    <th>:</th>
-                                    <th>'.$tanggal.'</th>
-                                </tr>
-                                <tr>
-                                    <th>Nama Pelanggan</th>
-                                    <th>:</th>
-                                    <th>'.$nama.'</th>
-                                </tr>
-                                <tr>
-                                    <th>Jenis Cucian</th>
-                                    <th>:</th>
-                                    <th>'.$jenis.'</th>
-                                </tr>
-                                <tr>
-                                    <th>Total Pembayaran</th>
-                                    <th>:</th>
-                                    <th>'.$total.'</th>
-                                </tr>
-                            </thead>
-                            
-                        </table>
-
+                        <hr style="width:50%;">
+                            <table style="width:50%;">
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align:start;">'.$tanggal.'</td>
+                                        <td style=""></td>
+                                        <td style="text-align:end;">'.$antrian.'</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        <hr style="width:50%;">
+                            BUKTI PEMBAYARAN JASA CUCI<br><br>
+                            <table style="width:50%;">
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align:start;">'.$jenis.'</td>
+                                        <td style=""></td>
+                                        <td style="text-align:end;">Rp.'.$total.'</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        <hr style="width:50%;">
+                            <table style="width:50%;">
+                                <tbody>
+                                    <tr>
+                                        <td style=""></td>
+                                        <td style="text-align:end;">Total Pembayaran</td>
+                                        <td style="text-align:start;">=</td>
+                                        <td style="text-align:end;">Rp.'.$total.'</td>
+                                    </tr>
+                                    <tr>
+                                        <td style=""></td>
+                                        <td style="text-align:end;">Bayar</td>
+                                        <td style="text-align:start;">=</td>
+                                        <td style="text-align:end;">Rp.'.$bayar.'</td>
+                                    </tr>
+                                    <tr>
+                                        <td style=""></td>
+                                        <td style="text-align:end;">Kembali</td>
+                                        <td style="text-align:start;">=</td>
+                                        <td style="text-align:end;">Rp.'.$kembali.'</td>
+                                    </tr>
+                                </tbody>
+                            </table>
     ';
-    $mail->Body    .= '<br><br>
-                            KAMI TUNGGU KEMBALI KEDATANGANNYA
-                                <br>KAMI UCAPKAN TERIMAKASIH
-                                    <br><br><br>ALAMAT :
-    <br>Jl. Nanjung No.72, Nanjung, Kec. Margaasih, Kabupaten Bandung, Jawa Barat 40217
-    </center>';
+    $mail->Body    .= '<br>
+                            "TERIMAKASIH TELAH MENGGUNAKAN JASA KAMI, KAMI TUNGGU KEMBALI KEDATANGANNYA
+                                <br>INFORMASI GNW AUTOWASH : <b>0822-2888-4990</b>
+                                <h3 style="margin-left: 22%;">@gnw_autowash</center>
+    </div>';
     // $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();

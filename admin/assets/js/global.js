@@ -63,3 +63,17 @@ function test(params) {
     }, 10000); 
     
 }
+
+function myvoucher() {
+        
+    var txtSecondNumberValue = document.getElementById('txt2').value;
+    var voucher              = document.getElementById('voucher').value;
+    console.log(voucher);
+    if (voucher == 'aktif' && txtSecondNumberValue <= 60000) {
+        $("#voucheraktif").show();
+        $("#vouchergaaktif").hide();
+    }else{
+        $("#voucheraktif").hide();
+        $("#vouchergaaktif").show();
+    }
+}

@@ -64,7 +64,17 @@
                                             <td><?= $data['no_antrian'];?></td>
                                             <td><?= $data['jam_pendaftaran'];?></td>
                                             <td><?= $data['nama'];?></td>
-                                            <td><?= $data['nomor_plat'];?></td>
+                                            <?php
+                                                if($data['status'] == 'Lunas' || $data['status'] == 'Batal'){
+                                                    ?>
+                                                        <td><?= $data['nomor_plat'];?></td>
+                                                    <?php
+                                                }else{
+                                                    ?>
+                                                        <td><a style="cursor:pointer;color:blue;"onclick="platnomor(<?= $data['id_customer'];?>,'<?= $data['nomor_plat'];?>')"><?= $data['nomor_plat'];?></a></td>
+                                                    <?php
+                                                }
+                                            ?>
                                             <td><?= $data['jenis_cucian'];?></td>
                                             <td><?= $data['total_biaya'];?></td>
                                             <td>
@@ -115,3 +125,49 @@
                 </div>
             </div><!-- .animated -->
         </div><!-- .content -->
+
+        <script>
+            function platnomor(id,plat) {
+                swal({
+                    title: "Plat Nomor",
+                    type: "input",
+                    showCancelButton: true,
+                    closeOnConfirm: false,
+                    confirmButtonText:'Simpan',
+                    animation: "slide-from-top",
+                    inputValue: plat
+                    },
+                    function(inputValue){
+                        console.log(inputValue);
+                    if (inputValue === plat || inputValue === null || inputValue === false){
+                        return false;
+                    } else{
+                        $.ajax({
+                        url: "/admin/controller/jsondatacontroller.php",
+                        type:'post',
+                        data:{
+                            'id'    : id,
+                            'plat'  : inputValue,
+                            'class' : 'editplat'
+                        },
+                        dataType: "JSON",
+                        success: function (data, status)
+                        {
+                            swal("Berhasil!", "success");
+                            window.onclick = function() {
+                                document.location.reload();
+                            }
+                        },
+                    });
+
+                    return false ;
+                    
+                    }
+                    
+                    if (inputValue === "") {
+                        swal.showInputError("Plat Nomor Wajib Diisi!");
+                        return false
+                    }
+                });
+            }
+        </script>

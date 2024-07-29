@@ -44,7 +44,7 @@
                                             <th>No.</th>
                                             <th>Nama</th>
                                             <th>No. HP</th>
-                                            <th>Alamat</th>
+                                            <!-- <th>Alamat</th> -->
                                             <th>No. Plat</th>
                                             <th>Type Mobil</th>
                                         </tr>
@@ -58,7 +58,7 @@
                                             <td><?= $nomor++;?></td>
                                             <td><?= $data['nama'];?></td>
                                             <td><?= $data['no_hp'];?></td>
-                                            <td><?= $data['alamat'];?></td>
+                                            <!-- <td><?= $data['alamat'];?></td> -->
                                             <td><?= $data['nomor_plat'];?></td>
                                             <td><?= $data['type_mobil'];?></td>
                                         </tr>

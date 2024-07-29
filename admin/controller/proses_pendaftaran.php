@@ -12,7 +12,8 @@
 	$no_antrian=$_POST['no_antrian'];
 	$id_jenis_cucian=$_POST['id_jenis_cucian'];
 	$nomor_plat=$_POST['nomor_plat'];
-	$total_biaya=$_POST['total_biaya'];
+	// $total_biaya=$_POST['total_biaya'];
+	$total_biaya=0;
 	$tgl_pendaftaran=$_POST['tgl_pendaftaran'];
 
 	if ($_SESSION['role'] == 'customer') {
@@ -69,7 +70,7 @@ document.location='index.php?p=antrian'</script>
 $queryy = "insert into $tbl(id_customer, nama, nomor_plat, type_mobil, id_user) values('$id_customer','$nama', '$nomor_plat', '$type_mobil','$iduser')" ;
 $hasill = mysql_query($queryy);
 
-$query = "insert into pendaftaran(id_pendaftaran, no_antrian, id_customer, id_jenis_cucian, tgl_pendaftaran, jam_pendaftaran, total_biaya, status) values(NULL,'$no_antrian', '$id_customer', '$id_jenis_cucian', '$tgl_pendaftaran', '$jam_pendaftaran', '$total_biaya', 'Pendaftaran')" ;
+$query = "insert into pendaftaran(id_pendaftaran, no_antrian, id_customer, tgl_pendaftaran, jam_pendaftaran, total_biaya, status) values(NULL,'$no_antrian', '$id_customer', '$tgl_pendaftaran', '$jam_pendaftaran', '$total_biaya', 'Pendaftaran')" ;
 $hasil = mysql_query($query);
 }
 //see the result

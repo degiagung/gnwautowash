@@ -32,7 +32,7 @@ date_default_timezone_set('Asia/Jakarta');
     <link rel="shortcut icon" type="image/x-icon" href="../images/gnw/gnwlogo.jpg">
 
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800' rel='stylesheet' type='text/css'>
-
+    <link rel="stylesheet" type="text/css" href="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.css">
     <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/html5shiv/3.7.3/html5shiv.min.js"></script> -->
 
 </head>
@@ -67,7 +67,7 @@ date_default_timezone_set('Asia/Jakarta');
                     </li>
                     <!-- <li>
                         <a style="color:#fff" href="index.php?p=laporantransaksi"> <i style="color:#f9d018 !important;" class="menu-icon ti-printer"></i>Laporan </a>
-                    </li> -->
+                    </li> --><link rel="stylesheet" type="text/css" href="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.css">
 
                     <li style="color:#fff" class="menu-title">Extra</li><!-- /.menu-title -->
                     <li>
@@ -238,6 +238,7 @@ if (!empty($_GET['p'])) {
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
     <script src="//unpkg.com/xlsx/dist/xlsx.full.min.js" type="text/javascript"></script>
+    <script src="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.min.js"></script>
 
 
     <!-- <script type="text/javascript">

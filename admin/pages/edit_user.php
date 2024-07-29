@@ -49,28 +49,28 @@ $dt=mysql_fetch_array($queryy);
                                     <div class="row form-group">
                                         <div class="col col-md-3"><label for="text-input" class=" form-control-label">Nama</label></div>
                                         <div class="col-12 col-md-9">
-                                            <input type="text" id="text-input" name="nama" class="form-control" required=""  value="<?=$dt['nama'];?>">
+                                            <input type="text" id="text-input" name="nama" class="form-control" required=""  value="<?=$dt['nama']; ?>" readonly>
                                         </div>
                                     </div>
 
-                                    <div class="row form-group">
+                                    <!-- <div class="row form-group">
                                         <div class="col col-md-3"><label for="text-input" class=" form-control-label">Alamat</label></div>
                                         <div class="col-12 col-md-9">
                                             <input type="text" id="text-input" name="alamat" class="form-control" required=""  value="<?=$dt['alamat'];?>">
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="row form-group">
                                         <div class="col col-md-3"><label for="text-input" class=" form-control-label">No. HP</label></div>
                                         <div class="col-12 col-md-9">
-                                            <input type="text" id="text-input" name="hp" class="form-control" required=""  value="<?=$dt['hp'];?>">
+                                            <input type="text" id="text-input" name="hp" class="form-control" required=""  value="<?=$dt['hp'];?>" readonly>
                                         </div>
                                     </div>
 
                                     <div class="row form-group">
                                         <div class="col col-md-3"><label for="text-input" class=" form-control-label">Username</label></div>
                                         <div class="col-12 col-md-9">
-                                            <input type="text" id="text-input" name="username" class="form-control" required=""  value="<?=$dt['username'];?>">
+                                            <input type="text" id="text-input" name="username" class="form-control" required=""  value="<?=$dt['username'];?>" readonly>
                                         </div>
                                     </div>
 

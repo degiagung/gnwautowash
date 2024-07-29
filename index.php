@@ -86,7 +86,7 @@ session_start();
           <div class="col-lg-8">
             <h2>Selamat Datang di GNW AUTO WASH</h2>
             <p>Gnw Auto Wash adalah layanan cuci mobil dengan pelayanan terbaik dan telah beroperasi sejak lama. Dimulai dengan kawasan Cimahi , kini sedang berkembang ke berbagai wilayah lain. Segera Booking untuk cuci mobil anda.</p>
-            <a href="#about" class="btn-get-started">Pendaftaran</a>
+            <a href="admin/index.php?p=antrian" class="btn-get-started">Pendaftaran</a>
           </div>
         </div>
       </div>

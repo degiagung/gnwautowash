@@ -21,5 +21,13 @@
         print_r($hasil);die;
         echo json_encode($hasil);
     }    
+    function editplat(){
+        $id     = $_POST['id'];
+        $plat   = str_replace(' ','',$_POST['plat']) ;
+        $query  = "UPDATE customer SET nomor_plat = '$plat' WHERE id_customer = $id";
+        $query  = mysql_query($query);
+
+        echo '1';
+    }  
 
 ?>

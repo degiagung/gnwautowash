@@ -37,7 +37,7 @@
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
 <?php
   include ("../config/koneksi.php");
-  $sqll = "select * from user order by id_user desc";
+  $sqll = "select * from user where role != 'customer' order by role,nama asc";
   $resultt = mysql_query($sqll);
     if(mysql_num_rows($resultt) > 0){
 ?>                                            
@@ -46,9 +46,9 @@
                                             <th>No.</th>
                                             <th>Nama</th>
                                             <th>Username</th>
-                                            <th>Alamat</th>
+                                            <!-- <th>Alamat</th> -->
                                             <th>No. HP</th>
-                                            <th>Status</th>
+                                            <!-- <th>Role</th> -->
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
@@ -61,22 +61,29 @@
                                             <td><?= $nomor++;?></td>
                                             <td><?= $data['nama'];?></td>
                                             <td><?= $data['username'];?></td>
-                                            <td><?= $data['alamat'];?></td>
                                             <td><?= $data['hp'];?></td>
-                                            <td align="center">
+                                            <!-- <td align="center">
                                             <?php if($data['status']=='1'){ ?>
                                               <a href="index.php?p=ganti_status_user&id=<?php echo $data['id_user'];?>&status=<?php echo $data['status'];?>" onClick="return confirm('Apakah Anda Yakin Menonaktifkan User Ini?')" class="btn btn-success mb-3" style="width: 100px"> <font color="white"> Aktif</font></a>
                                             <?php } elseif($data['status']=='0') { ?>
                                               <a href="index.php?p=ganti_status_user&id=<?php echo $data['id_user'];?>&status=<?php echo $data['status'];?>" onClick="return confirm('Apakah Anda Yakin Mengaktifkan User Ini?')" class="btn btn-danger mb-3" style="width: 100px"> <font color="white">Nonaktif</font></a>
                                             <?php } ?>
-                                          </td>
-                                            
+                                          </td> -->
+                                            <!-- <td>
+                                                <?php
+                                                    if($data['role'] != 'customer'){
+                                                        echo 'Admin';
+                                                    }else{
+                                                        echo 'Pelanggan';
+                                                    }
+                                                ?>
+                                            </td> -->
                                             <td align="center">
                                                 <a href="index.php?p=edit_user&id_user=<?php echo $data['id_user']; ?>" class="btn btn-warning mb-3"> <i class="fa fa-fw fa-pencil" style="color: white"></i> <font color="white">Edit</font></a>
                                             </td>
-                                            <td align="center">
+                                            <!-- <td align="center">
                                                 <a href="index.php?p=hapus_user&id_user=<?php echo $data['id_user']; ?>" onClick="return confirm('Apakah Anda Yakin Hapus Data?')" class="btn btn-danger mb-3"> <i class="fa fa-fw fa-trash" style="color: white"></i> <font color="white">Hapus</font></a>
-                                            </td>
+                                            </td> -->
                                         </tr>
 <?php
   }

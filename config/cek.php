@@ -1,7 +1,7 @@
 <?php
   session_start();
   if(!isset($_SESSION['username'])) {
-  header('location:../index.php'); }
+  header('location:../login.php'); }
   else { $username = $_SESSION['username']; }
   require_once("koneksi.php");
   $query = mysql_query("SELECT * FROM user WHERE username = '$username'");

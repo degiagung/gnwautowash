@@ -11,6 +11,7 @@ $password= md5($_POST['password']);
  $sql = "INSERT INTO user  
            ( 
         id_user, 
+        role,
 			  username,
 			  password,
         nama,
@@ -22,6 +23,7 @@ $password= md5($_POST['password']);
            VALUES  
            (  
         NULL,
+        'admin',
 			  '$username', 
         '$password', 
         '$nama', 

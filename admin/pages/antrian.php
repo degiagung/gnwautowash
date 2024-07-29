@@ -103,7 +103,7 @@
                 
                                                     $result2 = mysql_query("select * from type_mobil");
                                                     echo '<select name="type_mobil" class="form-control-rounded form-control" required="">';
-                                                    echo '<option value="">Pilih Type Mobil</option>';
+                                                    echo '<option value="">Pilih Tipe Mobil</option>';
                                                     while ($row2 = mysql_fetch_array($result2)) {
                                                         echo '<option value="' . $row2['type_mobil'] . '">' . $row2['type_mobil'] . '</option>';
                                                     }
@@ -391,7 +391,7 @@
                 
                                                     $result2 = mysql_query("select * from type_mobil");
                                                     echo '<select name="type_mobil" class="form-control-rounded form-control" required="">';
-                                                    echo '<option value="">Pilih Type Mobil</option>';
+                                                    echo '<option value="">Pilih Tipe Mobil</option>';
                                                     while ($row2 = mysql_fetch_array($result2)) {
                                                         echo '<option value="' . $row2['type_mobil'] . '">' . $row2['type_mobil'] . '</option>';
                                                     }
