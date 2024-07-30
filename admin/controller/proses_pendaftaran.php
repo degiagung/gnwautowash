@@ -18,6 +18,7 @@
 
 	if ($_SESSION['role'] == 'customer') {
 		$iduser = $_SESSION['id_user'];
+		$nama = $_SESSION['nama'];
 		$queryy = "insert into $tbl(id_customer, nama, nomor_plat, type_mobil, id_user) values('$id_customer','$nama', '$nomor_plat', '$type_mobil',$iduser)" ;
 
 	}else{
@@ -40,8 +41,15 @@
 	$cek2= mysql_query($query." and id_customer in (select id_customer from $tbl where id_user = $iduser)");
 	$htg = mysql_fetch_array($cek);
 	$htg2= mysql_fetch_array($cek2);
-	$jumlahnya = $htg['jumlah_daftar'];
-	if($htg2['jumlah_daftar'] >= 5 && $_SESSION['role'] == 'customer')
+	$jumlahnya = 0 ;
+	if($htg){
+		$jumlahnya = $htg['jumlah_daftar'];
+	}
+	$jumlahnya2 = 0 ;
+	if($htg2){
+		$jumlahnya2 = $htg2['jumlah_daftar'] ;
+	}
+	if($jumlahnya2 >= 5 && $_SESSION['role'] == 'customer')
 	{
 ?>
 		<script language="JavaScript">
@@ -70,7 +78,7 @@ document.location='index.php?p=antrian'</script>
 $queryy = "insert into $tbl(id_customer, nama, nomor_plat, type_mobil, id_user) values('$id_customer','$nama', '$nomor_plat', '$type_mobil','$iduser')" ;
 $hasill = mysql_query($queryy);
 
-$query = "insert into pendaftaran(id_pendaftaran, no_antrian, id_customer, tgl_pendaftaran, jam_pendaftaran, total_biaya, status) values(NULL,'$no_antrian', '$id_customer', '$tgl_pendaftaran', '$jam_pendaftaran', '$total_biaya', 'Pendaftaran')" ;
+$query = "insert into pendaftaran(id_pendaftaran, no_antrian, id_customer, tgl_pendaftaran, jam_pendaftaran, total_biaya, status, id_jenis_cucian) values(NULL,'$no_antrian', '$id_customer', '$tgl_pendaftaran', '$jam_pendaftaran', '$total_biaya', 'Pendaftaran', $id_jenis_cucian)" ;
 $hasil = mysql_query($query);
 }
 //see the result
