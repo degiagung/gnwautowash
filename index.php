@@ -413,38 +413,49 @@ session_start();
                     echo date('d').' '.$bulan.' '.date('Y');
                   ?></center>
                 </span><br>
-                <table class="table">
-                      <thead>
-                          <tr>
-                              
-                                      <?php
-                                      
-                                          date_default_timezone_set('Asia/Jakarta');
-                                          $result2 = mysql_query("
-                                                          select 
-                                                              TIME_FORMAT(jam,'%H:%i') as jam 
-                                                          from
-                                                              jam_operasional a
-                                                              left join (select jam_pendaftaran,COUNT(*) jml from pendaftaran where tgl_pendaftaran = CURRENT_DATE AND status != 'Batal' GROUP BY jam_pendaftaran) b ON b.jam_pendaftaran = a.jam and b.jml <= 3
-                                                          where 
-                                                              jam >= now()"
-                                                      );
+                <?php
+                  $queryy = mysql_query("select *,end + INTERVAL 1 DAY as buka from status_operasional where status = 'tutup' AND now() BETWEEN start and end+ INTERVAL 1 DAY ");
+                    $hasil  = mysql_fetch_array($queryy);
+                    
+                    if($hasil){
+                        echo '
+                        <br><b style="color:red">Mohon Maaf Gnw Auto Wash Buka Kembali Pada Tanggal '.$hasil['buka'].'</b>
+                        ';
+                    }else{
+                ?>
+                  <table class="table">
+                        <thead>
+                            <tr>
+                                
+                                        <?php
+                                        
+                                            date_default_timezone_set('Asia/Jakarta');
+                                            $result2 = mysql_query("
+                                                            select 
+                                                                TIME_FORMAT(jam,'%H:%i') as jam 
+                                                            from
+                                                                jam_operasional a
+                                                                left join (select jam_pendaftaran,COUNT(*) jml from pendaftaran where tgl_pendaftaran = CURRENT_DATE AND status != 'Batal' GROUP BY jam_pendaftaran) b ON b.jam_pendaftaran = a.jam and b.jml <= 3
+                                                            where 
+                                                                jam >= now()"
+                                                        );
 
-                                          if(mysql_num_rows($result2) >= 1){
-                                            while ($row2 = mysql_fetch_array($result2)) {
+                                            if(mysql_num_rows($result2) >= 1){
+                                              while ($row2 = mysql_fetch_array($result2)) {
 
-                                                  echo '<th style="background:#f9d018;font-weight:bold;text-align:center;border:3px solid #fff;">'.$row2['jam'].'</th>';
+                                                    echo '<th style="background:#f9d018;font-weight:bold;text-align:center;border:3px solid #fff;">'.$row2['jam'].'</th>';
+                                              }
+
+                                            }else{
+                                                    echo '<th style="background:#f9d018;font-weight:bold;text-align:center;">Jadwal tidak tersedia</th>';
                                             }
 
-                                          }else{
-                                                  echo '<th style="background:#f9d018;font-weight:bold;text-align:center;">Jadwal tidak tersedia</th>';
-                                          }
-
-                                      ?>
-                                      
-                          </tr>
-                      </thead>
-                </table>
+                                        ?>
+                                        
+                            </tr>
+                        </thead>
+                  </table>
+                  <?php } ?>
             </div>
           </div><!-- End Info Item -->
           <div class="col-lg-6">

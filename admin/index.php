@@ -42,6 +42,7 @@ date_default_timezone_set('Asia/Jakarta');
 <script
     src="https://cdn.rawgit.com/rainabba/jquery-table2excel/1.1.0/dist/jquery.table2excel.min.js"></script>
 
+    <script src="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.min.js"></script>
     <!-- Left Panel -->
 
     <aside id="left-panel" class="left-panel">
@@ -156,32 +157,47 @@ date_default_timezone_set('Asia/Jakarta');
       ========================================================
       -->
 
-
-      <?php
-$pages_dir = 'pages';
-if (!empty($_GET['p'])) {
-    
-    if (!empty($_GET['c'])) {
-        $pages_dir = 'controller';
-    }
-
-        $pages = scandir($pages_dir, 0);
-        unset($pages[0], $pages[1]);
-    
-        $p = $_GET['p'];
-        if (in_array($p . '.php', $pages)) {
-            include $pages_dir . '/' . $p . '.php';
-        } else {
-            ?>
-            <script language="JavaScript">
-            document.location='index.php?p=error-404'
-            </script>
-            <?php
+<?php
+    $pages_dir = 'pages';
+    if (!empty($_GET['p'])) {
+        
+        if (!empty($_GET['c'])) {
+            $pages_dir = 'controller';
         }
 
-} else {
-    include $pages_dir . '/home.php';
-}
+            $pages = scandir($pages_dir, 0);
+            unset($pages[0], $pages[1]);
+        
+            $p = $_GET['p'];
+            if (in_array($p . '.php', $pages)) {
+                
+                if($p == 'antrian'){
+                    $queryy = mysql_query("select *,end + INTERVAL 1 DAY as buka from status_operasional where status = 'tutup' AND now() BETWEEN start and end+ INTERVAL 1 DAY ");
+                    $hasil  = mysql_fetch_array($queryy);
+                    if(isset($hasil)){
+                    ?>
+                        <script>
+                            swal("Oops!","Saat ini Masih Tutup", "warning");
+                            window.onclick = function() {
+                                document.location='index.php?p=home';
+                            }
+                        </script> 
+                    <?php
+                        return false ;   
+                    }
+                }
+                include $pages_dir . '/' . $p . '.php';
+            } else {
+                ?>
+                <script language="JavaScript">
+                document.location='index.php?p=error-404'
+                </script>
+                <?php
+            }
+
+    } else {
+        include $pages_dir . '/home.php';
+    }
 ?>
 
 
@@ -241,11 +257,12 @@ if (!empty($_GET['p'])) {
     <script src="https://common.olemiss.edu/_js/sweet-alert/sweet-alert.min.js"></script>
 
 
-    <!-- <script type="text/javascript">
+    <script type="text/javascript">
         $(document).ready(function() {
           $('#bootstrap-data-table-export').DataTable();
+          $('#bootstrap-data-table').DataTable();
       } );
-  </script> -->
+  </script>
 
 
 </body>

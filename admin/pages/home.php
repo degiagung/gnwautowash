@@ -26,20 +26,21 @@
                                    
                                         // print_r($t);die;
                                         $tgl = date("Y-m-d");
-                                        $queryy = mysql_query("select *,end + INTERVAL 1 DAY as buka from status_operasional where $tgl >= start AND $tgl <= end ;");
-                                        $hasil  = mysql_fetch_array($query);
+                                        $queryy = mysql_query("select *,end + INTERVAL 1 DAY as buka from status_operasional where status = 'tutup' AND now() BETWEEN start and end+ INTERVAL 1 DAY ");
+                                        $hasil  = mysql_fetch_array($queryy);
+                                        
                                         if($hasil){
                                             echo '
-                                            <b>Mohon Maaf Gnw Auto Wash Buka Kembali Pada Tanggal'.$hasil['buka'].'</b>
+                                            <br><b style="color:red">Mohon Maaf Gnw Auto Wash Buka Kembali Pada Tanggal '.$hasil['buka'].'</b>
                                             ';
                                         }else{
                                             if(date('G') >= 8 && date('G') <= 20){
                                                 echo '
-                                                <b>Hari Ini Buka Ya ,Silahkan Untuk <a style="color:blue;" href="index.php?p=antrian"> <b><u>Daftar Antrian </b></u></a></b>
+                                                <b style="color:green">Hari Ini Buka Ya ,Silahkan Untuk <a style="color:blue;" href="index.php?p=antrian"> <b><u>Daftar Antrian </b></u></a></b>
                                                 ';
                                             }else{
                                                 echo '
-                                                <b>Mohon Maaf Jam Operasional Akan Buka Kembali Besok Pukul 08:00</b>
+                                                <b style="color:red">Mohon Maaf Jam Operasional Akan Buka Kembali Besok Pukul 08:00</b>
                                                 ';
                                             }
                                         }
@@ -85,10 +86,105 @@
                                     <strong class="card-title"><center>SELAMAT DATANG</center></strong>
                                 </div>
                                 <div class="card-body" align="center">
-                                    <br><br><br><br><br>
+                                    <br><br>
                                     Selamat Datang <b><u><?= $_SESSION['nama'];?></u></b> Di Halaman Admin Panel GNW AUTO WASH
                                     <br>
-                                    <br><br><br><br>
+                                    <br><br>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="card" style="border: 8px solid #f9d018;">
+                                <div class="card-header">
+                                    <strong class="card-title"><center>JADWAL LIBUR</center></strong>
+                                </div>
+                                <div class="card-body" align="center">
+                                   <form action="" method="POST">
+                                        <div class="table-responsive">
+                                            <table width="100%">
+                                                <tr>
+                                                    <td>
+                                                        <label for="text-input" class=" form-control-label">Tgl Awal</label>
+                                                        <input type="date" name="tgl_awal_tutup" class="form-control"min="<?= date('Y-m-d')?>">
+                                                    </td>
+                                                    <td>
+                                                        <label for="text-input" class=" form-control-label">Tgl Akhir</label>
+                                                        <input type="date" name="tgl_akhir_tutup" class="form-control"min="<?= date('Y-m-d')?>">
+                                                    </td>
+
+                                                    <td width="15%">
+                                                        <br>
+                                                        <button type="submit" class="btn btn-warning" >Set Jadwal</button>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                                    </form>
+
+                                    <br>
+
+
+                                    <?php
+                                        if (isset($_POST['tgl_awal_tutup']) && isset($_POST['tgl_akhir_tutup'])) {
+                                         
+                                            if($_POST['tgl_awal_tutup'] != '' && $_POST['tgl_akhir_tutup'] != ''){
+                                                $awal   = $_POST['tgl_awal_tutup'] ;
+                                                $akhir  = $_POST['tgl_akhir_tutup'] ;
+                                                $sql    = "INSERT INTO status_operasional (status,start,end) VALUES ('tutup','$awal','$akhir')";
+                                                $hasil=mysql_query($sql);
+
+                                                if($hasil){
+                                                    ?>
+                                                        <script language="JavaScript">
+                                                        alert('Data Berhasil Ditambahkan');
+                                                        document.location='index.php?p=home'</script>
+                                                    <?php
+                                                }
+                                            }
+                                        }                    
+                                    ?>
+                                </div>
+                                <div class="card-body" align="center">
+                                    <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                                        <?php
+                                        include ("../config/koneksi.php");
+                                        $sqll = "select * from status_operasional order by start desc";
+                                        $resultt = mysql_query($sqll);
+                                            if(mysql_num_rows($resultt) > 0){
+                                                ?>                                            
+                                                <thead>
+                                                    <tr>
+                                                        <th>No.</th>
+                                                        <th>Tanggal Awal</th>
+                                                        <th>Tanggal Akhir</th>
+                                                        <th>Aksi</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <?php
+                                                    $nomor=1;
+                                                    while($data = mysql_fetch_array($resultt)){
+                                                    ?>                                          
+                                                        <tr>
+                                                            <td><?= $nomor++;?></td>
+                                                            <td><?= $data['start'];?></td>
+                                                            <td><?= $data['end'];?></td>
+                                                            
+                                                            <td align="center">
+                                                                <a href="index.php?c=controller&p=hapus_tutup&id=<?php echo $data['id']; ?>" onClick="return confirm('Apakah Anda Yakin Hapus Data?')" class="btn btn-danger mb-3"> <i class="fa fa-fw fa-trash" style="color: white"></i> <font color="white">Hapus</font></a>
+                                                            </td>
+                                                        </tr>
+                                                    <?php
+                                                    }
+                                                    ?>
+                                                </tbody>
+                                            </table>
+                                            <?php
+                                            }else{
+                                                echo 'Data not found!';
+                                                echo mysql_error();
+                                            }
+                                            ?> 
                                 </div>
                             </div>
                         </div>

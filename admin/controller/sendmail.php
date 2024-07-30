@@ -22,7 +22,7 @@ try {
     $bayar      = $_POST['bayar'];
     $kembali    = $_POST['kembali'];
     
-    $email      = 'degijustin4@gmail.com';
+    // $email      = 'degijustin4@gmail.com';
     // $nama       = 'dd';
     // $tanggal    = 'dd';
     // $antrian    = 'dd';

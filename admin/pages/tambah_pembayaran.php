@@ -136,7 +136,7 @@ $voucher   = $dt['voucher'];
                                         <div class="row form-group">
                                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">Uang Yang Dibayarkan</label></div>
                                             <div class="col-12 col-md-6">
-                                                <input type="text" id="txt1" class="form-control" disabled value="LUNAS DENGAN VOUCHER" >
+                                                <input type="text" class="form-control" disabled value="LUNAS DENGAN VOUCHER" >
                                             </div>
                                             <div class="col-12 col-md-2">
                                                 <a class="btn btn-danger" href="index.php?c=controller&p=reset_voucher&from=admin&id_user=<?= $id_user?>&id_pendaftaran=<?= $id_pendaftaran?>" onClick="return confirm('Apakah Anda Yakin Reset Voucher ?')">Reset Voucher</a>
@@ -154,7 +154,7 @@ $voucher   = $dt['voucher'];
                                         <div class="row form-group">
                                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">Kembalian</label></div>
                                             <div class="col-12 col-md-9">
-                                                <input type="text" name="kembali" class="form-control" required="" readonly="" id="txt3"  onkeyup="sum();">
+                                                <input type="text" name="kembali" class="form-control" required="" readonly="" id="txt3" >
                                             </div>
                                         </div>
                                     </div>
@@ -187,13 +187,20 @@ $voucher   = $dt['voucher'];
         </div><!-- .content -->
 
 <script>
+    $("#voucheraktif").hide();
     function sum() {
         var txtFirstNumberValue  = document.getElementById('txt1').value;
         var txtSecondNumberValue = document.getElementById('txt2').value;
         var voucher              = document.getElementById('voucher').value;
-        var result = parseInt(txtFirstNumberValue) - parseInt(txtSecondNumberValue);
+        var result = parseInt(txtFirstNumberValue.replace(/[^,\d]/g, '')) - parseInt(txtSecondNumberValue.replace(/[^,\d]/g, ''));
+        if (!isNaN(txtFirstNumberValue)) {
+            convertrp('txt1');
+        }
+        if (!isNaN(txtSecondNumberValue)) {
+            convertrp('txt2');
+        }
         if (!isNaN(result)) {
-            document.getElementById('txt3').value = result;
+            document.getElementById('txt3').value = keyuprp(result.toString());
         }
         myvoucher();
         

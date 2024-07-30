@@ -1,14 +1,17 @@
 <?php 
 require "../config/koneksi.php"; 
   
+
+	// include("sendmail.php");
+	// die;
 $id_pendaftaran=$_POST['id_pendaftaran'];
 $id_user=$_POST['id_user'];
 $status=$_POST['status'];
 $no_nota=$_POST['no_nota'];
 $tanggal=$_POST['tanggal'];
-$total=$_POST['total'];
-$bayar=$_POST['bayar'];
-$kembali=$_POST['kembali'];
+$total=str_replace('.,','',$_POST['total']);
+$bayar=str_replace('.,','',$_POST['bayar']);
+$kembali=str_replace('.,','',$_POST['kembali']);
 $nama_pencuci=$_POST['nama_pencuci'];
 $nomor_plat=$_POST['nomor_plat'];
 $voucher=$_POST['voucher'];
