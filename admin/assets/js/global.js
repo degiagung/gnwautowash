@@ -80,7 +80,6 @@ function myvoucher() {
 
 function convertrp(id) {
     value = $("#"+id).val();
-    console.log(keyuprp(value));
     $("#"+id).val(keyuprp(value));
 }
 

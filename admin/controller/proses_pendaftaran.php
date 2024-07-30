@@ -49,7 +49,7 @@
 	if($htg2){
 		$jumlahnya2 = $htg2['jumlah_daftar'] ;
 	}
-	if($jumlahnya2 >= 5 && $_SESSION['role'] == 'customer')
+	if($jumlahnya2 >= 4 && $_SESSION['role'] == 'customer')
 	{
 ?>
 		<script language="JavaScript">

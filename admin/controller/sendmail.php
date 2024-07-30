@@ -55,7 +55,7 @@ try {
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
     $mail->Subject = 'BUKTI PEMBAYARAN GNW AUTO WASH';
-    $mail->Body     = '<div style="font-family: cursive;">';
+    $mail->Body     = '<div style="font-family: algerian;">';
     $mail->Body     .= '<center><h2 ><b>GNW AUTO WASH</h2><br>';
     $mail->Body     .= 'Jl. Nanjung No.72, Nanjung, <br>
                         Kec. Margaasih, Kabupaten Bandung <br>
@@ -107,7 +107,7 @@ try {
                             </table>
     ';
     $mail->Body    .= '<br>
-                            "TERIMAKASIH TELAH MENGGUNAKAN JASA KAMI, KAMI TUNGGU KEMBALI KEDATANGANNYA
+                            TERIMAKASIH TELAH MENGGUNAKAN JASA KAMI, KAMI TUNGGU KEMBALI KEDATANGANNYA
                                 <br>INFORMASI GNW AUTOWASH : <b>0822-2888-4990</b>
                                 <h3 style="margin-left: 22%;">@gnw_autowash</center>
     </div>';

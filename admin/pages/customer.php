@@ -35,7 +35,7 @@
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
 <?php
   include ("../config/koneksi.php");
-  $sqll = "select * from customer order by id_customer desc";
+  $sqll = "select a.*,b.hp from customer a LEFT JOIN user b ON a.id_user = b.id_user order by a.id_customer desc";
   $resultt = mysql_query($sqll);
     if(mysql_num_rows($resultt) > 0){
 ?>                                            
@@ -57,7 +57,7 @@
                                         <tr>
                                             <td><?= $nomor++;?></td>
                                             <td><?= $data['nama'];?></td>
-                                            <td><?= $data['no_hp'];?></td>
+                                            <td><?= $data['hp'];?></td>
                                             <!-- <td><?= $data['alamat'];?></td> -->
                                             <td><?= $data['nomor_plat'];?></td>
                                             <td><?= $data['type_mobil'];?></td>
