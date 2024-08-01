@@ -34,7 +34,7 @@
                                             <br><b style="color:red">Mohon Maaf Gnw Auto Wash Buka Kembali Pada Tanggal '.$hasil['buka'].'</b>
                                             ';
                                         }else{
-                                            if(date('G') >= 8 && date('G') <= 20){
+                                            if(date('G') >= 0 && date('G') <= 20){
                                                 echo '
                                                 <b style="color:green">Hari Ini Buka Ya ,Silahkan Untuk <a style="color:blue;" href="index.php?p=antrian"> <b><u>Daftar Antrian </b></u></a></b>
                                                 ';
