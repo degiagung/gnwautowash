@@ -2,7 +2,7 @@
 require "../config/koneksi.php"; 
   
 $jenis_cucian=$_POST['jenis_cucian'];
-$biaya=$_POST['biaya'];
+$biaya=str_replace('.,','',$_POST['biaya']);
 
  $sql = "INSERT INTO jenis_cucian  
            ( 

@@ -45,7 +45,7 @@
                                     <div class="row form-group">
                                         <div class="col col-md-3"><label for="text-input" class=" form-control-label">Biaya</label></div>
                                         <div class="col-12 col-md-9">
-                                            <input type="number" id="text-input" min="0" name="biaya" class="form-control" required="">
+                                            <input type="text" id="biaya" onkeyup="sum();" name="biaya" class="form-control" required="">
                                         </div>
                                     </div>
 
@@ -64,3 +64,13 @@
                 </div>
             </div><!-- .animated -->
         </div><!-- .content -->
+
+        <script>
+            function sum() {
+                var txtFirstNumberValue  = document.getElementById('biaya').value;
+                if (!isNaN(txtFirstNumberValue)) {
+                    convertrp('biaya');
+                }
+                
+            }
+        </script>
