@@ -99,7 +99,7 @@
                                     <strong class="card-title"><center>JADWAL LIBUR</center></strong>
                                 </div>
                                 <div class="card-body" align="center">
-                                   <form action="" method="POST">
+                                   <form action="index.php?c=controller&p=setjadwal" method="post" enctype="multipart/form-data" class="form-horizontal">
                                         <div class="table-responsive">
                                             <table width="100%">
                                                 <tr>
@@ -121,27 +121,6 @@
                                         </div>
                                     </form>
 
-                                    <br>
-
-
-                                    <?php
-                                        if ($_POST['tgl_awal_tutup'] && $_POST['tgl_akhir_tutup']) {
-                                            if($_POST['tgl_awal_tutup'] != '' && $_POST['tgl_akhir_tutup'] != ''){
-                                                $awal   = $_POST['tgl_awal_tutup'] ;
-                                                $akhir  = $_POST['tgl_akhir_tutup'] ;
-                                                $sql    = "INSERT INTO status_operasional (status,start,end) VALUES ('tutup','$awal','$akhir')";
-                                                $hasil=mysql_query($sql);
-
-                                                if($hasil){
-                                                    ?>
-                                                        <script language="JavaScript">
-                                                        alert('Data Berhasil Ditambahkan');
-                                                        document.location='index.php?p=home'</script>
-                                                    <?php
-                                                }
-                                            }
-                                        }                    
-                                    ?>
                                 </div>
                                 <div class="card-body" align="center">
                                     <table id="bootstrap-data-table" class="table table-striped table-bordered">
