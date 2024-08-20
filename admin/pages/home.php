@@ -125,8 +125,7 @@
 
 
                                     <?php
-                                        if (isset($_POST['tgl_awal_tutup']) && isset($_POST['tgl_akhir_tutup'])) {
-                                         
+                                        if ($_POST['tgl_awal_tutup'] && $_POST['tgl_akhir_tutup']) {
                                             if($_POST['tgl_awal_tutup'] != '' && $_POST['tgl_akhir_tutup'] != ''){
                                                 $awal   = $_POST['tgl_awal_tutup'] ;
                                                 $akhir  = $_POST['tgl_akhir_tutup'] ;
