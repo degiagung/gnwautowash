@@ -15,11 +15,11 @@
 	// $total_biaya=$_POST['total_biaya'];
 	$total_biaya=0;
 	$tgl_pendaftaran=$_POST['tgl_pendaftaran'];
-
+	$createdby = $_SESSION['id_user'] ;
 	if ($_SESSION['role'] == 'customer') {
 		$iduser = $_SESSION['id_user'];
 		$nama = $_SESSION['nama'];
-		$queryy = "insert into $tbl(id_customer, nama, nomor_plat, type_mobil, id_user) values('$id_customer','$nama', '$nomor_plat', '$type_mobil',$iduser)" ;
+		$queryy = "insert into $tbl(id_customer, nama, nomor_plat, type_mobil, id_user, created_by) values('$id_customer','$nama', '$nomor_plat', '$type_mobil',$iduser,$createdby)" ;
 
 	}else{
 		$iduser = $_POST['id_user'];
@@ -28,7 +28,7 @@
 		if ($iduser == 't') { 
 			$nama= 'Pendaftaran Offline '-$nomor_plat;
 			$iduser = '99999999999';
-			$queryy = "insert into $tbl(id_customer, nama, nomor_plat, type_mobil) values('$id_customer','$nama', '$nomor_plat', '$type_mobil')" ;
+			$queryy = "insert into $tbl(id_customer, nama, nomor_plat, type_mobil, created_by) values('$id_customer','$nama', '$nomor_plat', '$type_mobil',$createdby)" ;
 
 		}
 	}
