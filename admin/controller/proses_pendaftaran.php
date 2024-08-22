@@ -19,7 +19,7 @@
 	if ($_SESSION['role'] == 'customer') {
 		$iduser = $_SESSION['id_user'];
 		$nama = $_SESSION['nama'];
-		$queryy = "insert into $tbl(id_customer, nama, nomor_plat, type_mobil, id_user, created_by) values('$id_customer','$nama', '$nomor_plat', '$type_mobil',$iduser,$createdby)" ;
+		$queryy = "insert into $tbl(id_customer, nama, nomor_plat, type_mobil, id_user) values('$id_customer','$nama', '$nomor_plat', '$type_mobil',$iduser)" ;
 
 	}else{
 		$iduser = $_POST['id_user'];
@@ -28,7 +28,7 @@
 		if ($iduser == 't') { 
 			$nama= 'Pendaftaran Offline '-$nomor_plat;
 			$iduser = '99999999999';
-			$queryy = "insert into $tbl(id_customer, nama, nomor_plat, type_mobil, created_by) values('$id_customer','$nama', '$nomor_plat', '$type_mobil',$createdby)" ;
+			$queryy = "insert into $tbl(id_customer, nama, nomor_plat, type_mobil) values('$id_customer','$nama', '$nomor_plat', '$type_mobil')" ;
 
 		}
 	}
@@ -45,16 +45,16 @@
 	if($htg){
 		$jumlahnya = $htg['jumlah_daftar'];
 	}
-	$jumlahnya2 = 0 ;
+	$jumlahnya2 = 5 ;
 	if($htg2){
 		$jumlahnya2 = $htg2['jumlah_daftar'] ;
 	}
 	if($jumlahnya2 >= 4 && $_SESSION['role'] == 'customer')
 	{
-?>
+		?>
 		<script language="JavaScript">
-		alert('Maaf, Anda sudah Melakukan Antrian');
-		document.location='index.php?pantrian'</script>
+			alert('Maaf, Anda sudah Melakukan Antrian');
+			document.location='index.php?p=antrian'</script>
 <?php 	
 	}
 if($jumlahnya!=0){
@@ -78,7 +78,7 @@ document.location='index.php?p=antrian'</script>
 $queryy = "insert into $tbl(id_customer, nama, nomor_plat, type_mobil, id_user) values('$id_customer','$nama', '$nomor_plat', '$type_mobil','$iduser')" ;
 $hasill = mysql_query($queryy);
 
-$query = "insert into pendaftaran(id_pendaftaran, no_antrian, id_customer, tgl_pendaftaran, jam_pendaftaran, total_biaya, status, id_jenis_cucian) values(NULL,'$no_antrian', '$id_customer', '$tgl_pendaftaran', '$jam_pendaftaran', '$total_biaya', 'Pendaftaran', $id_jenis_cucian)" ;
+$query = "insert into pendaftaran(id_pendaftaran, no_antrian, id_customer, tgl_pendaftaran, jam_pendaftaran, total_biaya, status, id_jenis_cucian,created_by) values(NULL,'$no_antrian', '$id_customer', '$tgl_pendaftaran', '$jam_pendaftaran', '$total_biaya', 'Pendaftaran', $id_jenis_cucian,$createdby)" ;
 $hasil = mysql_query($query);
 }
 //see the result

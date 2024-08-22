@@ -228,7 +228,7 @@
                                         <div class="row form-group">
                                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">Plat Nomor</label></div>
                                             <div class="col-12 col-md-6">
-                                                <input type="text" class="form-control-rounded form-control" placeholder="D123MA" name="nomor_plat">
+                                                <input type="text" class="form-control-rounded form-control"  name="nomor_plat">
                                             </div>
                                             <div class="col-12 col-md-3">                                        
                                                 <button type="submit" class="btn btn-success" style="width:100%;">Cari</button>
@@ -317,6 +317,62 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="col-md-12">
+                        <div class="card" style="border: 8px solid #f9d018;">
+                            <div class="card-header">
+                                <strong class="card-title">Data Antrian Hari Ini</strong>
+                            </div>
+                            <div class="card-body">
+                                <table id="bootstrap-data-table" class="table table-striped table-bordered">
+                                    <?php
+                                    include ("../config/koneksi.php");
+                                    $sqll = "
+                                        select cu.nomor_plat,cu.type_mobil,pe.no_antrian,jc.jenis_cucian,pe.jam_pendaftaran from 
+                                            pendaftaran pe
+                                            left join jenis_cucian jc on jc.id_jenis_cucian = pe.id_jenis_cucian  
+                                            left join customer cu on cu.id_customer = pe.id_customer
+                                    ";
+                                    $resultt = mysql_query($sqll);
+                                        if(mysql_num_rows($resultt) > 0){
+                                    ?>                                            
+                                    <thead>
+                                        <tr>
+                                            <th>No.</th>
+                                            <th>No. Plat</th>
+                                            <th>Type Mobil</th>
+                                            <th>No Antrian</th>
+                                            <th>Jenis Cucian</th>
+                                            <th>Jam Pencucian</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                        $nomor=1;
+                                        while($data = mysql_fetch_array($resultt)){
+                                        ?>                                          
+                                        <tr>
+                                            <td><?= $nomor++;?></td>
+                                            <td><?= $data['nomor_plat'];?></td>
+                                            <td><?= $data['type_mobil'];?></td>
+                                            <td><?= $data['no_antrian'];?></td>
+                                            <td><?= $data['jenis_cucian'];?></td>
+                                            <td><?= $data['jam_pendaftaran'];?></td>
+                                        </tr>
+                                        <?php
+                                        }
+                                        ?>
+                                    </tbody>
+                                </table>
+                                    <?php
+                                    }else{
+                                        echo 'Data not found!';
+                                        echo mysql_error();
+                                    }
+                                    ?>            
+                            </div>
+                        </div>
+                    </div>
                         
                     <?php }
                     }else{?>
