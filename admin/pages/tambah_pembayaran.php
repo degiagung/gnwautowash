@@ -202,7 +202,7 @@ $voucher   = $dt['voucher'];
         if (!isNaN(result)) {
             document.getElementById('txt3').value = keyuprp(result.toString());
         }
-        myvoucher();
+        myvoucher($("#voucher").val(),$("#txt2").val());
         
     }
     

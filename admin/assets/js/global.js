@@ -64,12 +64,8 @@ function test(params) {
     
 }
 
-function myvoucher() {
-        
-    var txtSecondNumberValue = document.getElementById('txt2').value;
-    var voucher              = document.getElementById('voucher').value;
-    console.log(voucher);
-    if (voucher == 'aktif' && txtSecondNumberValue <= 60000) {
+function myvoucher(voucher,txtSecondNumberValue) {
+    if (voucher == 'aktif' && txtSecondNumberValue.replaceAll('.','') <= 60000) {
         $("#voucheraktif").show();
         $("#vouchergaaktif").hide();
     }else{
