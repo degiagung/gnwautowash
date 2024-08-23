@@ -327,11 +327,14 @@
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
                                     <?php
                                     include ("../config/koneksi.php");
+                                    $iduser = $_SESSION['id_user'];
                                     $sqll = "
                                         select cu.nomor_plat,cu.type_mobil,pe.no_antrian,jc.jenis_cucian,pe.jam_pendaftaran from 
                                             pendaftaran pe
                                             left join jenis_cucian jc on jc.id_jenis_cucian = pe.id_jenis_cucian  
                                             left join customer cu on cu.id_customer = pe.id_customer
+                                        where cu.id_user = $iduser and pe.tgl_pendaftaran = current_date
+                                        order by pe.id_pendaftaran asc 
                                     ";
                                     $resultt = mysql_query($sqll);
                                         if(mysql_num_rows($resultt) > 0){
