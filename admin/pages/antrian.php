@@ -318,7 +318,7 @@
                             </div>
                         </div>
 
-                        <div class="col-md-12">
+                        <div class="col-md-12" style="display:none">
                         <div class="card" style="border: 8px solid #f9d018;">
                             <div class="card-header">
                                 <strong class="card-title">Data Antrian Hari Ini</strong>
