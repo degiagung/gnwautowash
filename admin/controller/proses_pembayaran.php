@@ -9,9 +9,9 @@ $id_user=$_POST['id_user'];
 $status=$_POST['status'];
 $no_nota=$_POST['no_nota'];
 $tanggal=$_POST['tanggal'];
-$total=str_replace('.,','',$_POST['total']);
-$bayar=str_replace('.,','',$_POST['bayar']);
-$kembali=str_replace('.,','',$_POST['kembali']);
+$total=str_replace('.','',$_POST['total']);
+$bayar=str_replace('.','',$_POST['bayar']);
+$kembali=str_replace('.','',$_POST['kembali']);
 $nama_pencuci=$_POST['nama_pencuci'];
 $nomor_plat=$_POST['nomor_plat'];
 $voucher=$_POST['voucher'];
@@ -22,7 +22,7 @@ $voucher=$_POST['voucher'];
 	}
 	
 
-if($kembali < 0) {
+if($bayar < $total) {
 	?>
 	<script language="JavaScript">
 	alert('Jumlah pembayaran kurang dari total biaya ');

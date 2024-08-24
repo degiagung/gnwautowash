@@ -133,7 +133,9 @@ error_reporting(0);
                                             Laporan Pencucian <br>
                                              <?= $juduljenis ?><br>
                                             GNW AUTO WASH <br>
-                                            Tanggal <?= $awal;?> Sampai <?= $akhir;?></b>
+                                            Tanggal <?= $awal;?> Sampai <?= $akhir;?><br><br>
+
+                                                Download By <?= $_SESSION['nama'].' '.date('Y-m-d H:i:s') ?>
                                         </p><br>
                                     
                                 <table id="laporan" class="table table-striped table-bordered">
@@ -155,7 +157,11 @@ error_reporting(0);
                                                 Laporan Pencucian <br>
                                                 <?= $juduljenis ?><br>
                                                 GNW AUTO WASH <br>
-                                                Tanggal <?= $awal;?> Sampai <?= $akhir;?></b>
+                                                Tanggal <?= $awal;?> Sampai <?= $akhir;?><br><br>
+
+                                                Download By <?= $_SESSION['nama'].' '.date('Y-m-d H:i:s') ?> 
+
+                                                </b>
                                             </p>
                                             </th>
                                         </tr>
@@ -184,7 +190,7 @@ error_reporting(0);
                                             <td><?= $data['nama'];?></td>
                                             <td><?= $data['nomor_plat'];?></td>
                                             <td><?= $data['jenis_cucian'];?></td>
-                                            <td><?= $data['total_biaya'];?></td>
+                                            <td><?= $data['total'];?></td>
                                         </tr>
                                         <?php
                                         }
