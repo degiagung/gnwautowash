@@ -134,8 +134,6 @@ error_reporting(0);
                                              <?= $juduljenis ?><br>
                                             GNW AUTO WASH <br>
                                             Tanggal <?= $awal;?> Sampai <?= $akhir;?><br><br>
-
-                                                Download By <?= $_SESSION['nama'].' '.date('Y-m-d H:i:s') ?>
                                         </p><br>
                                     
                                 <table id="laporan" class="table table-striped table-bordered">
