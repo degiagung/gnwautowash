@@ -37,7 +37,16 @@
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
 <?php
   include ("../config/koneksi.php");
-  $sqll = "select * from pendaftaran join customer using (id_customer) join jenis_cucian using (id_jenis_cucian) order by id_pendaftaran asc";
+  $sqll = "
+    select
+        pe.*,cu.*,jc.*,tr.total as total_biaya_tr
+    from 
+        pendaftaran pe 
+        join customer cu on pe.id_customer = cu.id_customer
+        join jenis_cucian jc on pe.id_jenis_cucian = jc.id_jenis_cucian
+        left join transaksi tr on pe.id_pendaftaran = tr.id_pendaftaran
+    order by pe.id_pendaftaran asc
+  ";
   $resultt = mysql_query($sqll);
     if(mysql_num_rows($resultt) > 0){
 ?>                                            
@@ -76,7 +85,7 @@
                                                 }
                                             ?>
                                             <td><?= $data['jenis_cucian'];?></td>
-                                            <td><?= $data['total_biaya'];?></td>
+                                            <td><?= $data['total_biaya_tr'];?></td>
                                             <td>
                                                 <form action="index.php?p=ganti_status" method="POST">
                                                     <input type="hidden" name="id_pendaftaran" value="<?php echo $data['id_pendaftaran'];?>">
