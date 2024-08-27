@@ -37,7 +37,7 @@
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
 <?php
   include ("../config/koneksi.php");
-  $sqll = "select * from pendaftaran join customer using (id_customer) join jenis_cucian using (id_jenis_cucian) order by id_pendaftaran desc";
+  $sqll = "select * from pendaftaran join customer using (id_customer) join jenis_cucian using (id_jenis_cucian) order by id_pendaftaran asc";
   $resultt = mysql_query($sqll);
     if(mysql_num_rows($resultt) > 0){
 ?>                                            

@@ -179,7 +179,7 @@ error_reporting(0);
                                         $nomor=1;
                                         $gtotal=0;
                                         while($data = mysql_fetch_array($resultt)){
-                                            $gtotal += $data['total_biaya'];
+                                            $gtotal += $data['total'];
                                         ?>                                          
                                         <tr>
                                             <td><?= $nomor++;?></td>

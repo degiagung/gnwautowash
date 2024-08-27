@@ -70,75 +70,82 @@ if (move_uploaded_file($_FILES["bukti"]["tmp_name"], $target_file)) {
 <?php
 }
 
-
- $sql = "INSERT INTO transaksi  
+$cektransaksi=mysql_query("select * from transaksi where id_pendaftaran = $id_pendaftaran");
+if($cektransaksi->num_rows == 0){
+	 $sql = "INSERT INTO transaksi  
            ( 
-        id_transaksi, 
-			  id_pendaftaran,
-			  no_nota,
-			  tanggal,
-			  bayar,
-			  kembali,
-			  total,
-			  status,
-			  id_user,
-			  nama_pencuci,
-			  bukti
-           ) 
- 
-           VALUES  
-           (  
-        NULL,
-			  '$id_pendaftaran', 
-			  '$no_nota', 
-			  '$tanggal',
-			  '$bayar',
-			  '$kembali',  
-			  '$total',
-			  '$status',
-			  '$id_user',
-			  '$nama_pencuci',
-			  '$target_file' 
-            )"; 
-
-$hasil=mysql_query($sql);
-
-$sql2 = "UPDATE pendaftaran SET status = 'Lunas' WHERE id_pendaftaran = '$id_pendaftaran'";
-$hasil2=mysql_query($sql2);
-
-//see the result
-if ($hasil2) {
-	mysql_query("UPDATE customer SET nomor_plat = '$nomor_plat' WHERE id_customer in( select id_customer from pendaftaran  where id_pendaftaran = '$id_pendaftaran')");
+			id_transaksi, 
+				id_pendaftaran,
+				no_nota,
+				tanggal,
+				bayar,
+				kembali,
+				total,
+				status,
+				id_user,
+				nama_pencuci,
+				bukti
+			) 
 	
-	if($voucher == 'aktif' && $total <= 60000){
-		mysql_query("update user set voucher = null , tgl_voucher = null where id_user =".$id_user);
-	}
-	$cekvoucher = "SELECT a.*,b.tanggal FROM user a join transaksi b on a.id_user = b.id_user WHERE b.status = 'Lunas' AND a.id_user = $id_user";
-	$hasilvoucher = mysql_query($cekvoucher);
-	if($hasilvoucher->num_rows >= 11){
-		
-		$getup11 	  = $cekvoucher." AND b.tanggal >= COALESCE(a.tgl_voucher,0) limit 11" ;
-		$getup11 	  = mysql_query($getup11);
-		if($getup11->num_rows >= 11){
-			$dataup11	  = mysql_fetch_array($getup11);
-			$tanggal	  = $dataup11['tanggal'] ;
-			mysql_query("UPDATE user SET voucher = 'aktif',tgl_voucher = '$tanggal' WHERE id_user = '$id_user'");
+			VALUES  
+			(  
+			NULL,
+				'$id_pendaftaran', 
+				'$no_nota', 
+				'$tanggal',
+				'$bayar',
+				'$kembali',  
+				'$total',
+				'$status',
+				'$id_user',
+				'$nama_pencuci',
+				'$target_file' 
+				)"; 
+
+	$hasil=mysql_query($sql);
+
+	$sql2 = "UPDATE pendaftaran SET status = 'Lunas' WHERE id_pendaftaran = '$id_pendaftaran'";
+	$hasil2=mysql_query($sql2);
+
+	//see the result
+	if ($hasil2) {
+		mysql_query("UPDATE customer SET nomor_plat = '$nomor_plat' WHERE id_customer in( select id_customer from pendaftaran  where id_pendaftaran = '$id_pendaftaran')");
+		if($voucher == 'aktif' && $total <= 60000){
+			$updtuser = "update user set voucher = null , tgl_voucher = null where id_user =".$id_user;
+			mysql_query($updtuser);
 		}
-	}elseif($hasilvoucher->num_rows == 10){
-		mysql_query("UPDATE user SET voucher = 'aktif',tgl_voucher = now() WHERE id_user = '$id_user'");
-	}
+		$cekvoucher = "SELECT a.*,b.tanggal FROM user a join transaksi b on a.id_user = b.id_user WHERE b.status = 'Lunas' AND a.id_user = $id_user";
+		$hasilvoucher = mysql_query($cekvoucher);
+		if($hasilvoucher->num_rows >= 11){
+			
+			$getup11 	  = $cekvoucher." AND b.tanggal >= COALESCE(a.tgl_voucher,0) limit 11 offset 11" ;
+			$getup11 	  = mysql_query($getup11);
+			if($getup11->num_rows >= 11){
+				$dataup11	  = mysql_fetch_array($getup11);
+				$tanggal	  = $dataup11['tanggal'] ;
+				mysql_query("UPDATE user SET voucher = 'aktif',tgl_voucher = '$tanggal' WHERE id_user = '$id_user'");
+			}
+		}elseif($hasilvoucher->num_rows == 10){
+			mysql_query("UPDATE user SET voucher = 'aktif',tgl_voucher = now() WHERE id_user = '$id_user'");
+		}
 
-	
-	include("sendmail.php");
-?>
+		
+		include("sendmail.php");
+	?>
 
-<script language="JavaScript">
-alert('Data Pembayaran Berhasil Ditambahkan');
-document.location='index.php?p=pendaftaran'</script>
-<?php
+	<script language="JavaScript">
+	alert('Data Pembayaran Berhasil Ditambahkan');
+	document.location='index.php?p=pendaftaran'</script>
+	<?php
+	}else{
+	?>
+	<script language="JavaScript">
+	alert('Data Pembayaran Gagal Ditambahkan');
+	document.location='index.php?p=tambah_pembayaran&id_pendaftaran=<?= $id_pendaftaran;?>'</script><?php }
 }else{
-?>
-<script language="JavaScript">
-alert('Data Pembayaran Gagal Ditambahkan');
-document.location='index.php?p=tambah_pembayaran&id_pendaftaran=<?= $id_pendaftaran;?>'</script><?php }
-?>
+	?>
+		<script language="JavaScript">
+		alert('Data Pembayaran Berhasil Ditambahkan');
+		document.location='index.php?p=pendaftaran'</script>
+	<?php
+}

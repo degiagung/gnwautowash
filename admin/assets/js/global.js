@@ -65,12 +65,14 @@ function test(params) {
 }
 
 function myvoucher(voucher,txtSecondNumberValue) {
+    $("#txt1").removeAttr('required');
     if (voucher == 'aktif' && txtSecondNumberValue.replaceAll('.','') <= 60000) {
         $("#voucheraktif").show();
         $("#vouchergaaktif").hide();
     }else{
         $("#voucheraktif").hide();
         $("#vouchergaaktif").show();
+        $("#txt1").attr('required','');
     }
 }
 

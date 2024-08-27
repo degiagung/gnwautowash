@@ -42,7 +42,7 @@
 	$htg = mysql_fetch_array($cek);
 	$htg2= mysql_fetch_array($cek2);
 	$jumlahnya = 0 ;
-	if($htg){
+	if($htg && $_SESSION['role'] == 'customer'){
 		$jumlahnya = $htg['jumlah_daftar'];
 	}
 	$jumlahnya2 = 5 ;
