@@ -4,7 +4,7 @@
                     <div class="col-sm-4">
                         <div class="page-header float-left">
                             <div class="page-title">
-                                <h1>Type Mobil</h1>
+                                <h1>Merek Mobil</h1>
                             </div>
                         </div>
                     </div>
@@ -13,7 +13,7 @@
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
                                     <li><a href="#">Merek Mobil</a></li>
-                                    <li class="active"><a href="#">Data Type Mobil</a></li>
+                                    <li class="active"><a href="#">Data Merek Mobil</a></li>
                                 </ol>
                             </div>
                         </div>
@@ -29,7 +29,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Data Type Mobil</strong>
+                                <strong class="card-title">Data Merek Mobil</strong>
                             </div>
                             <div class="card-body">
                                 <a href="index.php?p=tambah_type_mobil" class="btn btn-success mb-3"><i class="fa fa-plus" style="color: white"></i> <font size="3" color="white"><u>Tambah Data</u></font></a></div><br>
@@ -44,7 +44,7 @@
                                     <thead>
                                         <tr>
                                             <th>No.</th>
-                                            <th>Type Mobil</th>
+                                            <th>Merek Mobil</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
