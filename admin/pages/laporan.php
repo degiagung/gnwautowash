@@ -108,15 +108,10 @@ error_reporting(0);
                                     $juduljenis = " Semua Jenis" ;
                                 }
                                 
-                                if($status_voucher == 'all'){
-                                    $judulvoucher      = '' ;
-                                    $wherevoucher      = '' ;
-                                }else{
-                                    if($status_voucher == 'voucher'){
-                                        $wherevoucher      = " and voucher = 'aktif' ";
-                                    }else{
-                                        $wherevoucher      = "  ";
-                                    }
+                                $judulvoucher      = '' ;
+                                $wherevoucher      = '' ;
+                                if($status_voucher != 'all'){
+                                    $wherevoucher      = " and voucher = 'aktif' ";
                                     $judulvoucher      = $status_voucher  ;
                                 }
 
