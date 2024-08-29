@@ -118,6 +118,10 @@ error_reporting(0);
                                     $wherevoucher      = " and voucher = 'aktif' ";
                                     $judulvoucher      = 'Laporan Menggunakan Voucher'  ;
                                 }
+                                
+                                if($status_voucher == 'all'){
+                                    $judulvoucher      = 'Semus Status Voucher'  ;
+                                }
 
 
 
