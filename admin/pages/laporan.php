@@ -105,19 +105,20 @@ error_reporting(0);
                                     $jenis      = " and jenis_cucian = '$jenis_cuci' ";
                                     $juduljenis = $jenis_cuci ;
                                 }else{
-                                    $juduljenis = " Semua Jenis" ;
+                                    $juduljenis = " Semua Jenis Cucian" ;
                                 }
                                 
                                 $judulvoucher      = '' ;
                                 $wherevoucher      = '' ;
                                 if($status_voucher == 'tanpavoucher'){
-                                    $judulvoucher      = $status_voucher  ;
+                                    $judulvoucher      = 'Laporan Tanpa Voucher'  ;
                                 }
 
                                 if($status_voucher == 'voucher'){
                                     $wherevoucher      = " and voucher = 'aktif' ";
-                                    $judulvoucher      = $status_voucher  ;
+                                    $judulvoucher      = 'Laporan Menggunakan Voucher'  ;
                                 }
+
 
 
                                 if($tgl_awal == ''){
