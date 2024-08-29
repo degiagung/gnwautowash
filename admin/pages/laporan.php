@@ -180,7 +180,9 @@ error_reporting(0);
                                             <th>
                                                 <p align="center"><b>
                                                 Laporan Pencucian <br>
-                                                <?= $juduljenis ?><br>
+                                                <?= $juduljenis ?><br>                                             
+                                                <?= $judulvoucher ?><br>
+
                                                 GNW AUTO WASH <br>
                                                 Tanggal <?= $awal;?> Sampai <?= $akhir;?><br><br>
 
