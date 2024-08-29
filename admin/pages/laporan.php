@@ -110,7 +110,11 @@ error_reporting(0);
                                 
                                 $judulvoucher      = '' ;
                                 $wherevoucher      = '' ;
-                                if($status_voucher != 'all'){
+                                if($status_voucher == 'tanpavoucher'){
+                                    $judulvoucher      = $status_voucher  ;
+                                }
+
+                                if($status_voucher == 'voucher'){
                                     $wherevoucher      = " and voucher = 'aktif' ";
                                     $judulvoucher      = $status_voucher  ;
                                 }
