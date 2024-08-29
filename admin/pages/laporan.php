@@ -76,6 +76,14 @@ error_reporting(0);
 
                                                     ?>
                                                 </td>
+                                                <td>
+                                                    <label for="text-input" class=" form-control-label">Status Voucher</label>
+                                                    <select class="form-control" name="status_voucher">
+                                                        <option value="all">All</option>
+                                                        <option value="voucher">Voucher</option>
+                                                        <option value="tanpavoucher">Tanpa Voucher</option>
+                                                    </select>
+                                                </td>
 
                                                 <td width="15%">
                                                     <br>
@@ -91,12 +99,25 @@ error_reporting(0);
                                 $tgl_awal = $_POST['tgl_awal'];
                                 $tgl_akhir = $_POST['tgl_akhir'];
                                 $jenis_cuci = $_POST['id_jenis_cucian'];
+                                $status_voucher = $_POST['status_voucher'];
                                 $jenis = ' ';
                                 if($jenis_cuci != 'all'){
                                     $jenis      = " and jenis_cucian = '$jenis_cuci' ";
                                     $juduljenis = $jenis_cuci ;
                                 }else{
                                     $juduljenis = " Semua Jenis" ;
+                                }
+                                
+                                if($status_voucher == 'all'){
+                                    $judulvoucher      = '' ;
+                                    $wherevoucher      = '' ;
+                                }else{
+                                    if($status_voucher == 'voucher'){
+                                        $wherevoucher      = " and voucher = 'aktif' ";
+                                    }else{
+                                        $wherevoucher      = "  ";
+                                    }
+                                    $judulvoucher      = $status_voucher  ;
                                 }
 
 
@@ -132,6 +153,7 @@ error_reporting(0);
                                         <p align="center"><b>
                                             Laporan Pencucian <br>
                                              <?= $juduljenis ?><br>
+                                             <?= $judulvoucher ?><br>
                                             GNW AUTO WASH <br>
                                             Tanggal <?= $awal;?> Sampai <?= $akhir;?><br><br>
                                         </p><br>
@@ -140,7 +162,8 @@ error_reporting(0);
                                     <?php
                                     include ("../config/koneksi.php");
                                     
-                                    $sqll = "select * from transaksi join pendaftaran using (id_pendaftaran) join jenis_cucian using(id_jenis_cucian) join customer where pendaftaran.id_customer=customer.id_customer and tanggal between '$tgl_awal' and '$tgl_akhir' $jenis order by id_transaksi desc";
+                                    $sqll = "select * from transaksi join pendaftaran using (id_pendaftaran) join jenis_cucian using(id_jenis_cucian) join customer where pendaftaran.id_customer=customer.id_customer and tanggal between '$tgl_awal' and '$tgl_akhir' $jenis $wherevoucher order by id_transaksi desc";
+                                    // print_r($sql);die;
                                     $resultt = mysql_query($sqll);
                                         if(mysql_num_rows($resultt) > 0){
 ?>                                            

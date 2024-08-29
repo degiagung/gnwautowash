@@ -88,7 +88,19 @@ $voucher   = $dt['voucher'];
                                     <div class="row form-group">
                                         <div class="col col-md-3"><label for="text-input" class=" form-control-label">Jenis Cucian</label></div>
                                         <div class="col-12 col-md-9">
-                                            <input type="text" id="text-input" name="jenis_cucian" placeholder="Text" class="form-control" value="<?= $dt['jenis_cucian'];?>" readonly>
+                                            <!-- <input type="text" id="text-input" name="jenis_cucian" placeholder="Text" class="form-control" value="<?= $dt['jenis_cucian'];?>" readonly>
+                                              -->
+                                            <?php
+                                                    $result = mysql_query("SELECT * FROM jenis_cucian");
+                                                    $jsArray = "var prdName = new Array();\n";
+                                                    echo '<select class="form-control" name="jenis_cucian" onchange="harga(this)">';
+                                                    echo '<option value="">Pilih Jenis Cucian</option>';
+                                                    while ($row = mysql_fetch_array($result)) {
+                                                        echo '<option value="' . $row['biaya'] . '">' . $row['jenis_cucian'] . '</option>';
+                                                    }
+                                                    echo '</select>';
+
+                                                    ?>
                                         </div>
                                     </div>
 
@@ -128,7 +140,7 @@ $voucher   = $dt['voucher'];
                                     <div class="row form-group">
                                         <div class="col col-md-3"><label for="text-input" class=" form-control-label">Total Biaya</label></div>
                                         <div class="col-12 col-md-9">
-                                            <input type="text" name="total" id="txt2"  onkeyup="sum();" class="form-control" value="<?= $dt['total_biaya'];?>">
+                                            <input type="text" name="total" id="txt2" class="form-control" value="<?= $dt['total_biaya'];?>" readonly>
                                         </div>
                                     </div>
 
@@ -188,7 +200,14 @@ $voucher   = $dt['voucher'];
 
 <script>
     $("#voucheraktif").hide();
-    function sum() {
+    
+    function harga(data){
+        var txtSecondNumberValue = data.value; 
+        if (!isNaN(txtSecondNumberValue)) {
+            document.getElementById('txt2').value = keyuprp(txtSecondNumberValue.toString());
+        }
+    }
+    function sum(data) {
         var txtFirstNumberValue  = document.getElementById('txt1').value;
         var txtSecondNumberValue = document.getElementById('txt2').value;
         var voucher              = document.getElementById('voucher').value;
@@ -196,9 +215,7 @@ $voucher   = $dt['voucher'];
         if (!isNaN(txtFirstNumberValue)) {
             convertrp('txt1');
         }
-        if (!isNaN(txtSecondNumberValue)) {
-            convertrp('txt2');
-        }
+        
         if (!isNaN(result)) {
             document.getElementById('txt3').value = keyuprp(result.toString());
         }

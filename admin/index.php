@@ -76,7 +76,7 @@ date_default_timezone_set('Asia/Jakarta');
                     </li>
 
                     <li>
-                        <a style="color:#fff" href="index.php?p=type_mobil"> <i style="color:#f9d018 !important;" class="menu-icon ti-list"></i>Jenis Kendaraan </a>
+                        <a style="color:#fff" href="index.php?p=type_mobil"> <i style="color:#f9d018 !important;" class="menu-icon ti-list"></i>Merek Mobil </a>
                     </li>
 
                     <li>

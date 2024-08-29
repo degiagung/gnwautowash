@@ -169,8 +169,7 @@
                                                                             from
                                                                                 jam_operasional a
                                                                                 left join (select jam_pendaftaran,COUNT(*) jml from pendaftaran where tgl_pendaftaran = CURRENT_DATE AND status != 'Batal' GROUP BY jam_pendaftaran) b ON b.jam_pendaftaran = a.jam $where
-                                                                            where 
-                                                                                jam <= now()
+                                                                            
                                                                         ");
                                                             while ($row2 = mysql_fetch_array($result2)) {
                                                                 ?>
@@ -444,7 +443,7 @@
                                             </div>
                                         </div> -->
                                         <div class="row form-group">
-                                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Jenis Kendaraan</label></div>
+                                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Merek Mobil</label></div>
                                             <div class="col-12 col-md-9">
                                                 <?php
                 
@@ -531,8 +530,7 @@
                                                                             from
                                                                                 jam_operasional a
                                                                                 left join (select jam_pendaftaran,COUNT(*) jml from pendaftaran where tgl_pendaftaran = CURRENT_DATE AND status != 'Batal' GROUP BY jam_pendaftaran) b ON b.jam_pendaftaran = a.jam $where
-                                                                            where 
-                                                                                jam <= now()
+                                                                            
                                                                         ");
                                                             while ($row2 = mysql_fetch_array($result2)) {
                                                                 ?>

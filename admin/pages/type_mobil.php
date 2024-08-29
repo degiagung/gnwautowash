@@ -12,7 +12,7 @@
                         <div class="page-header float-right">
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
-                                    <li><a href="#">Type Mobil</a></li>
+                                    <li><a href="#">Merek Mobil</a></li>
                                     <li class="active"><a href="#">Data Type Mobil</a></li>
                                 </ol>
                             </div>

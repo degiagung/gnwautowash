@@ -74,7 +74,7 @@ $cektransaksi=mysql_query("select * from transaksi where id_pendaftaran = $id_pe
 if($cektransaksi->num_rows == 0){
 	 $sql = "INSERT INTO transaksi  
            ( 
-			id_transaksi, 
+				id_transaksi, 
 				id_pendaftaran,
 				no_nota,
 				tanggal,
@@ -89,7 +89,7 @@ if($cektransaksi->num_rows == 0){
 	
 			VALUES  
 			(  
-			NULL,
+				NULL,
 				'$id_pendaftaran', 
 				'$no_nota', 
 				'$tanggal',
@@ -103,7 +103,6 @@ if($cektransaksi->num_rows == 0){
 				)"; 
 
 	$hasil=mysql_query($sql);
-
 	$sql2 = "UPDATE pendaftaran SET status = 'Lunas' WHERE id_pendaftaran = '$id_pendaftaran'";
 	$hasil2=mysql_query($sql2);
 
@@ -124,9 +123,11 @@ if($cektransaksi->num_rows == 0){
 				$dataup11	  = mysql_fetch_array($getup11);
 				$tanggal	  = $dataup11['tanggal'] ;
 				mysql_query("UPDATE user SET voucher = 'aktif',tgl_voucher = '$tanggal' WHERE id_user = '$id_user'");
+				mysql_query("UPDATE transaksi SET voucher = 'aktif' where id_pendaftaran = $id_pendaftaran");
 			}
 		}elseif($hasilvoucher->num_rows == 10){
 			mysql_query("UPDATE user SET voucher = 'aktif',tgl_voucher = now() WHERE id_user = '$id_user'");
+			mysql_query("UPDATE transaksi SET voucher = 'aktif' where id_pendaftaran = $id_pendaftaran");
 		}
 
 		
