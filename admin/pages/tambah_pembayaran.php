@@ -92,46 +92,6 @@ $voucher   = $dt['voucher'];
                                         </div>
                                     </div>
 
-                                    <?php
-                                        $jenisc     = $dt['id_jenis_cucian'];
-                                        $cekchild   = mysql_query("SELECT * FROM jenis_cucian where id_parent = $jenisc");
-                                        // print_r($cekchild);die;
-                                        if($cekchild->num_rows >= 1){
-
-                                    ?>
-                                        <div class="row form-group">
-                                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Kategori</label></div>
-                                            <div class="col-12 col-md-9">
-                                                <!-- <input type="text" id="text-input" name="jenis_cucian" placeholder="Text" class="form-control" value="<?= $dt['jenis_cucian'];?>" readonly>
-                                                -->
-                                                <?php
-                                                        $result = $cekchild;
-                                                        $jsArray = "var prdName = new Array();\n";
-                                                        echo '<select class="form-control" onchange="harga(this)">';
-                                                        echo '<option value="">Pilih Kategori Cucian</option>';
-                                                        while ($row = mysql_fetch_array($result)) {
-                                                            echo '<option value="' . $row['biaya'] . '">' . $row['jenis_cucian'] . '</option>';
-                                                        }
-                                                        echo '</select>';
-
-                                                        ?>
-                                            </div>
-                                        </div>
-                                    <?php
-                                        }else{
-                                    ?>
-                                    <script>
-                                        setTimeout(() => {
-                                            var txtSecondNumberValue = <?= $dt['biaya'] ?>; 
-                                            if (!isNaN(txtSecondNumberValue)) {
-                                                document.getElementById('txt2').value = keyuprp(txtSecondNumberValue.toString());
-                                            }
-                                        }, 1000);
-                                    </script>
-                                    <?php
-                                        }
-                                    ?>
-
                                     <div class="row form-group">
                                         <div class="col col-md-3"><label for="email-input" class=" form-control-label">No. Nota</label></div>
                                         <div class="col-12 col-md-9">
