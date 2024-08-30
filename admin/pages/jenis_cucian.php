@@ -37,7 +37,14 @@
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
 <?php
   include ("../config/koneksi.php");
-  $sqll = "select * from jenis_cucian order by id_jenis_cucian desc";
+  $sqll = "
+    select 
+        jc1.*,jc.jenis_cucian as parent 
+    from 
+        jenis_cucian jc 
+        right join jenis_cucian jc1 on jc.id_jenis_cucian = jc1.id_parent and jc1.id_parent is not null 
+
+    order by jc1.jenis_cucian asc";
   $resultt = mysql_query($sqll);
     if(mysql_num_rows($resultt) > 0){
 ?>                                            
@@ -45,6 +52,7 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Jenis Cucian</th>
+                                            <th>Jenis Cucian Parent</th>
                                             <th>Biaya</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -57,6 +65,7 @@
                                         <tr>
                                             <td><?= $nomor++;?></td>
                                             <td><?= $data['jenis_cucian'];?></td>
+                                            <td><?= $data['parent'];?></td>
                                             <td><?= $data['biaya'];?></td>
                                             
                                             <td align="center">
