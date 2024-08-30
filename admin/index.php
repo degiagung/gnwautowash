@@ -88,7 +88,7 @@ date_default_timezone_set('Asia/Jakarta');
                     </li>
 
                     <li>
-                        <a style="color:#fff" href="index.php?p=promo"> <i style="color:#f9d018 !important;" class="menu-icon ti-list"></i>Promo </a>
+                        <a style="color:#fff" href="index.php?p=promo"> <i style="color:#f9d018 !important;" class="menu-icon ti-list"></i>Informasi </a>
                     </li>
 
                 </ul>

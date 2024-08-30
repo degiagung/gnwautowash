@@ -59,8 +59,25 @@ $dt=mysql_fetch_array($queryy);
                                             <input type="text" id="biaya" name="biaya" class="form-control" value="<?=$dt['biaya'];?>" required="">
                                         </div>
                                     </div>
+
+                                    <div class="row form-group">
+                                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Parent Jenis</label></div>
+                                        <div class="col-12 col-md-9">
+                                            <?php
+                                                $result = mysql_query("SELECT * FROM jenis_cucian WHERE id_parent is null");
+                                                $jsArray = "var prdName = new Array();\n";
+                                                echo '<select class="form-control id_parent" name="id_parent" onchange="document.getElementById(\'txt2\').value = prdName[this.value]">';
+                                                echo '<option value="null"></option>';
+                                                while ($row = mysql_fetch_array($result)) {
+                                                    echo '<option value="' . $row['id_jenis_cucian'] . '">' . $row['jenis_cucian'] . '</option>';
+                                                    $jsArray .= "prdName['" . $row['id_jenis_cucian'] . "'] = '" . addslashes($row['biaya']) . "';\n";
+                                                }
+                                                echo '</select>';
+
+                                                ?>
+                                        </div>
+                                    </div>
                                 
-                                    
                                     <button type="submit" class="btn btn-success">Simpan</button>
                                 </form>
 
@@ -75,6 +92,7 @@ $dt=mysql_fetch_array($queryy);
         </div><!-- .content -->
 
         <script>
+            $(".id_parent").val(<?= $dt['id_parent'] ?>).change();
             function sum() {
                 var txtFirstNumberValue  = document.getElementById('biaya').value;
                 if (!isNaN(txtFirstNumberValue)) {

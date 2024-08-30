@@ -3,9 +3,10 @@ require "../config/koneksi.php";
   
 $id_jenis_cucian=$_POST['id_jenis_cucian'];
 $jenis_cucian=$_POST['jenis_cucian'];
+$id_parent=$_POST['id_parent'];
 $biaya=$_POST['biaya'];
 
-$sql2 = "UPDATE jenis_cucian SET jenis_cucian = '$jenis_cucian', biaya = '$biaya' WHERE id_jenis_cucian = '$id_jenis_cucian'";
+$sql2 = "UPDATE jenis_cucian SET jenis_cucian = '$jenis_cucian', biaya = '$biaya', id_parent = $id_parent WHERE id_jenis_cucian = '$id_jenis_cucian'";
 
 $hasil2=mysql_query($sql2);
 

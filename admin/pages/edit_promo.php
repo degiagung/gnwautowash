@@ -23,8 +23,8 @@ $dt=mysql_fetch_array($queryy);
                         <div class="page-header float-right">
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
-                                    <li><a href="#">Promo</a></li>
-                                    <li class="active"><a href="#">Edit Data Promo</a></li>
+                                    <li><a href="#">Informasi</a></li>
+                                    <li class="active"><a href="#">Edit Data Informasi</a></li>
                                 </ol>
                             </div>
                         </div>
@@ -40,7 +40,7 @@ $dt=mysql_fetch_array($queryy);
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Edit Data Promo</strong>
+                                <strong class="card-title">Edit Informasi</strong>
                             </div>
                             <div class="card-body">
          
@@ -54,7 +54,7 @@ $dt=mysql_fetch_array($queryy);
                                     </div>
 
                                     <div class="row form-group">
-                                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Promo</label></div>
+                                        <div class="col col-md-3"><label for="text-input" class=" form-control-label">Informasi</label></div>
                                         <div class="col-12 col-md-9">
                                             <textarea id="text-input" name="promo" class="form-control" required="" > <?= $dt['promo'] ?> </textarea>
                                         </div>

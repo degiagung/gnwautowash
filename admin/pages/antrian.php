@@ -169,7 +169,8 @@
                                                                             from
                                                                                 jam_operasional a
                                                                                 left join (select jam_pendaftaran,COUNT(*) jml from pendaftaran where tgl_pendaftaran = CURRENT_DATE AND status != 'Batal' GROUP BY jam_pendaftaran) b ON b.jam_pendaftaran = a.jam $where
-                                                                            
+                                                                            where
+                                                                                jam >= now()
                                                                         ");
                                                             while ($row2 = mysql_fetch_array($result2)) {
                                                                 ?>
@@ -530,7 +531,8 @@
                                                                             from
                                                                                 jam_operasional a
                                                                                 left join (select jam_pendaftaran,COUNT(*) jml from pendaftaran where tgl_pendaftaran = CURRENT_DATE AND status != 'Batal' GROUP BY jam_pendaftaran) b ON b.jam_pendaftaran = a.jam $where
-                                                                            
+                                                                            where
+                                                                                jam >= now()
                                                                         ");
                                                             while ($row2 = mysql_fetch_array($result2)) {
                                                                 ?>

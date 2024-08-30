@@ -4,7 +4,7 @@
                     <div class="col-sm-4">
                         <div class="page-header float-left">
                             <div class="page-title">
-                                <h1>Promo</h1>
+                                <h1>Informasi</h1>
                             </div>
                         </div>
                     </div>
@@ -12,8 +12,8 @@
                         <div class="page-header float-right">
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
-                                    <li><a href="#">Promo</a></li>
-                                    <li class="active"><a href="#">Data Promo</a></li>
+                                    <li><a href="#">Informasi</a></li>
+                                    <li class="active"><a href="#">Data Informasi</a></li>
                                 </ol>
                             </div>
                         </div>
@@ -29,7 +29,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Data Promo</strong>
+                                <strong class="card-title">Data Informasi</strong>
                             </div>
                             <div class="card-body">
                                 <a href="index.php?p=tambah_promo" class="btn btn-success mb-3"><i class="fa fa-plus" style="color: white"></i> <font size="3" color="white"><u>Tambah Data</u></font></a></div><br>
@@ -45,7 +45,7 @@
                                         <tr>
                                             <th>No.</th>
                                             <th>Judul</th>
-                                            <th>Promo</th>
+                                            <th>Informasi</th>
                                             <th>Tanggal Mulai</th>
                                             <th>Tanggal Akhir</th>
                                             <th>Aksi</th>

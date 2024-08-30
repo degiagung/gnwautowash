@@ -30,7 +30,7 @@
                         <div class="col-md-12">
                             <div class="card" style="border: 8px solid #f9d018;">
                                 <div class="card-header">
-                                    <strong class="card-title"><center>PROMO PENCUCIAN</center></strong>
+                                    <strong class="card-title"><center>INFORMASI</center></strong>
                                 </div>
                                 <div class="card-body" align="center">
                                     <br><br><b>
