@@ -101,7 +101,7 @@
                                             <div class="col-12 col-md-9">
                                                 <?php
                 
-                                                    $result2 = mysql_query("select * from type_mobil where id_parent is not null");
+                                                    $result2 = mysql_query("select * from type_mobil where id_parent is null");
                                                     echo '<select name="type_mobil" class="form-control-rounded form-control" required="">';
                                                     echo '<option value="">Pilih Tipe Mobil</option>';
                                                     while ($row2 = mysql_fetch_array($result2)) {
@@ -114,6 +114,13 @@
                                             </div>
                                         </div>
                                         
+                                        <div class="row form-group">
+                                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Type Mobil</label></div>
+                                            <div class="col-12 col-md-9">
+                                                <input type="text" class="form-control-rounded form-control"  required="" name="mobil">
+                                            </div>
+                                        </div>
+
                                         <div class="row form-group">
                                             <div class="col col-md-3"><label for="text-input" class=" form-control-label">No Antrian</label></div>
                                             <div class="col-12 col-md-9">
@@ -458,6 +465,13 @@
 
 
                                                 ?>
+                                            </div>
+                                        </div>
+
+                                        <div class="row form-group">
+                                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Type Mobil</label></div>
+                                            <div class="col-12 col-md-9">
+                                                <input type="text" class="form-control-rounded form-control"  require name="mobil">
                                             </div>
                                         </div>
                                         

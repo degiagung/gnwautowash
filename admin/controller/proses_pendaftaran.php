@@ -9,6 +9,7 @@
 	// $alamat= $_POST['alamat'];
 	$nomor_plat=$_POST['nomor_plat'];
 	$type_mobil=$_POST['type_mobil'];
+	$mobil=$_POST['mobil'];
 	$no_antrian=$_POST['no_antrian'];
 	$id_jenis_cucian=$_POST['id_jenis_cucian'];
 	$nomor_plat=$_POST['nomor_plat'];
@@ -19,7 +20,7 @@
 	if ($_SESSION['role'] == 'customer') {
 		$iduser = $_SESSION['id_user'];
 		$nama = $_SESSION['nama'];
-		$queryy = "insert into $tbl(id_customer, nama, nomor_plat, type_mobil, id_user) values('$id_customer','$nama', '$nomor_plat', '$type_mobil',$iduser)" ;
+		$queryy = "insert into $tbl(id_customer, nama, nomor_plat, type_mobil, id_user, jenis_mobil) values('$id_customer','$nama', '$nomor_plat', '$type_mobil',$iduser,'$mobil')" ;
 
 	}else{
 		$iduser = $_POST['id_user'];
@@ -75,7 +76,7 @@ document.location='index.php?p=antrian'</script>
 <?php 
 } elseif ($next<='30') {
 
-$queryy = "insert into $tbl(id_customer, nama, nomor_plat, type_mobil, id_user) values('$id_customer','$nama', '$nomor_plat', '$type_mobil','$iduser')" ;
+$queryy = "insert into $tbl(id_customer, nama, nomor_plat, type_mobil, id_user, jenis_mobil) values('$id_customer','$nama', '$nomor_plat', '$type_mobil','$iduser','$mobil')" ;
 $hasill = mysql_query($queryy);
 
 $query = "insert into pendaftaran(id_pendaftaran, no_antrian, id_customer, tgl_pendaftaran, jam_pendaftaran, total_biaya, status, id_jenis_cucian,created_by) values(NULL,'$no_antrian', '$id_customer', '$tgl_pendaftaran', '$jam_pendaftaran', '$total_biaya', 'Pendaftaran', $id_jenis_cucian,$createdby)" ;
