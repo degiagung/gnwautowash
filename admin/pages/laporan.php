@@ -199,6 +199,8 @@ error_reporting(0);
                                             <th>Nama</th>
                                             <th>No. Plat</th>
                                             <th>Jenis Cucian</th>
+                                            <th>Merek Mobil</th>
+                                            <th>Jenis Mobil</th>
                                             <th>Total Biaya</th>
                                             <!-- <th width="30%">Status</th> -->
                                         </tr>
@@ -217,6 +219,8 @@ error_reporting(0);
                                             <td><?= $data['nama'];?></td>
                                             <td><?= $data['nomor_plat'];?></td>
                                             <td><?= $data['jenis_cucian'];?></td>
+                                            <td><?= $data['type_mobil'];?></td>
+                                            <td><?= $data['jenis_mobil'];?></td>
                                             <td><?= $data['total'];?></td>
                                         </tr>
                                         <?php
