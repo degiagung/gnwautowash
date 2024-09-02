@@ -37,12 +37,12 @@ $hasil=mysql_query($sql);
 if ($hasil) {
 ?>
 <script language="JavaScript">
-alert('Data Promo Berhasil Ditambahkan');
+alert('Data Berhasil Ditambahkan');
 document.location='index.php?p=promo'</script>
 <?php
 }else{
 ?>
 <script language="JavaScript">
-alert('Data Promo Gagal Ditambahkan');
+alert('Data Gagal Ditambahkan');
 document.location='index.php?p=tambah_promo'</script><?php }
 ?>

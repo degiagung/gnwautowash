@@ -4,7 +4,7 @@
                     <div class="col-sm-4">
                         <div class="page-header float-left">
                             <div class="page-title">
-                                <h1>Type Mobil</h1>
+                                <h1>Merek Mobil</h1>
                             </div>
                         </div>
                     </div>
@@ -12,8 +12,8 @@
                         <div class="page-header float-right">
                             <div class="page-title">
                                 <ol class="breadcrumb text-right">
-                                    <li><a href="#">Type Mobil</a></li>
-                                    <li class="active"><a href="#">Data Type Mobil</a></li>
+                                    <li><a href="#">Merek Mobil</a></li>
+                                    <li class="active"><a href="#">Data Merek Mobil</a></li>
                                 </ol>
                             </div>
                         </div>
@@ -29,21 +29,30 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                <strong class="card-title">Data Type Mobil</strong>
+                                <strong class="card-title">Data Merek Mobil</strong>
                             </div>
                             <div class="card-body">
-                                <a href="index.php?p=tambah_type_mobil" class="btn btn-success mb-3"><i class="fa fa-plus" style="color: white"></i> <font size="3" color="white"><u>Tambah Data</u></font></a></div><br>
+                                <a href="index.php?p=tambah_merek_mobil" class="btn btn-success mb-3"><i class="fa fa-plus" style="color: white"></i> <font size="3" color="white"><u>Tambah Data</u></font></a></div><br>
 
                                 <table id="bootstrap-data-table" class="table table-striped table-bordered">
 <?php
   include ("../config/koneksi.php");
-  $sqll = "select * from type_mobil where id_parent is null order by id_type_mobil desc";
+  $sqll = "
+    select 
+        tm.* ,tm1.type_mobil as type_mobil_1
+    from 
+        type_mobil tm
+        inner join type_mobil tm1 on tm.id_parent = tm1.id_type_mobil  
+    where 
+        tm.id_parent is not null 
+    order by tm.id_type_mobil desc";
   $resultt = mysql_query($sqll);
     if(mysql_num_rows($resultt) > 0){
 ?>                                            
                                     <thead>
                                         <tr>
                                             <th>No.</th>
+                                            <th>Merek Mobil</th>
                                             <th>Type Mobil</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -56,11 +65,12 @@
                                         <tr>
                                             <td><?= $nomor++;?></td>
                                             <td><?= $data['type_mobil'];?></td>
+                                            <td><?= $data['type_mobil_1'];?></td>
                                             <td align="center">
-                                                <a href="index.php?p=edit_type_mobil&id_type_mobil=<?php echo $data['id_type_mobil']; ?>" class="btn btn-warning mb-3"> <i class="fa fa-fw fa-pencil" style="color: white"></i> <font color="white">Edit</font></a>
+                                                <a href="index.php?p=edit_merek_mobil&id_type_mobil=<?php echo $data['id_type_mobil']; ?>" class="btn btn-warning mb-3"> <i class="fa fa-fw fa-pencil" style="color: white"></i> <font color="white">Edit</font></a>
                                             </td>
                                             <td align="center">
-                                                <a href="index.php?p=hapus_type_mobil&id_type_mobil=<?php echo $data['id_type_mobil']; ?>" onClick="return confirm('Apakah Anda Yakin Hapus Data?')" class="btn btn-danger mb-3"> <i class="fa fa-fw fa-trash" style="color: white"></i> <font color="white">Hapus</font></a>
+                                                <a href="index.php?p=hapus_merek_mobil&id_type_mobil=<?php echo $data['id_type_mobil']; ?>" onClick="return confirm('Apakah Anda Yakin Hapus Data?')" class="btn btn-danger mb-3"> <i class="fa fa-fw fa-trash" style="color: white"></i> <font color="white">Hapus</font></a>
                                             </td>
                                         </tr>
 <?php

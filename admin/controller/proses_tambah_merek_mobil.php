@@ -1,23 +1,20 @@
 <?php 
 require "../config/koneksi.php"; 
   
-$jenis_cucian=$_POST['jenis_cucian'];
+$type_mobil=$_POST['type_mobil'];
 $id_parent=$_POST['id_parent'];
-$biaya=str_replace('.,','',$_POST['biaya']);
 
- $sql = "INSERT INTO jenis_cucian  
+ $sql = "INSERT INTO type_mobil  
            ( 
-         id_jenis_cucian, 
-			  jenis_cucian,
-			  biaya,
+        id_type_mobil, 
+			  type_mobil,
            id_parent
            ) 
  
            VALUES  
            (  
         NULL,
-			  '$jenis_cucian', 
-			  '$biaya',
+			  '$type_mobil',
            $id_parent
             )"; 
 
@@ -28,11 +25,11 @@ if ($hasil) {
 ?>
 <script language="JavaScript">
 alert('Data Berhasil Ditambahkan');
-document.location='index.php?p=jenis_cucian'</script>
+document.location='index.php?p=merek_mobil'</script>
 <?php
 }else{
 ?>
 <script language="JavaScript">
 alert('Data Gagal Ditambahkan');
-document.location='index.php?p=tambah_jenis_cucian'</script><?php }
+document.location='index.php?p=tambah_merek_mobil'</script><?php }
 ?>

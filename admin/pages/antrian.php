@@ -97,11 +97,11 @@
                                         </div>
 
                                         <div class="row form-group">
-                                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Jenis Kendaraan</label></div>
+                                            <div class="col col-md-3"><label for="text-input" class=" form-control-label">Merek Mobil</label></div>
                                             <div class="col-12 col-md-9">
                                                 <?php
                 
-                                                    $result2 = mysql_query("select * from type_mobil");
+                                                    $result2 = mysql_query("select * from type_mobil where id_parent is not null");
                                                     echo '<select name="type_mobil" class="form-control-rounded form-control" required="">';
                                                     echo '<option value="">Pilih Tipe Mobil</option>';
                                                     while ($row2 = mysql_fetch_array($result2)) {
@@ -448,9 +448,9 @@
                                             <div class="col-12 col-md-9">
                                                 <?php
                 
-                                                    $result2 = mysql_query("select * from type_mobil");
+                                                    $result2 = mysql_query("select * from type_mobil where id_parent is not null");
                                                     echo '<select name="type_mobil" class="form-control-rounded form-control" required="">';
-                                                    echo '<option value="">Pilih Tipe Mobil</option>';
+                                                    echo '<option value="">Pilih Merek Mobil</option>';
                                                     while ($row2 = mysql_fetch_array($result2)) {
                                                         echo '<option value="' . $row2['type_mobil'] . '">' . $row2['type_mobil'] . '</option>';
                                                     }
